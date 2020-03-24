@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.12
+ * API version: 0.1.13
  * Contact: nurmi@anchore.com
  */
 
@@ -325,10 +325,97 @@ func (a *EventsApiService) GetEvent(ctx _context.Context, eventId string, localV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+/*
+ListEventTypes List Event Types
+Returns list of event types in the category hierarchy
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return []EventCategory
+*/
+func (a *EventsApiService) ListEventTypes(ctx _context.Context) ([]EventCategory, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []EventCategory
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/event_types"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v []EventCategory
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListEventsOpts Optional parameters for the method 'ListEvents'
 type ListEventsOpts struct {
     SourceServicename optional.String
     SourceHostid optional.String
+    EventType optional.String
     ResourceType optional.String
     ResourceId optional.String
     Level optional.String
@@ -346,6 +433,7 @@ Returns a paginated list of events in the descending order of their occurrence. 
  * @param optional nil or *ListEventsOpts - Optional Parameters:
  * @param "SourceServicename" (optional.String) -  Filter events by the originating service
  * @param "SourceHostid" (optional.String) -  Filter events by the originating host ID
+ * @param "EventType" (optional.String) -  Filter events by a prefix match on the event type (e.g. \"user.image.\")
  * @param "ResourceType" (optional.String) -  Filter events by the type of resource - tag, imageDigest, repository etc
  * @param "ResourceId" (optional.String) -  Filter events by the id of the resource
  * @param "Level" (optional.String) -  Filter events by the level - INFO or ERROR
@@ -378,6 +466,9 @@ func (a *EventsApiService) ListEvents(ctx _context.Context, localVarOptionals *L
 	}
 	if localVarOptionals != nil && localVarOptionals.SourceHostid.IsSet() {
 		localVarQueryParams.Add("source_hostid", parameterToString(localVarOptionals.SourceHostid.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.EventType.IsSet() {
+		localVarQueryParams.Add("event_type", parameterToString(localVarOptionals.EventType.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ResourceType.IsSet() {
 		localVarQueryParams.Add("resource_type", parameterToString(localVarOptionals.ResourceType.Value(), ""))

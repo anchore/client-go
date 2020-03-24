@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.12
+ * API version: 0.1.13
  * Contact: nurmi@anchore.com
  */
 
@@ -39,7 +39,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Anchore Engine API Server API v0.1.12
+// APIClient manages communication with the Anchore Engine API Server API v0.1.13
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -55,6 +55,8 @@ type APIClient struct {
 
 	IdentityApi *IdentityApiService
 
+	ImageContentApi *ImageContentApiService
+
 	ImagesApi *ImagesApiService
 
 	ImportApi *ImportApiService
@@ -62,6 +64,10 @@ type APIClient struct {
 	PoliciesApi *PoliciesApiService
 
 	PolicyApi *PolicyApiService
+
+	PolicyEvaluationApi *PolicyEvaluationApiService
+
+	QueriesApi *QueriesApiService
 
 	RegistriesApi *RegistriesApiService
 
@@ -100,10 +106,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DefaultApi = (*DefaultApiService)(&c.common)
 	c.EventsApi = (*EventsApiService)(&c.common)
 	c.IdentityApi = (*IdentityApiService)(&c.common)
+	c.ImageContentApi = (*ImageContentApiService)(&c.common)
 	c.ImagesApi = (*ImagesApiService)(&c.common)
 	c.ImportApi = (*ImportApiService)(&c.common)
 	c.PoliciesApi = (*PoliciesApiService)(&c.common)
 	c.PolicyApi = (*PolicyApiService)(&c.common)
+	c.PolicyEvaluationApi = (*PolicyEvaluationApiService)(&c.common)
+	c.QueriesApi = (*QueriesApiService)(&c.common)
 	c.RegistriesApi = (*RegistriesApiService)(&c.common)
 	c.RepositoryCredentialsApi = (*RepositoryCredentialsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)

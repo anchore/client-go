@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.12
+ * API version: 0.1.13
  * Contact: nurmi@anchore.com
  */
 
@@ -18,6 +18,7 @@ type EventResponseEvent struct {
 	Source EventResponseEventSource `json:"source,omitempty"`
 	Resource EventResponseEventResource `json:"resource,omitempty"`
 	Type string `json:"type,omitempty"`
+	Category string `json:"category,omitempty"`
 	Level string `json:"level,omitempty"`
 	Message string `json:"message,omitempty"`
 	Details map[string]interface{} `json:"details,omitempty"`

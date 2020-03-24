@@ -8,11 +8,9 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Anchore Engine API Server
-  version: 0.1.12
+  version: 0.1.13
 servers:
 - url: /
-security:
-- basicAuth: []
 tags:
 - description: Subscription Management
   name: Subscriptions
@@ -767,6 +765,7 @@ paths:
       summary: Check policy evaluation status for image
       tags:
       - Images
+      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/by_id/{imageId}/check:
@@ -818,6 +817,7 @@ paths:
       summary: Check policy evaluation status for image
       tags:
       - Images
+      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/{imageDigest}/vuln:
@@ -857,6 +857,8 @@ paths:
       summary: Get vulnerability types
       tags:
       - Images
+      - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/vuln/{vtype}:
@@ -903,6 +905,8 @@ paths:
       summary: Get vulnerabilities by type
       tags:
       - Images
+      - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln:
@@ -942,6 +946,8 @@ paths:
       summary: Get vulnerability types
       tags:
       - Images
+      - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln/{vtype}:
@@ -980,6 +986,8 @@ paths:
       summary: Get vulnerabilities by type
       tags:
       - Images
+      - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content:
@@ -1015,6 +1023,8 @@ paths:
       summary: List image content types
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content:
@@ -1050,6 +1060,8 @@ paths:
       summary: List image content types
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/{ctype}:
@@ -1088,6 +1100,8 @@ paths:
       summary: Get the content of an image by type
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/files:
@@ -1121,6 +1135,8 @@ paths:
       summary: Get the content of an image by type files
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/java:
@@ -1154,6 +1170,8 @@ paths:
       summary: Get the content of an image by type java
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/{ctype}:
@@ -1192,6 +1210,8 @@ paths:
       summary: Get the content of an image by type
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/files:
@@ -1225,6 +1245,8 @@ paths:
       summary: Get the content of an image by type files
       tags:
       - Images
+      - Image Content
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/java:
@@ -1258,6 +1280,74 @@ paths:
       summary: Get the content of an image by type java
       tags:
       - Images
+      - Image Content
+      - Queries
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
+      x-anchore-authz-action: getImage
+  /images/{imageDigest}/artifacts/retrieved_files:
+    get:
+      operationId: list_retrieved_files
+      parameters:
+      - in: path
+        name: imageDigest
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrievedFileList'
+          description: List of file metadata objects
+        404:
+          content: {}
+          description: Image not found in this service
+      summary: Return a list of analyzer artifacts of the specified type
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
+      x-anchore-authz-action: getImage
+  /images/{imageDigest}/artifacts/file_content_search:
+    get:
+      operationId: list_file_content_search_results
+      parameters:
+      - in: path
+        name: imageDigest
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileContentSearchList'
+          description: List of file metadata objects
+        404:
+          content: {}
+          description: Image not found in this service
+      summary: Return a list of analyzer artifacts of the specified type
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
+      x-anchore-authz-action: getImage
+  /images/{imageDigest}/artifacts/secret_search:
+    get:
+      operationId: list_secret_search_results
+      parameters:
+      - in: path
+        name: imageDigest
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretSearchList'
+          description: List of file metadata objects
+        404:
+          content: {}
+          description: Image not found in this service
+      summary: Return a list of analyzer artifacts of the specified type
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/metadata:
@@ -1293,6 +1383,7 @@ paths:
       summary: List image metadata types
       tags:
       - Images
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/metadata/{mtype}:
@@ -1331,6 +1422,7 @@ paths:
       summary: Get the metadata of an image by type
       tags:
       - Images
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /repositories:
@@ -1590,6 +1682,9 @@ paths:
       x-anchore-authz-action: None
   /system/feeds:
     get:
+      description: Return a list of feed and their groups along with update and record
+        count information. This data reflects the state of the policy engine, not
+        the upstream feed service itself.
       operationId: get_system_feeds
       responses:
         200:
@@ -1612,6 +1707,8 @@ paths:
       x-anchore-authz-action: listFeeds
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
     post:
+      description: Execute a synchronous feed sync operation. The response will block
+        until complete, then return the result summary.
       operationId: post_system_feeds
       parameters:
       - description: instruct system to flush existing data feeds records from anchore-engine
@@ -1642,6 +1739,128 @@ paths:
       - System
       x-anchore-authz-action: updateFeeds
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+  /system/feeds/{feed}:
+    delete:
+      description: Delete the groups and data for the feed and disable the feed itself
+      operationId: delete_feed
+      parameters:
+      - in: path
+        name: feed
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content: {}
+          description: Successfully deleted
+        404:
+          content: {}
+          description: Not found
+        500:
+          content: {}
+          description: Internal server error processing the request. Retry expected
+      tags:
+      - System
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+      x-anchore-authz-action: updateFeeds
+    put:
+      description: Disable the feed so that it does not sync on subsequent sync operations
+      operationId: toggle_feed_enabled
+      parameters:
+      - in: path
+        name: feed
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: enabled
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedMetadata'
+          description: FeedInfo
+        400:
+          content: {}
+          description: Bad request, fix and resend
+        500:
+          content: {}
+          description: Internal server error processing the request. Retry expected
+      tags:
+      - System
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+      x-anchore-authz-action: updateFeeds
+  /system/feeds/{feed}/{group}:
+    delete:
+      description: Delete the group data and disable the group itself
+      operationId: delete_feed_group
+      parameters:
+      - in: path
+        name: feed
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: group
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content: {}
+          description: Successfully deleted
+        404:
+          content: {}
+          description: Not found
+        500:
+          content: {}
+          description: Internal server error processing the request. Retry expected
+      tags:
+      - System
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+      x-anchore-authz-action: updateFeeds
+    put:
+      description: Disable a specific group within a feed to not sync
+      operationId: toggle_group_enabled
+      parameters:
+      - in: path
+        name: feed
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: group
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: enabled
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FeedMetadata'
+                type: array
+          description: FeedInfo listing
+        400:
+          content: {}
+          description: Bad request, fix and resend
+        500:
+          content: {}
+          description: Internal server error processing the request. Retry expected
+      tags:
+      - System
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+      x-anchore-authz-action: updateFeeds
   /system/services:
     get:
       operationId: list_services
@@ -1793,6 +2012,22 @@ paths:
       - System
       x-anchore-authz-action: None
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+  /event_types:
+    get:
+      description: Returns list of event types in the category hierarchy
+      operationId: list_event_types
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventTypesList'
+          description: List of event types
+      summary: List Event Types
+      tags:
+      - Events
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
+      x-anchore-authz-action: listEvents
   /events:
     delete:
       description: Delete all or a subset of events filtered using the optional query
@@ -1854,6 +2089,12 @@ paths:
         in: query
         name: source_hostid
         schema:
+          type: string
+      - description: Filter events by a prefix match on the event type (e.g. "user.image.")
+        in: query
+        name: event_type
+        schema:
+          pattern: ^[a-z0-9-_.*]+$
           type: string
       - description: Filter events by the type of resource - tag, imageDigest, repository
           etc
@@ -2044,6 +2285,7 @@ paths:
       summary: List images vulnerable to the specific vulnerability ID.
       tags:
       - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/images/by_package:
@@ -2099,6 +2341,8 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Bad filter parameters
       summary: List of images containing given package
+      tags:
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/vulnerabilities:
@@ -2108,11 +2352,15 @@ paths:
       operationId: query_vulnerabilities
       parameters:
       - description: The ID of the vulnerability (e.g. CVE-1999-0001)
+        explode: false
         in: query
         name: id
         required: true
         schema:
-          type: string
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results by specified package name (e.g. sed)
         in: query
         name: affected_package
@@ -2135,6 +2383,15 @@ paths:
         name: limit
         schema:
           type: integer
+      - description: Namespace(s) to filter vulnerability records by
+        explode: false
+        in: query
+        name: namespace
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         200:
           content:
@@ -2151,6 +2408,7 @@ paths:
       summary: Listing information about given vulnerability
       tags:
       - Vulnerabilities
+      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: None
   /accounts:
@@ -3075,11 +3333,7 @@ components:
         Optionally include the dockerfile content. Either source, digest or tag must
         be present.
       example:
-        dockerfile: dockerfile
-        digest: digest
-        created_at: 2000-01-23T04:56:07.000+00:00
         annotations: '{}'
-        tag: tag
         source:
           digest:
             creation_timestamp_override: 2000-01-23T04:56:07.000+00:00
@@ -3093,27 +3347,6 @@ components:
             pullstring: pullstring
         image_type: image_type
       properties:
-        dockerfile:
-          description: Base64 encoded content of the dockerfile for the image, if
-            available. Deprecated in favor of the 'source' field.
-          pattern: ^[a-zA-Z0-9+/=]+$
-          type: string
-        digest:
-          description: A digest string for an image, maybe a pull string or just a
-            digest. e.g. nginx@sha256:123 or sha256:abc123. If a pull string, it must
-            have same regisry/repo as the tag field. Deprecated in favor of the 'source'
-            field
-          type: string
-        tag:
-          description: Full pullable tag reference for image. e.g. docker.io/nginx:latest.
-            Deprecated in favor of the 'source' field
-          type: string
-        created_at:
-          description: Optional override of the image creation time, only honored
-            when both tag and digest are also supplied  e.g. 2018-10-17T18:14:00Z.
-            Deprecated in favor of the 'source' field
-          format: date-time
-          type: string
         image_type:
           description: Optional. The type of image this is adding, defaults to "docker".
             This can be ommitted until multiple image types are supported.
@@ -4934,6 +5167,7 @@ components:
             servicename: servicename
             request_id: request_id
           type: type
+          category: category
           message: message
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -4967,6 +5201,7 @@ components:
               servicename: servicename
               request_id: request_id
             type: type
+            category: category
             message: message
             timestamp: 2000-01-23T04:56:07.000+00:00
         - generated_uuid: generated_uuid
@@ -4984,6 +5219,7 @@ components:
               servicename: servicename
               request_id: request_id
             type: type
+            category: category
             message: message
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -5525,6 +5761,189 @@ components:
       required:
       - token
       type: object
+    RetrievedFile:
+      description: The retrieved file entry including content (b64 encoded)
+      example:
+        path: path
+        b64_content: b64_content
+      properties:
+        path:
+          type: string
+        b64_content:
+          type: string
+      type: object
+    RetrievedFileList:
+      description: Simple array of RetrievedFileMetadata objects
+      items:
+        $ref: '#/components/schemas/RetrievedFile'
+      type: array
+    SecretSearchResult:
+      description: The retrieved file entry including content (b64 encoded)
+      example:
+        path: path
+        matches:
+        - regex: regex
+          name: name
+          lines:
+          - 0
+          - 0
+        - regex: regex
+          name: name
+          lines:
+          - 0
+          - 0
+      properties:
+        path:
+          type: string
+        matches:
+          items:
+            $ref: '#/components/schemas/RegexContentMatch'
+          type: array
+      type: object
+    SecretSearchList:
+      description: Simple array of RetrievedFileMetadata objects
+      items:
+        $ref: '#/components/schemas/SecretSearchResult'
+      type: array
+    FileContentSearchResult:
+      description: The retrieved file entry including content (b64 encoded)
+      example:
+        path: path
+        matches:
+        - regex: regex
+          name: name
+          lines:
+          - 0
+          - 0
+        - regex: regex
+          name: name
+          lines:
+          - 0
+          - 0
+      properties:
+        path:
+          type: string
+        matches:
+          items:
+            $ref: '#/components/schemas/RegexContentMatch'
+          type: array
+      type: object
+    FileContentSearchList:
+      description: Simple array of RetrievedFileMetadata objects
+      items:
+        $ref: '#/components/schemas/FileContentSearchResult'
+      type: array
+    RegexContentMatch:
+      description: Match of a named regex on a file
+      example:
+        regex: regex
+        name: name
+        lines:
+        - 0
+        - 0
+      properties:
+        name:
+          description: The name associated with the regular expression
+          type: string
+        regex:
+          description: The regular expression used for the match
+          type: string
+        lines:
+          description: A list of line numbers in the file that matched the regex
+          items:
+            type: integer
+          type: array
+      type: object
+    EventTypesList:
+      description: Array of EventCategory objects
+      items:
+        $ref: '#/components/schemas/EventCategory'
+      type: array
+    EventCategory:
+      description: A collection of event subcategories
+      example:
+        description: description
+        category: category
+        subcategories:
+        - name: name
+          description: description
+          events:
+          - name: name
+            resource_type: resource_type
+            type: type
+            message: message
+          - name: name
+            resource_type: resource_type
+            type: type
+            message: message
+        - name: name
+          description: description
+          events:
+          - name: name
+            resource_type: resource_type
+            type: type
+            message: message
+          - name: name
+            resource_type: resource_type
+            type: type
+            message: message
+      properties:
+        category:
+          type: string
+        description:
+          type: string
+        subcategories:
+          items:
+            $ref: '#/components/schemas/EventSubcategory'
+          type: array
+      type: object
+    EventSubcategory:
+      description: A collection of events related to each other
+      example:
+        name: name
+        description: description
+        events:
+        - name: name
+          resource_type: resource_type
+          type: type
+          message: message
+        - name: name
+          resource_type: resource_type
+          type: type
+          message: message
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        events:
+          items:
+            $ref: '#/components/schemas/EventDescription'
+          type: array
+      type: object
+    EventDescription:
+      description: A description of an event type
+      example:
+        name: name
+        resource_type: resource_type
+        type: type
+        message: message
+      properties:
+        name:
+          description: The event type. The last component of the fully-qualified event_type
+            (category.subcategory.event)
+          type: string
+        type:
+          description: The fully qualified event type as would be seen in the event
+            payload
+          type: string
+        message:
+          description: The message associated with the event type
+          type: string
+        resource_type:
+          description: The type of resource this event is generated from
+          type: string
+      type: object
     PaginatedVulnerableImageList_allOf:
       properties:
         images:
@@ -5675,6 +6094,7 @@ components:
           servicename: servicename
           request_id: request_id
         type: type
+        category: category
         message: message
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -5683,6 +6103,8 @@ components:
         resource:
           $ref: '#/components/schemas/EventResponse_event_resource'
         type:
+          type: string
+        category:
           type: string
         level:
           type: string
@@ -5716,7 +6138,3 @@ components:
         schema_version:
           description: Semantic version of the db schema
           type: string
-  securitySchemes:
-    basicAuth:
-      scheme: basic
-      type: http
