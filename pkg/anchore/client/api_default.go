@@ -13,13 +13,13 @@ package client
 
 import (
 	_context "context"
+	"fmt"
+	"github.com/antihax/optional"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"fmt"
-	"strings"
-	"github.com/antihax/optional"
 	"os"
+	"strings"
 )
 
 // Linger please
@@ -130,9 +130,9 @@ func (a *DefaultApiService) AddCredential(ctx _context.Context, credential Acces
 
 // AddImageOpts Optional parameters for the method 'AddImage'
 type AddImageOpts struct {
-    Force optional.Bool
-    Autosubscribe optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	Autosubscribe   optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -249,7 +249,7 @@ func (a *DefaultApiService) AddImage(ctx _context.Context, image ImageAnalysisRe
 
 // AddPolicyOpts Optional parameters for the method 'AddPolicy'
 type AddPolicyOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -358,9 +358,9 @@ func (a *DefaultApiService) AddPolicy(ctx _context.Context, bundle PolicyBundle,
 
 // AddRepositoryOpts Optional parameters for the method 'AddRepository'
 type AddRepositoryOpts struct {
-    Autosubscribe optional.Bool
-    Lookuptag optional.String
-    XAnchoreAccount optional.String
+	Autosubscribe   optional.Bool
+	Lookuptag       optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -465,7 +465,7 @@ func (a *DefaultApiService) AddRepository(ctx _context.Context, repository strin
 
 // AddSubscriptionOpts Optional parameters for the method 'AddSubscription'
 type AddSubscriptionOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -868,8 +868,8 @@ func (a *DefaultApiService) CreateAnalysisArchiveRule(ctx _context.Context, rule
 
 // CreateRegistryOpts Optional parameters for the method 'CreateRegistry'
 type CreateRegistryOpts struct {
-    Validate optional.Bool
-    XAnchoreAccount optional.String
+	Validate        optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1347,7 +1347,7 @@ func (a *DefaultApiService) DeleteAnalysisArchiveRule(ctx _context.Context, rule
 
 // DeleteArchivedAnalysisOpts Optional parameters for the method 'DeleteArchivedAnalysis'
 type DeleteArchivedAnalysisOpts struct {
-    Force optional.Bool
+	Force optional.Bool
 }
 
 /*
@@ -1356,7 +1356,7 @@ Performs a synchronous archive deletion
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageDigest
  * @param optional nil or *DeleteArchivedAnalysisOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
 @return ArchivedAnalysis
 */
 func (a *DefaultApiService) DeleteArchivedAnalysis(ctx _context.Context, imageDigest string, localVarOptionals *DeleteArchivedAnalysisOpts) (ArchivedAnalysis, *_nethttp.Response, error) {
@@ -1455,7 +1455,7 @@ func (a *DefaultApiService) DeleteArchivedAnalysis(ctx _context.Context, imageDi
 
 // DeleteEventOpts Optional parameters for the method 'DeleteEvent'
 type DeleteEventOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1532,10 +1532,10 @@ func (a *DefaultApiService) DeleteEvent(ctx _context.Context, eventId string, lo
 
 // DeleteEventsOpts Optional parameters for the method 'DeleteEvents'
 type DeleteEventsOpts struct {
-    Before optional.String
-    Since optional.String
-    Level optional.String
-    XAnchoreAccount optional.String
+	Before          optional.String
+	Since           optional.String
+	Level           optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1789,8 +1789,8 @@ func (a *DefaultApiService) DeleteFeedGroup(ctx _context.Context, feed string, g
 
 // DeleteImageOpts Optional parameters for the method 'DeleteImage'
 type DeleteImageOpts struct {
-    Force optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1798,7 +1798,7 @@ DeleteImage Delete an image analysis
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageDigest
  * @param optional nil or *DeleteImageOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 */
 func (a *DefaultApiService) DeleteImage(ctx _context.Context, imageDigest string, localVarOptionals *DeleteImageOpts) (*_nethttp.Response, error) {
@@ -1870,8 +1870,8 @@ func (a *DefaultApiService) DeleteImage(ctx _context.Context, imageDigest string
 
 // DeleteImageByImageIdOpts Optional parameters for the method 'DeleteImageByImageId'
 type DeleteImageByImageIdOpts struct {
-    Force optional.Bool
-    XAnchoreAccount optional.String
+	Force           optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -1879,7 +1879,7 @@ DeleteImageByImageId Delete image by docker imageId
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param imageId
  * @param optional nil or *DeleteImageByImageIdOpts - Optional Parameters:
- * @param "Force" (optional.Bool) - 
+ * @param "Force" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 */
 func (a *DefaultApiService) DeleteImageByImageId(ctx _context.Context, imageId string, localVarOptionals *DeleteImageByImageIdOpts) (*_nethttp.Response, error) {
@@ -1961,7 +1961,7 @@ func (a *DefaultApiService) DeleteImageByImageId(ctx _context.Context, imageId s
 
 // DeletePolicyOpts Optional parameters for the method 'DeletePolicy'
 type DeletePolicyOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -2058,7 +2058,7 @@ func (a *DefaultApiService) DeletePolicy(ctx _context.Context, policyId string, 
 
 // DeleteRegistryOpts Optional parameters for the method 'DeleteRegistry'
 type DeleteRegistryOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -2223,7 +2223,7 @@ func (a *DefaultApiService) DeleteService(ctx _context.Context, servicename stri
 
 // DeleteSubscriptionOpts Optional parameters for the method 'DeleteSubscription'
 type DeleteSubscriptionOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3125,7 +3125,7 @@ func (a *DefaultApiService) GetCredentials(ctx _context.Context) ([]AccessCreden
 
 // GetEventOpts Optional parameters for the method 'GetEvent'
 type GetEventOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3223,7 +3223,7 @@ func (a *DefaultApiService) GetEvent(ctx _context.Context, eventId string, local
 
 // GetImageOpts Optional parameters for the method 'GetImage'
 type GetImageOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3330,7 +3330,7 @@ func (a *DefaultApiService) GetImage(ctx _context.Context, imageDigest string, l
 
 // GetImageByImageIdOpts Optional parameters for the method 'GetImageByImageId'
 type GetImageByImageIdOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3437,7 +3437,7 @@ func (a *DefaultApiService) GetImageByImageId(ctx _context.Context, imageId stri
 
 // GetImageContentByTypeOpts Optional parameters for the method 'GetImageContentByType'
 type GetImageContentByTypeOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3546,7 +3546,7 @@ func (a *DefaultApiService) GetImageContentByType(ctx _context.Context, imageDig
 
 // GetImageContentByTypeFilesOpts Optional parameters for the method 'GetImageContentByTypeFiles'
 type GetImageContentByTypeFilesOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3653,7 +3653,7 @@ func (a *DefaultApiService) GetImageContentByTypeFiles(ctx _context.Context, ima
 
 // GetImageContentByTypeImageIdOpts Optional parameters for the method 'GetImageContentByTypeImageId'
 type GetImageContentByTypeImageIdOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3762,7 +3762,7 @@ func (a *DefaultApiService) GetImageContentByTypeImageId(ctx _context.Context, i
 
 // GetImageContentByTypeImageIdFilesOpts Optional parameters for the method 'GetImageContentByTypeImageIdFiles'
 type GetImageContentByTypeImageIdFilesOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3869,7 +3869,7 @@ func (a *DefaultApiService) GetImageContentByTypeImageIdFiles(ctx _context.Conte
 
 // GetImageContentByTypeImageIdJavapackageOpts Optional parameters for the method 'GetImageContentByTypeImageIdJavapackage'
 type GetImageContentByTypeImageIdJavapackageOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -3976,7 +3976,7 @@ func (a *DefaultApiService) GetImageContentByTypeImageIdJavapackage(ctx _context
 
 // GetImageContentByTypeJavapackageOpts Optional parameters for the method 'GetImageContentByTypeJavapackage'
 type GetImageContentByTypeJavapackageOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4083,7 +4083,7 @@ func (a *DefaultApiService) GetImageContentByTypeJavapackage(ctx _context.Contex
 
 // GetImageMetadataByTypeOpts Optional parameters for the method 'GetImageMetadataByType'
 type GetImageMetadataByTypeOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4192,11 +4192,11 @@ func (a *DefaultApiService) GetImageMetadataByType(ctx _context.Context, imageDi
 
 // GetImagePolicyCheckOpts Optional parameters for the method 'GetImagePolicyCheck'
 type GetImagePolicyCheckOpts struct {
-    PolicyId optional.String
-    Detail optional.Bool
-    History optional.Bool
-    Interactive optional.Bool
-    XAnchoreAccount optional.String
+	PolicyId        optional.String
+	Detail          optional.Bool
+	History         optional.Bool
+	Interactive     optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4206,10 +4206,10 @@ Get the policy evaluation for the given image
  * @param imageDigest
  * @param tag
  * @param optional nil or *GetImagePolicyCheckOpts - Optional Parameters:
- * @param "PolicyId" (optional.String) - 
- * @param "Detail" (optional.Bool) - 
- * @param "History" (optional.Bool) - 
- * @param "Interactive" (optional.Bool) - 
+ * @param "PolicyId" (optional.String) -
+ * @param "Detail" (optional.Bool) -
+ * @param "History" (optional.Bool) -
+ * @param "Interactive" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return []map[string]interface{}
 */
@@ -4322,10 +4322,10 @@ func (a *DefaultApiService) GetImagePolicyCheck(ctx _context.Context, imageDiges
 
 // GetImagePolicyCheckByImageIdOpts Optional parameters for the method 'GetImagePolicyCheckByImageId'
 type GetImagePolicyCheckByImageIdOpts struct {
-    PolicyId optional.String
-    Detail optional.Bool
-    History optional.Bool
-    XAnchoreAccount optional.String
+	PolicyId        optional.String
+	Detail          optional.Bool
+	History         optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4335,9 +4335,9 @@ Get the policy evaluation for the given image
  * @param imageId
  * @param tag
  * @param optional nil or *GetImagePolicyCheckByImageIdOpts - Optional Parameters:
- * @param "PolicyId" (optional.String) - 
- * @param "Detail" (optional.Bool) - 
- * @param "History" (optional.Bool) - 
+ * @param "PolicyId" (optional.String) -
+ * @param "Detail" (optional.Bool) -
+ * @param "History" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return []map[string]interface{}
 */
@@ -4447,9 +4447,9 @@ func (a *DefaultApiService) GetImagePolicyCheckByImageId(ctx _context.Context, i
 
 // GetImageVulnerabilitiesByTypeOpts Optional parameters for the method 'GetImageVulnerabilitiesByType'
 type GetImageVulnerabilitiesByTypeOpts struct {
-    ForceRefresh optional.Bool
-    VendorOnly optional.Bool
-    XAnchoreAccount optional.String
+	ForceRefresh    optional.Bool
+	VendorOnly      optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4458,8 +4458,8 @@ GetImageVulnerabilitiesByType Get vulnerabilities by type
  * @param imageDigest
  * @param vtype
  * @param optional nil or *GetImageVulnerabilitiesByTypeOpts - Optional Parameters:
- * @param "ForceRefresh" (optional.Bool) - 
- * @param "VendorOnly" (optional.Bool) - 
+ * @param "ForceRefresh" (optional.Bool) -
+ * @param "VendorOnly" (optional.Bool) -
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return VulnerabilityResponse
 */
@@ -4566,7 +4566,7 @@ func (a *DefaultApiService) GetImageVulnerabilitiesByType(ctx _context.Context, 
 
 // GetImageVulnerabilitiesByTypeImageIdOpts Optional parameters for the method 'GetImageVulnerabilitiesByTypeImageId'
 type GetImageVulnerabilitiesByTypeImageIdOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4675,7 +4675,7 @@ func (a *DefaultApiService) GetImageVulnerabilitiesByTypeImageId(ctx _context.Co
 
 // GetImageVulnerabilityTypesOpts Optional parameters for the method 'GetImageVulnerabilityTypes'
 type GetImageVulnerabilityTypesOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4782,7 +4782,7 @@ func (a *DefaultApiService) GetImageVulnerabilityTypes(ctx _context.Context, ima
 
 // GetImageVulnerabilityTypesByImageIdOpts Optional parameters for the method 'GetImageVulnerabilityTypesByImageId'
 type GetImageVulnerabilityTypesByImageIdOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -4985,8 +4985,8 @@ func (a *DefaultApiService) GetOauthToken(ctx _context.Context) (TokenResponse, 
 
 // GetPolicyOpts Optional parameters for the method 'GetPolicy'
 type GetPolicyOpts struct {
-    Detail optional.Bool
-    XAnchoreAccount optional.String
+	Detail          optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -5098,7 +5098,7 @@ func (a *DefaultApiService) GetPolicy(ctx _context.Context, policyId string, loc
 
 // GetRegistryOpts Optional parameters for the method 'GetRegistry'
 type GetRegistryOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -5584,7 +5584,7 @@ func (a *DefaultApiService) GetStatus(ctx _context.Context) (StatusResponse, *_n
 
 // GetSubscriptionOpts Optional parameters for the method 'GetSubscription'
 type GetSubscriptionOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -6146,7 +6146,7 @@ func (a *DefaultApiService) ImportImageArchive(ctx _context.Context, archiveFile
 
 // ListAccountsOpts Optional parameters for the method 'ListAccounts'
 type ListAccountsOpts struct {
-    State optional.String
+	State optional.String
 }
 
 /*
@@ -6346,7 +6346,7 @@ func (a *DefaultApiService) ListAnalysisArchive(ctx _context.Context) ([]Archive
 
 // ListAnalysisArchiveRulesOpts Optional parameters for the method 'ListAnalysisArchiveRules'
 type ListAnalysisArchiveRulesOpts struct {
-    SystemGlobal optional.Bool
+	SystemGlobal optional.Bool
 }
 
 /*
@@ -6632,17 +6632,17 @@ func (a *DefaultApiService) ListEventTypes(ctx _context.Context) ([]EventCategor
 
 // ListEventsOpts Optional parameters for the method 'ListEvents'
 type ListEventsOpts struct {
-    SourceServicename optional.String
-    SourceHostid optional.String
-    EventType optional.String
-    ResourceType optional.String
-    ResourceId optional.String
-    Level optional.String
-    Since optional.String
-    Before optional.String
-    Page optional.Int32
-    Limit optional.Int32
-    XAnchoreAccount optional.String
+	SourceServicename optional.String
+	SourceHostid      optional.String
+	EventType         optional.String
+	ResourceType      optional.String
+	ResourceId        optional.String
+	Level             optional.String
+	Since             optional.String
+	Before            optional.String
+	Page              optional.Int32
+	Limit             optional.Int32
+	XAnchoreAccount   optional.String
 }
 
 /*
@@ -6865,7 +6865,7 @@ func (a *DefaultApiService) ListFileContentSearchResults(ctx _context.Context, i
 
 // ListImageContentOpts Optional parameters for the method 'ListImageContent'
 type ListImageContentOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -6972,7 +6972,7 @@ func (a *DefaultApiService) ListImageContent(ctx _context.Context, imageDigest s
 
 // ListImageContentByImageidOpts Optional parameters for the method 'ListImageContentByImageid'
 type ListImageContentByImageidOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -7079,7 +7079,7 @@ func (a *DefaultApiService) ListImageContentByImageid(ctx _context.Context, imag
 
 // ListImageMetadataOpts Optional parameters for the method 'ListImageMetadata'
 type ListImageMetadataOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -7186,10 +7186,10 @@ func (a *DefaultApiService) ListImageMetadata(ctx _context.Context, imageDigest 
 
 // ListImagesOpts Optional parameters for the method 'ListImages'
 type ListImagesOpts struct {
-    History optional.Bool
-    Fulltag optional.String
-    XAnchoreAccount optional.String
-    ImageToGet optional.Interface
+	History         optional.Bool
+	Fulltag         optional.String
+	XAnchoreAccount optional.String
+	ImageToGet      optional.Interface
 }
 
 /*
@@ -7200,7 +7200,7 @@ List all images visible to the user
  * @param "History" (optional.Bool) -  Include image history in the response
  * @param "Fulltag" (optional.String) -  Full docker-pull string to filter results by (e.g. docker.io/library/nginx:latest, or myhost.com:5000/testimages:v1.1.1)
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
- * @param "ImageToGet" (optional.Interface of ImageFilter) - 
+ * @param "ImageToGet" (optional.Interface of ImageFilter) -
 @return []AnchoreImage
 */
 func (a *DefaultApiService) ListImages(ctx _context.Context, localVarOptionals *ListImagesOpts) ([]AnchoreImage, *_nethttp.Response, error) {
@@ -7313,7 +7313,7 @@ func (a *DefaultApiService) ListImages(ctx _context.Context, localVarOptionals *
 
 // ListImagetagsOpts Optional parameters for the method 'ListImagetags'
 type ListImagetagsOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -7419,8 +7419,8 @@ func (a *DefaultApiService) ListImagetags(ctx _context.Context, localVarOptional
 
 // ListPoliciesOpts Optional parameters for the method 'ListPolicies'
 type ListPoliciesOpts struct {
-    Detail optional.Bool
-    XAnchoreAccount optional.String
+	Detail          optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -7520,7 +7520,7 @@ func (a *DefaultApiService) ListPolicies(ctx _context.Context, localVarOptionals
 
 // ListRegistriesOpts Optional parameters for the method 'ListRegistries'
 type ListRegistriesOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -7885,9 +7885,9 @@ func (a *DefaultApiService) ListServices(ctx _context.Context) ([]Service, *_net
 
 // ListSubscriptionsOpts Optional parameters for the method 'ListSubscriptions'
 type ListSubscriptionsOpts struct {
-    SubscriptionKey optional.String
-    SubscriptionType optional.String
-    XAnchoreAccount optional.String
+	SubscriptionKey  optional.String
+	SubscriptionType optional.String
+	XAnchoreAccount  optional.String
 }
 
 /*
@@ -8282,8 +8282,8 @@ func (a *DefaultApiService) Ping(ctx _context.Context) (string, *_nethttp.Respon
 
 // PostSystemFeedsOpts Optional parameters for the method 'PostSystemFeeds'
 type PostSystemFeedsOpts struct {
-    Flush optional.Bool
-    Sync optional.Bool
+	Flush optional.Bool
+	Sync  optional.Bool
 }
 
 /*
@@ -8393,11 +8393,11 @@ func (a *DefaultApiService) PostSystemFeeds(ctx _context.Context, localVarOption
 
 // QueryImagesByPackageOpts Optional parameters for the method 'QueryImagesByPackage'
 type QueryImagesByPackageOpts struct {
-    PackageType optional.String
-    Version optional.String
-    Page optional.String
-    Limit optional.Int32
-    XAnchoreAccount optional.String
+	PackageType     optional.String
+	Version         optional.String
+	Page            optional.String
+	Limit           optional.Int32
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -8521,13 +8521,13 @@ func (a *DefaultApiService) QueryImagesByPackage(ctx _context.Context, name stri
 
 // QueryImagesByVulnerabilityOpts Optional parameters for the method 'QueryImagesByVulnerability'
 type QueryImagesByVulnerabilityOpts struct {
-    Namespace optional.String
-    AffectedPackage optional.String
-    Severity optional.String
-    VendorOnly optional.Bool
-    Page optional.Int32
-    Limit optional.Int32
-    XAnchoreAccount optional.String
+	Namespace       optional.String
+	AffectedPackage optional.String
+	Severity        optional.String
+	VendorOnly      optional.Bool
+	Page            optional.Int32
+	Limit           optional.Int32
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -8659,11 +8659,11 @@ func (a *DefaultApiService) QueryImagesByVulnerability(ctx _context.Context, vul
 
 // QueryVulnerabilitiesOpts Optional parameters for the method 'QueryVulnerabilities'
 type QueryVulnerabilitiesOpts struct {
-    AffectedPackage optional.String
-    AffectedPackageVersion optional.String
-    Page optional.String
-    Limit optional.Int32
-    Namespace optional.Interface
+	AffectedPackage        optional.String
+	AffectedPackageVersion optional.String
+	Page                   optional.String
+	Limit                  optional.Int32
+	Namespace              optional.Interface
 }
 
 /*
@@ -9079,8 +9079,8 @@ func (a *DefaultApiService) UpdateAccountState(ctx _context.Context, accountname
 
 // UpdatePolicyOpts Optional parameters for the method 'UpdatePolicy'
 type UpdatePolicyOpts struct {
-    Active optional.Bool
-    XAnchoreAccount optional.String
+	Active          optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -9195,8 +9195,8 @@ func (a *DefaultApiService) UpdatePolicy(ctx _context.Context, policyId string, 
 
 // UpdateRegistryOpts Optional parameters for the method 'UpdateRegistry'
 type UpdateRegistryOpts struct {
-    Validate optional.Bool
-    XAnchoreAccount optional.String
+	Validate        optional.Bool
+	XAnchoreAccount optional.String
 }
 
 /*
@@ -9311,7 +9311,7 @@ func (a *DefaultApiService) UpdateRegistry(ctx _context.Context, registry string
 
 // UpdateSubscriptionOpts Optional parameters for the method 'UpdateSubscription'
 type UpdateSubscriptionOpts struct {
-    XAnchoreAccount optional.String
+	XAnchoreAccount optional.String
 }
 
 /*
