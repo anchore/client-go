@@ -14,3 +14,7 @@
 # Dev env/ide
 .idea
 
+# Build artifacts
+out/
+build/
+
