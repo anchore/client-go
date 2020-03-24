@@ -2433,20 +2433,6 @@ definitions:
     type: object
     description: A request to add an image to be watched and analyzed by the engine. Optionally include the dockerfile content. Either source, digest or tag must be present.
     properties:
-      dockerfile:
-        type: string
-        description: Base64 encoded content of the dockerfile for the image, if available. Deprecated in favor of the 'source' field.
-        pattern: "^[a-zA-Z0-9+/=]+$"
-      digest:
-        type: string
-        description: "A digest string for an image, maybe a pull string or just a digest. e.g. nginx@sha256:123 or sha256:abc123. If a pull string, it must have same regisry/repo as the tag field. Deprecated in favor of the 'source' field"
-      tag:
-        type: string
-        description: "Full pullable tag reference for image. e.g. docker.io/nginx:latest. Deprecated in favor of the 'source' field"
-      created_at:
-        type: string
-        format: "date-time"
-        description: "Optional override of the image creation time, only honored when both tag and digest are also supplied  e.g. 2018-10-17T18:14:00Z. Deprecated in favor of the 'source' field"
       image_type:
         type: string
         description: Optional. The type of image this is adding, defaults to "docker". This can be ommitted until multiple image types are supported.
