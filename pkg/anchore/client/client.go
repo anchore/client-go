@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.13
+ * API version: 0.1.14
  * Contact: nurmi@anchore.com
  */
 
@@ -39,7 +39,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Anchore Engine API Server API v0.1.13
+// APIClient manages communication with the Anchore Engine API Server API v0.1.14
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -47,43 +47,7 @@ type APIClient struct {
 
 	// API Services
 
-	ArchivesApi *ArchivesApiService
-
 	DefaultApi *DefaultApiService
-
-	EventsApi *EventsApiService
-
-	IdentityApi *IdentityApiService
-
-	ImageContentApi *ImageContentApiService
-
-	ImagesApi *ImagesApiService
-
-	ImportApi *ImportApiService
-
-	PoliciesApi *PoliciesApiService
-
-	PolicyApi *PolicyApiService
-
-	PolicyEvaluationApi *PolicyEvaluationApiService
-
-	QueriesApi *QueriesApiService
-
-	RegistriesApi *RegistriesApiService
-
-	RepositoryCredentialsApi *RepositoryCredentialsApiService
-
-	ServicesApi *ServicesApiService
-
-	SubscriptionsApi *SubscriptionsApiService
-
-	SummariesApi *SummariesApiService
-
-	SystemApi *SystemApiService
-
-	UserManagementApi *UserManagementApiService
-
-	VulnerabilitiesApi *VulnerabilitiesApiService
 }
 
 type service struct {
@@ -102,25 +66,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.ArchivesApi = (*ArchivesApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
-	c.EventsApi = (*EventsApiService)(&c.common)
-	c.IdentityApi = (*IdentityApiService)(&c.common)
-	c.ImageContentApi = (*ImageContentApiService)(&c.common)
-	c.ImagesApi = (*ImagesApiService)(&c.common)
-	c.ImportApi = (*ImportApiService)(&c.common)
-	c.PoliciesApi = (*PoliciesApiService)(&c.common)
-	c.PolicyApi = (*PolicyApiService)(&c.common)
-	c.PolicyEvaluationApi = (*PolicyEvaluationApiService)(&c.common)
-	c.QueriesApi = (*QueriesApiService)(&c.common)
-	c.RegistriesApi = (*RegistriesApiService)(&c.common)
-	c.RepositoryCredentialsApi = (*RepositoryCredentialsApiService)(&c.common)
-	c.ServicesApi = (*ServicesApiService)(&c.common)
-	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
-	c.SummariesApi = (*SummariesApiService)(&c.common)
-	c.SystemApi = (*SystemApiService)(&c.common)
-	c.UserManagementApi = (*UserManagementApiService)(&c.common)
-	c.VulnerabilitiesApi = (*VulnerabilitiesApiService)(&c.common)
 
 	return c
 }

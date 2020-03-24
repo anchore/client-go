@@ -8,42 +8,9 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Anchore Engine API Server
-  version: 0.1.13
+  version: 0.1.14
 servers:
 - url: /
-tags:
-- description: Subscription Management
-  name: Subscriptions
-- description: Policy Management
-  name: Policies
-- description: Image Management
-  name: Images
-- description: View Image Content
-  name: Image Content
-- description: Vulnerability checks and reports
-  name: Vulnerabilities
-- description: Evaluate images against policies
-  name: Policy Evaluation
-- description: Registry Management
-  name: Registries
-- description: Repository Credential Management
-  name: Repository Credentials
-- description: System Management
-  name: System
-- description: Service Management
-  name: Services
-- description: Resource Summaries
-  name: Summaries
-- description: View and delete events
-  name: Events
-- description: Resource Queries
-  name: Queries
-- description: Manage Accounts, Users, and Credentials
-  name: User Management
-- description: Get and operate on the authenticated user's identity
-  name: Identity
-- description: Data Archiving Management
-  name: Archives
 paths:
   /:
     get:
@@ -108,8 +75,6 @@ paths:
                 $ref: '#/components/schemas/PolicyBundleList'
           description: Policy listing
       summary: List policies
-      tags:
-      - Policies
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.policies
       x-anchore-authz-action: listPolicies
     post:
@@ -142,8 +107,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Add a new policy
-      tags:
-      - Policies
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.policies
       x-anchore-authz-action: createPolicy
       x-codegen-request-body-name: bundle
@@ -180,8 +143,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Delete policy
-      tags:
-      - Policies
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.policies
       x-anchore-authz-action: deletePolicy
     get:
@@ -219,8 +180,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get specific policy
-      tags:
-      - Policies
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.policies
       x-anchore-authz-action: getPolicy
     put:
@@ -263,8 +222,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Update policy
-      tags:
-      - Policies
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.policies
       x-anchore-authz-action: updatePolicy
       x-codegen-request-body-name: bundle
@@ -302,8 +259,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List all subscriptions
-      tags:
-      - Subscriptions
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.subscriptions
       x-anchore-authz-action: listSubscriptions
     post:
@@ -331,8 +286,6 @@ paths:
                 $ref: '#/components/schemas/SubscriptionList'
           description: Subscription add success
       summary: Add a subscription of a specific type
-      tags:
-      - Subscriptions
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.subscriptions
       x-anchore-authz-action: createSubscription
       x-codegen-request-body-name: subscription
@@ -362,8 +315,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Delete subscriptions of a specific type
-      tags:
-      - Subscriptions
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.subscriptions
       x-anchore-authz-action: deleteSubscription
     get:
@@ -394,8 +345,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get a specific subscription set
-      tags:
-      - Subscriptions
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.subscriptions
       x-anchore-authz-action: getSubscription
     put:
@@ -426,8 +375,6 @@ paths:
                 $ref: '#/components/schemas/SubscriptionList'
           description: Subscription add success
       summary: Update an existing and specific subscription
-      tags:
-      - Subscriptions
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.subscriptions
       x-anchore-authz-action: updateSubscription
       x-codegen-request-body-name: subscription
@@ -456,8 +403,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List all visible image digests and tags
-      tags:
-      - Summaries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: listImages
   /images:
@@ -502,8 +447,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List all visible images
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: listImages
       x-codegen-request-body-name: image_to_get
@@ -548,8 +491,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Submit a new image for analysis by the engine
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: createImage
       x-codegen-request-body-name: image
@@ -582,8 +523,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Import an anchore image tar.gz archive file.
-      tags:
-      - Import
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: importImage
   /images/{imageDigest}:
@@ -610,8 +549,6 @@ paths:
           content: {}
           description: Image deletion success
       summary: Delete an image analysis
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: deleteImage
     get:
@@ -642,8 +579,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get image metadata
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}:
@@ -676,8 +611,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Delete image by docker imageId
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: deleteImage
     get:
@@ -708,8 +641,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Lookup image by docker imageId
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/check:
@@ -763,9 +694,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Check policy evaluation status for image
-      tags:
-      - Images
-      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/by_id/{imageId}/check:
@@ -815,9 +743,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Check policy evaluation status for image
-      tags:
-      - Images
-      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/{imageDigest}/vuln:
@@ -855,10 +780,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get vulnerability types
-      tags:
-      - Images
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/vuln/{vtype}:
@@ -903,10 +824,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get vulnerabilities by type
-      tags:
-      - Images
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln:
@@ -944,10 +861,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get vulnerability types
-      tags:
-      - Images
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln/{vtype}:
@@ -984,10 +897,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get vulnerabilities by type
-      tags:
-      - Images
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content:
@@ -1021,10 +930,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List image content types
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content:
@@ -1058,10 +963,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List image content types
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/{ctype}:
@@ -1098,10 +999,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/files:
@@ -1133,10 +1030,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type files
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/java:
@@ -1168,10 +1061,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type java
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/{ctype}:
@@ -1208,10 +1097,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/files:
@@ -1243,10 +1128,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type files
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/java:
@@ -1278,10 +1159,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type java
-      tags:
-      - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/artifacts/retrieved_files:
@@ -1381,9 +1258,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List image metadata types
-      tags:
-      - Images
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/metadata/{mtype}:
@@ -1420,9 +1294,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the metadata of an image by type
-      tags:
-      - Images
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /repositories:
@@ -1460,8 +1331,6 @@ paths:
                 $ref: '#/components/schemas/SubscriptionList'
           description: Repository and discovered tags added
       summary: Add repository to watch
-      tags:
-      - Repository Credentials
       x-anchore-authz-action: createRepository
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
   /registries:
@@ -1483,8 +1352,6 @@ paths:
                 $ref: '#/components/schemas/RegistryConfigurationList'
           description: Registry listing
       summary: List configured registries
-      tags:
-      - Registries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.registries
       x-anchore-authz-action: listRegistries
     post:
@@ -1523,8 +1390,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Add a new registry
-      tags:
-      - Registries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.registries
       x-anchore-authz-action: createRegistry
       x-codegen-request-body-name: registrydata
@@ -1557,8 +1422,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Delete a registry configuration
-      tags:
-      - Registries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.registries
       x-anchore-authz-action: deleteRegistry
     get:
@@ -1585,8 +1448,6 @@ paths:
                 $ref: '#/components/schemas/RegistryConfiguration'
           description: Registry configuration
       summary: Get a specific registry configuration
-      tags:
-      - Registries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.registries
       x-anchore-authz-action: getRegistry
     put:
@@ -1631,8 +1492,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Update/replace a registry configuration
-      tags:
-      - Registries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.registries
       x-anchore-authz-action: updateRegistry
       x-codegen-request-body-name: registrydata
@@ -1654,8 +1513,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Service status
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: None
   /system:
@@ -1676,8 +1533,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: System status
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: None
   /system/feeds:
@@ -1702,8 +1557,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: list feeds operations and information
-      tags:
-      - System
       x-anchore-authz-action: listFeeds
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
     post:
@@ -1735,8 +1588,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: trigger feeds operations
-      tags:
-      - System
       x-anchore-authz-action: updateFeeds
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
   /system/feeds/{feed}:
@@ -1759,8 +1610,6 @@ paths:
         500:
           content: {}
           description: Internal server error processing the request. Retry expected
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: updateFeeds
     put:
@@ -1790,8 +1639,6 @@ paths:
         500:
           content: {}
           description: Internal server error processing the request. Retry expected
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: updateFeeds
   /system/feeds/{feed}/{group}:
@@ -1819,8 +1666,6 @@ paths:
         500:
           content: {}
           description: Internal server error processing the request. Retry expected
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: updateFeeds
     put:
@@ -1857,8 +1702,6 @@ paths:
         500:
           content: {}
           description: Internal server error processing the request. Retry expected
-      tags:
-      - System
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: updateFeeds
   /system/services:
@@ -1878,9 +1721,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List system services
-      tags:
-      - System
-      - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: listServices
   /system/services/{servicename}:
@@ -1906,9 +1746,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Get a service configuration and state
-      tags:
-      - System
-      - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: getService
   /system/services/{servicename}/{hostid}:
@@ -1936,9 +1773,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Delete the service config
-      tags:
-      - System
-      - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: deleteService
     get:
@@ -1968,9 +1802,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get service config for a specific host
-      tags:
-      - System
-      - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: getService
   /system/policy_spec:
@@ -1988,9 +1819,6 @@ paths:
                 type: array
           description: Policy Language Description
       summary: Describe the policy language spec implemented by this service.
-      tags:
-      - System
-      - Policy
       x-anchore-authz-action: None
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
   /system/error_codes:
@@ -2008,8 +1836,6 @@ paths:
                 type: array
           description: Error Codes Description
       summary: Describe anchore engine error codes.
-      tags:
-      - System
       x-anchore-authz-action: None
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
   /event_types:
@@ -2024,8 +1850,6 @@ paths:
                 $ref: '#/components/schemas/EventTypesList'
           description: List of event types
       summary: List Event Types
-      tags:
-      - Events
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
       x-anchore-authz-action: listEvents
   /events:
@@ -2071,8 +1895,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Delete Events
-      tags:
-      - Events
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
       x-anchore-authz-action: deleteEvents
     get:
@@ -2149,8 +1971,6 @@ paths:
                 $ref: '#/components/schemas/EventsList'
           description: Paginated list of event records and the next token
       summary: List Events
-      tags:
-      - Events
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
       x-anchore-authz-action: listEvents
   /events/{eventId}:
@@ -2175,8 +1995,6 @@ paths:
           content: {}
           description: Delete success
       summary: Delete Event
-      tags:
-      - Events
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
       x-anchore-authz-action: getEvent
     get:
@@ -2203,8 +2021,6 @@ paths:
                 $ref: '#/components/schemas/EventResponse'
           description: Single event record
       summary: Get Event
-      tags:
-      - Events
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.events
       x-anchore-authz-action: getEvent
   /query/images/by_vulnerability:
@@ -2283,9 +2099,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Invalid filter parameters
       summary: List images vulnerable to the specific vulnerability ID.
-      tags:
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/images/by_package:
@@ -2341,8 +2154,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Bad filter parameters
       summary: List of images containing given package
-      tags:
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/vulnerabilities:
@@ -2406,9 +2217,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Invalid filter parameters
       summary: Listing information about given vulnerability
-      tags:
-      - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: None
   /accounts:
@@ -2438,8 +2246,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List user summaries. Only available to the system admin user.
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: listAccounts
     post:
@@ -2470,8 +2276,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Create a new user. Only avaialble to admin user.
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: createAccount
       x-codegen-request-body-name: account
@@ -2497,8 +2301,6 @@ paths:
       summary: Delete the specified account, only allowed if the account is in the
         disabled state. All users will be deleted along with the account and all resources
         will be garbage collected
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: deleteAccount
     get:
@@ -2524,8 +2326,6 @@ paths:
           description: Internal error
       summary: Get info about an user. Only available to admin user. Uses the main
         user Id, not a username.
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: getAccount
   /accounts/{accountname}/state:
@@ -2564,8 +2364,6 @@ paths:
           description: Internal error
       summary: Update the state of an account to either enabled or disabled. For deletion
         use the DELETE route
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: updateAccount
       x-codegen-request-body-name: desired_state
@@ -2595,8 +2393,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List accounts for the user
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: listUsers
     post:
@@ -2621,8 +2417,6 @@ paths:
                 $ref: '#/components/schemas/User'
           description: Credential summary
       summary: Create a new user
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: createUser
       x-codegen-request-body-name: user
@@ -2652,8 +2446,6 @@ paths:
           description: Internal error
       summary: Delete a specific user credential by username of the credential. Cannot
         be the credential used to authenticate the request.
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: deleteUser
     get:
@@ -2683,8 +2475,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get a specific user in the specified account
-      tags:
-      - User Management
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: getUser
   /accounts/{accountname}/users/{username}/credentials:
@@ -2723,8 +2513,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Delete a credential by type
-      tags:
-      - User Management
       x-anchore-authz-action: updateUser
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
     get:
@@ -2754,8 +2542,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get current credential summary
-      tags:
-      - User Management
       x-anchore-authz-action: getUser
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
     post:
@@ -2791,8 +2577,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: add/replace credential
-      tags:
-      - User Management
       x-anchore-authz-action: updateUser
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-codegen-request-body-name: credential
@@ -2813,8 +2597,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List the account for the authenticated user
-      tags:
-      - Identity
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.accounts
       x-anchore-authz-action: getAccount
   /user:
@@ -2834,8 +2616,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List authenticated user info
-      tags:
-      - Identity
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.user
       x-anchore-authz-action: None
   /user/credentials:
@@ -2855,8 +2635,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get current credential summary
-      tags:
-      - Identity
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.user
       x-anchore-authz-action: None
     post:
@@ -2881,8 +2659,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: add/replace credential
-      tags:
-      - Identity
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.user
       x-anchore-authz-action: None
       x-codegen-request-body-name: credential
@@ -2902,8 +2678,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: listArchives
   /archives/rules:
@@ -2930,8 +2704,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: listArchiveTransitionRules
     post:
@@ -2955,8 +2727,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: createArchiveTransitionRule
       x-codegen-request-body-name: rule
@@ -2982,8 +2752,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: deleteArchiveTransitionRule
     get:
@@ -3007,8 +2775,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: getArchiveTransitionRule
   /archives/images:
@@ -3028,8 +2794,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: listArchivedImageAnalysis
     post:
@@ -3053,8 +2817,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: createArchivedImageAnalysis
       x-codegen-request-body-name: imageReferences
@@ -3085,8 +2847,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: deleteArchivedImageAnalysis
     get:
@@ -3113,8 +2873,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
-      tags:
-      - Archives
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.archive
       x-anchore-authz-action: getArchivedImageAnalysis
   /oauth/token:
