@@ -11,6 +11,8 @@ info:
   version: 0.1.14
 servers:
 - url: /
+security:
+- basicAuth: []
 paths:
   /:
     get:
@@ -5896,3 +5898,7 @@ components:
         schema_version:
           description: Semantic version of the db schema
           type: string
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
