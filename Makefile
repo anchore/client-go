@@ -2,8 +2,8 @@
 ANCHORE_ENGINE_REF = 68572ed6231501652dc3eaf7c2752919d0c0e367
 OPENAPI_GENERATOR_VERSION = v4.1.3
 PROJECT_ROOT = pkg
-ENGINE_ROOT = $(PROJECT_ROOT)/engine
-ENGINE_SWAGGER_DOC = $(PROJECT_ROOT)/swagger-engine-$(ANCHORE_ENGINE_REF).yaml
+ENGINE_ROOT = $(PROJECT_ROOT)/external
+ENGINE_SWAGGER_DOC = $(PROJECT_ROOT)/swagger-external-$(ANCHORE_ENGINE_REF).yaml
 
 define generate_openapi_client
 	# remove previous API clients
