@@ -15,6 +15,7 @@ Method | HTTP request | Description
 ## AddPolicy
 
 > PolicyBundleRecord AddPolicy(ctx, bundle, optional)
+
 Add a new policy
 
 Adds a new policy bundle to the system
@@ -59,6 +60,7 @@ No authorization required
 ## DeletePolicy
 
 > DeletePolicy(ctx, policyId, optional)
+
 Delete policy
 
 Delete the specified policy
@@ -103,6 +105,7 @@ No authorization required
 ## GetPolicy
 
 > []PolicyBundleRecord GetPolicy(ctx, policyId, optional)
+
 Get specific policy
 
 Get the policy bundle content
@@ -148,6 +151,7 @@ No authorization required
 ## ListPolicies
 
 > []PolicyBundleRecord ListPolicies(ctx, optional)
+
 List policies
 
 List all saved policy bundles
@@ -191,6 +195,7 @@ No authorization required
 ## UpdatePolicy
 
 > []PolicyBundleRecord UpdatePolicy(ctx, policyId, bundle, optional)
+
 Update policy
 
 Update/replace and existing policy

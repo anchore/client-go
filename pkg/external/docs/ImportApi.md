@@ -12,6 +12,7 @@ Method | HTTP request | Description
 ## ImportImageArchive
 
 > []AnchoreImage ImportImageArchive(ctx, archiveFile)
+
 Import an anchore image tar.gz archive file.
 
 ### Required Parameters
@@ -43,6 +44,7 @@ No authorization required
 ## ListImageImports
 
 > []ImageImportOperation ListImageImports(ctx, )
+
 Lists in-progress imports
 
 ### Required Parameters

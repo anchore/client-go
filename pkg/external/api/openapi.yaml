@@ -50,7 +50,7 @@ paths:
       description: Simple status check
       operationId: ping
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -64,7 +64,7 @@ paths:
       description: Health check, returns 200 and no body if service is running
       operationId: health_check
       responses:
-        200:
+        "200":
           content: {}
           description: Empty body on success
       x-swagger-router-controller: anchore_engine.apis.common
@@ -75,7 +75,7 @@ paths:
         version info
       operationId: version_check
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -101,7 +101,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -129,13 +129,13 @@ paths:
               $ref: '#/components/schemas/PolicyBundle'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyBundleRecord'
           description: Saved bundle
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -164,16 +164,16 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Delete success
-        404:
+        "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Policy not found to delete
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -206,13 +206,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyBundleList'
           description: A list with a single fetched policy bundle record
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -250,13 +250,13 @@ paths:
               $ref: '#/components/schemas/PolicyBundleRecord'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyBundleList'
           description: A list with a single updated policy bundle record
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -289,13 +289,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionList'
           description: Subscription listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -324,7 +324,7 @@ paths:
               $ref: '#/components/schemas/SubscriptionRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -352,10 +352,10 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Delete success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -381,13 +381,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionList'
           description: Filtered subscription list by type
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -419,7 +419,7 @@ paths:
               $ref: '#/components/schemas/SubscriptionUpdate'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -458,13 +458,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageTagSummaryList'
           description: successful operation
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -501,13 +501,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeleteImageResponseList'
           description: successful operation
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -561,13 +561,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageList'
           description: successful operation
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -606,13 +606,13 @@ paths:
               $ref: '#/components/schemas/ImageAnalysisRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageList'
           description: Successfully added image to analysis queue
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -640,13 +640,13 @@ paths:
               - archive_file
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageList'
           description: Successfully imported image to the engine
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -661,13 +661,13 @@ paths:
     get:
       operationId: list_image_imports
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageImports'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Lists in-progress imports
@@ -678,13 +678,13 @@ paths:
     post:
       operationId: start_image_import
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageImportOperation'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Begin the import of an image analyzed by Syft into the system
@@ -702,13 +702,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageImports'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Get detail on a single import
@@ -727,13 +727,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PackageDigestList'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Begin the import of an image analyzed by Syft into the system
@@ -757,13 +757,13 @@ paths:
               $ref: '#/components/schemas/ImagePackageManifest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageImportContentResponse'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Begin the import of an image analyzed by Syft into the system
@@ -790,13 +790,13 @@ paths:
               $ref: '#/components/schemas/ImageImportManifest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FinalizeImageImportResponse'
           description: success
-        500:
+        "500":
           content: {}
           description: Internal Error
       summary: Finalize the import, indicating all data is present and the system
@@ -826,7 +826,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -852,13 +852,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageList'
           description: Image lookup success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -889,13 +889,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeleteImageResponse'
           description: Image deletion success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -921,13 +921,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnchoreImageList'
           description: Image lookup success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -976,22 +976,19 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyEvaluationList'
           description: Policy evaluation success
-        500:
+        "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Check policy evaluation status for image
-      tags:
-      - Images
-      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/by_id/{imageId}/check:
@@ -1028,22 +1025,19 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyEvaluationList'
           description: Policy evaluation success
-        500:
+        "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: Check policy evaluation status for image
-      tags:
-      - Images
-      - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImageEvaluation
   /images/{imageDigest}/vuln:
@@ -1062,7 +1056,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1074,7 +1068,7 @@ paths:
                   type: string
                 type: array
           description: Vulnerability listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1082,9 +1076,7 @@ paths:
           description: Internal Error
       summary: Get vulnerability types
       tags:
-      - Images
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/vuln/{vtype}:
@@ -1116,13 +1108,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VulnerabilityResponse'
           description: Vulnerability listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1130,9 +1122,7 @@ paths:
           description: Internal Error
       summary: Get vulnerabilities by type
       tags:
-      - Images
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln:
@@ -1151,7 +1141,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1163,7 +1153,7 @@ paths:
                   type: string
                 type: array
           description: Vulnerability listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1171,9 +1161,7 @@ paths:
           description: Internal Error
       summary: Get vulnerability types
       tags:
-      - Images
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/vuln/{vtype}:
@@ -1197,13 +1185,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VulnerabilityResponse'
           description: Vulnerability listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1211,9 +1199,7 @@ paths:
           description: Internal Error
       summary: Get vulnerabilities by type
       tags:
-      - Images
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content:
@@ -1232,7 +1218,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1240,7 +1226,7 @@ paths:
                   type: string
                 type: array
           description: Content listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1249,8 +1235,6 @@ paths:
       summary: List image content types
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content:
@@ -1269,7 +1253,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1277,7 +1261,7 @@ paths:
                   type: string
                 type: array
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1286,8 +1270,6 @@ paths:
       summary: List image content types
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/{ctype}:
@@ -1311,13 +1293,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentPackageResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1326,8 +1308,6 @@ paths:
       summary: Get the content of an image by type
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/files:
@@ -1346,13 +1326,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentFilesResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1361,8 +1341,6 @@ paths:
       summary: Get the content of an image by type files
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/java:
@@ -1381,13 +1359,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentJAVAPackageResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1396,8 +1374,6 @@ paths:
       summary: Get the content of an image by type java
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/malware:
@@ -1416,13 +1392,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentMalwareResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1431,8 +1407,6 @@ paths:
       summary: Get the content of an image by type malware
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/{ctype}:
@@ -1456,13 +1430,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentPackageResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1471,8 +1445,6 @@ paths:
       summary: Get the content of an image by type
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/files:
@@ -1491,13 +1463,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentFilesResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1506,8 +1478,6 @@ paths:
       summary: Get the content of an image by type files
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/java:
@@ -1526,13 +1496,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentJAVAPackageResponse'
           description: Content of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1541,8 +1511,6 @@ paths:
       summary: Get the content of an image by type java
       tags:
       - Images
-      - Image Content
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/artifacts/retrieved_files:
@@ -1555,13 +1523,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RetrievedFileList'
           description: List of file metadata objects
-        404:
+        "404":
           content: {}
           description: Image not found in this service
       summary: Return a list of analyzer artifacts of the specified type
@@ -1577,13 +1545,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FileContentSearchList'
           description: List of file metadata objects
-        404:
+        "404":
           content: {}
           description: Image not found in this service
       summary: Return a list of analyzer artifacts of the specified type
@@ -1599,13 +1567,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SecretSearchList'
           description: List of file metadata objects
-        404:
+        "404":
           content: {}
           description: Image not found in this service
       summary: Return a list of analyzer artifacts of the specified type
@@ -1627,7 +1595,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1635,7 +1603,7 @@ paths:
                   type: string
                 type: array
           description: Metadata listing for the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1644,7 +1612,6 @@ paths:
       summary: List image metadata types
       tags:
       - Images
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/metadata/{mtype}:
@@ -1668,13 +1635,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetadataResponse'
           description: Metadata of specified type from the image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1683,7 +1650,6 @@ paths:
       summary: Get the metadata of an image by type
       tags:
       - Images
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /repositories:
@@ -1720,7 +1686,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1743,7 +1709,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1777,13 +1743,13 @@ paths:
               $ref: '#/components/schemas/RegistryConfigurationRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RegistryConfigurationList'
           description: Saved registry configuration
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1814,10 +1780,10 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Delete success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1845,7 +1811,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1885,13 +1851,13 @@ paths:
               $ref: '#/components/schemas/RegistryConfigurationRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RegistryConfigurationList'
           description: Updated registry configuration
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1908,13 +1874,13 @@ paths:
       description: Get the API service status
       operationId: get_status
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
           description: Status listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1930,13 +1896,13 @@ paths:
       description: Get the system status including queue lengths
       operationId: get_service_detail
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SystemStatusResponse'
           description: Status listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1954,7 +1920,7 @@ paths:
         the upstream feed service itself.
       operationId: get_system_feeds
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -1962,7 +1928,7 @@ paths:
                   $ref: '#/components/schemas/FeedMetadata'
                 type: array
           description: success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -1989,13 +1955,13 @@ paths:
         schema:
           type: boolean
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeedSyncResults'
           description: Feeds operation success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2017,13 +1983,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Successfully deleted
-        404:
+        "404":
           content: {}
           description: Not found
-        500:
+        "500":
           content: {}
           description: Internal server error processing the request. Retry expected
       tags:
@@ -2045,16 +2011,16 @@ paths:
         schema:
           type: boolean
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeedMetadata'
           description: FeedInfo
-        400:
+        "400":
           content: {}
           description: Bad request, fix and resend
-        500:
+        "500":
           content: {}
           description: Internal server error processing the request. Retry expected
       tags:
@@ -2077,13 +2043,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Successfully deleted
-        404:
+        "404":
           content: {}
           description: Not found
-        500:
+        "500":
           content: {}
           description: Internal server error processing the request. Retry expected
       tags:
@@ -2110,7 +2076,7 @@ paths:
         schema:
           type: boolean
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2118,10 +2084,10 @@ paths:
                   $ref: '#/components/schemas/FeedMetadata'
                 type: array
           description: FeedInfo listing
-        400:
+        "400":
           content: {}
           description: Bad request, fix and resend
-        500:
+        "500":
           content: {}
           description: Internal server error processing the request. Retry expected
       tags:
@@ -2132,13 +2098,13 @@ paths:
     get:
       operationId: list_services
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceList'
           description: Service listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2146,7 +2112,6 @@ paths:
           description: Internal Error
       summary: List system services
       tags:
-      - System
       - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: listServices
@@ -2160,13 +2125,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceList'
           description: Service Info
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2174,7 +2139,6 @@ paths:
           description: Internal Error
       summary: Get a service configuration and state
       tags:
-      - System
       - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: getService
@@ -2193,10 +2157,10 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Delete success
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2204,7 +2168,6 @@ paths:
           description: Internal error
       summary: Delete the service config
       tags:
-      - System
       - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: deleteService
@@ -2222,13 +2185,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServiceList'
           description: Listing of registered services
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2236,7 +2199,6 @@ paths:
           description: Internal error
       summary: Get service config for a specific host
       tags:
-      - System
       - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       x-anchore-authz-action: getService
@@ -2245,7 +2207,7 @@ paths:
       description: Get the policy language spec for this service
       operationId: describe_policy
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2256,7 +2218,6 @@ paths:
           description: Policy Language Description
       summary: Describe the policy language spec implemented by this service.
       tags:
-      - System
       - Policy
       x-anchore-authz-action: None
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
@@ -2265,7 +2226,7 @@ paths:
       description: Describe anchore engine error codes.
       operationId: describe_error_codes
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2284,7 +2245,7 @@ paths:
       description: Returns list of event types in the category hierarchy
       operationId: list_event_types
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2323,7 +2284,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2331,7 +2292,7 @@ paths:
                   type: string
                 type: array
           description: List of deleted event IDs
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2409,7 +2370,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2438,7 +2399,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: Delete success
       summary: Delete Event
@@ -2463,7 +2424,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2537,13 +2498,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedVulnerableImageList'
           description: Image lookup success
-        400:
+        "400":
           content:
             application/json:
               schema:
@@ -2552,7 +2513,6 @@ paths:
       summary: List images vulnerable to the specific vulnerability ID.
       tags:
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/images/by_package:
@@ -2595,13 +2555,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedImageList'
           description: Image listing
-        400:
+        "400":
           content:
             application/json:
               schema:
@@ -2609,7 +2569,7 @@ paths:
           description: Bad filter parameters
       summary: List of images containing given package
       tags:
-      - Queries
+      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/vulnerabilities:
@@ -2660,13 +2620,13 @@ paths:
           type: array
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedVulnerabilityList'
           description: Vulnerability listing paginated
-        400:
+        "400":
           content:
             application/json:
               schema:
@@ -2675,7 +2635,6 @@ paths:
       summary: Listing information about given vulnerability
       tags:
       - Vulnerabilities
-      - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: None
   /accounts:
@@ -2692,13 +2651,13 @@ paths:
           - deleting
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountList'
           description: Accound summary listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2718,19 +2677,19 @@ paths:
               $ref: '#/components/schemas/AccountCreationRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
           description: Account Record
-        409:
+        "409":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Conflicting user information. User already exists.
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2752,10 +2711,10 @@ paths:
         schema:
           type: string
       responses:
-        204:
+        "204":
           content: {}
           description: Successful deletion
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2777,13 +2736,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
           description: Get user information
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2811,19 +2770,19 @@ paths:
               $ref: '#/components/schemas/AccountStatus'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountStatus'
           description: Updated state of the account
-        400:
+        "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: State requested is invalid based on current state of the account
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2846,7 +2805,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2855,7 +2814,7 @@ paths:
                   $ref: '#/components/schemas/User'
                 type: array
           description: User listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2881,7 +2840,7 @@ paths:
               $ref: '#/components/schemas/UserCreationRequest'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
@@ -2908,10 +2867,10 @@ paths:
         schema:
           type: string
       responses:
-        204:
+        "204":
           content: {}
           description: Deleted credential
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2937,13 +2896,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: User record
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -2976,14 +2935,14 @@ paths:
           - password
           type: string
       responses:
-        204:
+        "204":
           content: {}
           description: Successful deletion
-        400:
+        "400":
           content: {}
           description: Conflict, cannot delete the credential used to authenticate
             this request
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3008,13 +2967,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredentialList'
           description: User credential listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3045,13 +3004,13 @@ paths:
               $ref: '#/components/schemas/AccessCredential'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: Add a credential, overwritting if already exists
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3067,13 +3026,13 @@ paths:
     get:
       operationId: get_users_account
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
           description: User details for caller's user
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3088,13 +3047,13 @@ paths:
     get:
       operationId: get_user
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: User details for caller's user
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3109,13 +3068,13 @@ paths:
     get:
       operationId: get_credentials
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CredentialList'
           description: User credential listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3135,13 +3094,13 @@ paths:
               $ref: '#/components/schemas/AccessCredential'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: Add a credential, overwritting if already exists
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3157,13 +3116,13 @@ paths:
     get:
       operationId: list_archives
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArchiveSummary'
           description: Archive summary listing
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3185,13 +3144,13 @@ paths:
         schema:
           type: boolean
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnalysisArchiveRules'
           description: Archive transition rules
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3210,13 +3169,13 @@ paths:
               $ref: '#/components/schemas/AnalysisArchiveTransitionRule'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnalysisArchiveTransitionRule'
           description: Archive transition rule
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3237,13 +3196,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnalysisArchiveTransitionRule'
           description: Archive transition rule
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3262,13 +3221,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnalysisArchiveTransitionRule'
           description: Archive transition rule
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3282,14 +3241,14 @@ paths:
     get:
       operationId: list_analysis_archive
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArchivedAnalyses'
           description: Image analysis archive listing for the requesting account (not
             the whole system)
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3308,13 +3267,13 @@ paths:
               $ref: '#/components/schemas/ImageAnalysisReferences'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddAnalysisArchiveResult'
           description: Archive statuses
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3340,13 +3299,13 @@ paths:
         schema:
           type: boolean
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArchivedAnalysis'
           description: ArchivdImageAnalysis record but with status 'deleted'
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3368,13 +3327,13 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArchivedAnalysis'
           description: Archived Image
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3409,13 +3368,13 @@ paths:
                   description: The type of client used for the OAuth token
                   type: string
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TokenResponse'
           description: Resulting JWT token
-        500:
+        "500":
           content:
             application/json:
               schema:
@@ -3447,18 +3406,18 @@ paths:
           - policy_eval
           type: string
       responses:
-        200:
+        "200":
           content: {}
           description: The Webhook was sent successfully. Schemas may be found under
             Models (PolicyEvalNotification, TagUpdateNotification, VulnUpdateNotification,
             AnalysisUpdateNotification)
-        400:
+        "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: The Webhook failed to send due to misconfiguration
-        500:
+        "500":
           content:
             application/json:
               schema:

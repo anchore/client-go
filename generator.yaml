@@ -1,0 +1,19 @@
+# useful for go.mod module path
+gitHost: github.com
+gitRepoId: client-go
+gitUserId: anchore
+
+typeMappings:
+  # prevents swagger "object" types being interpreted as map[string]interface{}
+  object: interface{}
+
+# for all go generation options: https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/go.md (make certain you are on the right git ref)
+additionalProperties:
+  # whether to include Go codegen comment to disable Go Lint and collapse by default in GitHub PRs and diffs
+  withGoCodegenComment: true
+
+#  # v5 only: whether the generated Go module is a submodule
+#  isGoSubmodule: true
+#
+#  # v5 only: generate interfaces for api classes
+#  generateInterfaces: true

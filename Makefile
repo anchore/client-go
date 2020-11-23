@@ -1,9 +1,23 @@
-# a git tag/branch/commit within anchore/anchore-engine repo
-ANCHORE_ENGINE_REF = 68572ed6231501652dc3eaf7c2752919d0c0e367
-OPENAPI_GENERATOR_VERSION = v4.1.3
+# The version of this client (should be in line with the highest supported engine/enterprise version
+CLIENT_VERSION = 0.1.0
+
+# where all generated code will be located
 PROJECT_ROOT = pkg
-ENGINE_ROOT = $(PROJECT_ROOT)/external
-ENGINE_SWAGGER_DOC = $(PROJECT_ROOT)/swagger-external-$(ANCHORE_ENGINE_REF).yaml
+
+# OpenAPI generator version to use
+OPENAPI_GENERATOR_VERSION = v4.3.1
+# note: v5 introduces the new command pattern approach, splitting request and execute + generating interfaces per service.
+#OPENAPI_GENERATOR_VERSION = v5.0.0-beta3
+
+# --- anchore engine references
+# a git tag/branch/commit within anchore/anchore-engine repo
+ENGINE_REF = 586ef3ef0929035c7fd745d1a69c4d8fc3488ef7
+EXTAPI_CLIENT_ROOT = $(PROJECT_ROOT)/external
+EXTAPI_OPENAPI_DOC = $(PROJECT_ROOT)/swagger-external-$(ENGINE_REF).yaml
+
+# --- anchore enterprise references
+# ANCHORE_ENTERPRISE_REF = ...
+
 
 define generate_openapi_client
 	# remove previous API clients
@@ -13,15 +27,15 @@ define generate_openapi_client
 	docker run \
 		--rm \
 		-v $${PWD}:/local \
-		--env GIT_USER_ID=anchore \
-		--env GIT_REPO_ID=client-go \
 		openapitools/openapi-generator-cli:${OPENAPI_GENERATOR_VERSION} \
 			generate \
+				-c /local/generator.yaml \
 				--additional-properties packageName=${2} \
-				--additional-properties withGoCodegenComment=true \
+				--additional-properties packageVersion=$(CLIENT_VERSION) \
+				--http-user-agent "anchore-client/$(CLIENT_VERSION)/go" \
 				-i /local/${1} \
-				-g go \
-				-o /local/${3}
+				-o /local/${3} \
+				-g go
 
 	# keep permissions the same as the user
 	@ if [[ "$$OSTYPE" == "linux-gnu" ]]; then sudo chown -R $(shell id -u):$(shell id -g) ${3}; fi
@@ -30,19 +44,30 @@ define generate_openapi_client
 	rm ${3}/{.travis.yml,git_push.sh,go.*}
 endef
 
+.PHONY :=
 .DEFAULT_GOAL :=
-all: clean generate-engine-client
+update: clean generate-external-client ## pull all swagger definitions and generate client code
 
-$(ENGINE_SWAGGER_DOC):
+.PHONY :=
+generate: generate-external-client ## generate all client code from all swagger documents
+
+$(EXTAPI_OPENAPI_DOC): ## pull the engine external API swagger document
 	mkdir -p $(PROJECT_ROOT)
-	curl https://raw.githubusercontent.com/anchore/anchore-engine/$(ANCHORE_ENGINE_REF)/anchore_engine/services/apiext/swagger/swagger.yaml -o $(ENGINE_SWAGGER_DOC)
+    # note: the existing upstream swagger document needs to be corrected, otherwise invalid code will be generated.
+    # the tr/sed cmds are a workaround for now.
+	curl https://raw.githubusercontent.com/anchore/anchore-engine/$(ENGINE_REF)/anchore_engine/services/apiext/swagger/swagger.yaml | \
+		tr '\n' '\r' | \
+		sed $$'s/- Images\r      - Vulnerabilities/- Images/g' | \
+		tr '\r' '\n' | \
+		sed '/- Image Content/d; /- Policy Evaluation/d; /- Queries/d' \
+			> $(EXTAPI_OPENAPI_DOC)
 
 .PHONY :=
-generate-engine-client: $(ENGINE_SWAGGER_DOC) ## Generate engine external API client from Anchore OpenAPI spec
-	$(call generate_openapi_client,$(ENGINE_SWAGGER_DOC),client,$(ENGINE_ROOT))
+generate-external-client: $(EXTAPI_OPENAPI_DOC) ## generate client code for engine external API
+	$(call generate_openapi_client,$(EXTAPI_OPENAPI_DOC),external,$(EXTAPI_CLIENT_ROOT))
 
 .PHONY :=
-clean:
+clean: ## remove all swagger documents and generated client code
 	rm -rf $(PROJECT_ROOT)
 
 .PHONY :=

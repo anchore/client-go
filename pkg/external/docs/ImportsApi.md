@@ -15,6 +15,7 @@ Method | HTTP request | Description
 ## FinalizeImageImport
 
 > FinalizeImageImportResponse FinalizeImageImport(ctx, operationId, manifest)
+
 Finalize the import, indicating all data is present and the system can load the image
 
 Ends the import process upload phase and begins the import async process to load the image
@@ -49,6 +50,7 @@ No authorization required
 ## GetImageImport
 
 > []ImageImportOperation GetImageImport(ctx, operationId)
+
 Get detail on a single import
 
 ### Required Parameters
@@ -80,6 +82,7 @@ No authorization required
 ## ImportImagePackages
 
 > ImageImportContentResponse ImportImagePackages(ctx, operationId, sbom)
+
 Begin the import of an image analyzed by Syft into the system
 
 Starts the import process
@@ -114,6 +117,7 @@ No authorization required
 ## ListImageImportPackages
 
 > []string ListImageImportPackages(ctx, operationId)
+
 Begin the import of an image analyzed by Syft into the system
 
 Starts the import process
@@ -147,6 +151,7 @@ No authorization required
 ## StartImageImport
 
 > ImageImportOperation StartImageImport(ctx, )
+
 Begin the import of an image analyzed by Syft into the system
 
 ### Required Parameters

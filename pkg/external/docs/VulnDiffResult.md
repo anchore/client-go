@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Added** | [**[]map[string]interface{}**](map[string]interface{}.md) |  | [optional] 
-**Updated** | [**[]map[string]interface{}**](map[string]interface{}.md) |  | [optional] 
-**Removed** | [**[]map[string]interface{}**](map[string]interface{}.md) |  | [optional] 
+**Added** | **[]interface{}** |  | [optional] 
+**Updated** | **[]interface{}** |  | [optional] 
+**Removed** | **[]interface{}** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

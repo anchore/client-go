@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Annotations** | [**map[string]interface{}**](.md) | Simple key/value pairs where the value may be optional | [optional] 
+**Annotations** | [**interface{}**](.md) | Simple key/value pairs where the value may be optional | [optional] 
 **Contents** | **[]string** |  | [optional] 
 **Tags** | **[]string** |  | [optional] 
 **Metadata** | [**ImageImportManifestMetadata**](ImageImportManifestMetadata.md) |  | [optional] 

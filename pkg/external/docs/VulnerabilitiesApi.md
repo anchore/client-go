@@ -16,6 +16,7 @@ Method | HTTP request | Description
 ## GetImageVulnerabilitiesByType
 
 > VulnerabilityResponse GetImageVulnerabilitiesByType(ctx, imageDigest, vtype, optional)
+
 Get vulnerabilities by type
 
 ### Required Parameters
@@ -62,6 +63,7 @@ No authorization required
 ## GetImageVulnerabilitiesByTypeImageId
 
 > VulnerabilityResponse GetImageVulnerabilitiesByTypeImageId(ctx, imageId, vtype, optional)
+
 Get vulnerabilities by type
 
 ### Required Parameters
@@ -106,6 +108,7 @@ No authorization required
 ## GetImageVulnerabilityTypes
 
 > []string GetImageVulnerabilityTypes(ctx, imageDigest, optional)
+
 Get vulnerability types
 
 ### Required Parameters
@@ -148,6 +151,7 @@ No authorization required
 ## GetImageVulnerabilityTypesByImageId
 
 > []string GetImageVulnerabilityTypesByImageId(ctx, imageId, optional)
+
 Get vulnerability types
 
 ### Required Parameters
@@ -190,6 +194,7 @@ No authorization required
 ## QueryImagesByVulnerability
 
 > PaginatedVulnerableImageList QueryImagesByVulnerability(ctx, vulnerabilityId, optional)
+
 List images vulnerable to the specific vulnerability ID.
 
 Returns a listing of images and their respective packages vulnerable to the given vulnerability ID
@@ -240,6 +245,7 @@ No authorization required
 ## QueryVulnerabilities
 
 > PaginatedVulnerabilityList QueryVulnerabilities(ctx, id, optional)
+
 Listing information about given vulnerability
 
 List (w/filters) vulnerability records known by the system, with affected packages information if present

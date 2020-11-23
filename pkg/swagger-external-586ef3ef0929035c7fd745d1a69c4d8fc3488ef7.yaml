@@ -772,8 +772,6 @@ paths:
   /images/{imageDigest}/check:
     get:
       tags:
-        - Images
-        - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_policy_check
       x-anchore-authz-action: getImageEvaluation
@@ -817,8 +815,6 @@ paths:
   /images/by_id/{imageId}/check:
     get:
       tags:
-        - Images
-        - Policy Evaluation
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_policy_check_by_imageId
       x-anchore-authz-action: getImageEvaluation
@@ -858,9 +854,7 @@ paths:
   /images/{imageDigest}/vuln:
     get:
       tags:
-        - Images
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_vulnerability_types
       x-anchore-authz-action: getImage
@@ -889,9 +883,7 @@ paths:
   /images/{imageDigest}/vuln/{vtype}:
     get:
       tags:
-        - Images
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_vulnerabilities_by_type
       x-anchore-authz-action: getImage
@@ -926,9 +918,7 @@ paths:
   /images/by_id/{imageId}/vuln:
     get:
       tags:
-        - Images
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_vulnerability_types_by_imageId
       x-anchore-authz-action: getImage
@@ -957,9 +947,7 @@ paths:
   /images/by_id/{imageId}/vuln/{vtype}:
     get:
       tags:
-        - Images
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_vulnerabilities_by_type_imageId
       x-anchore-authz-action: getImage
@@ -987,8 +975,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: list_image_content
       x-anchore-authz-action: getImage
@@ -1014,8 +1000,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: list_image_content_by_imageid
       x-anchore-authz-action: getImage
@@ -1041,8 +1025,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type
       x-anchore-authz-action: getImage
@@ -1070,8 +1052,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_files
       x-anchore-authz-action: getImage
@@ -1095,8 +1075,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_javapackage
       x-anchore-authz-action: getImage
@@ -1120,8 +1098,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_malware
       x-anchore-authz-action: getImage
@@ -1145,8 +1121,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_imageId
       x-anchore-authz-action: getImage
@@ -1174,8 +1148,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_imageId_files
       x-anchore-authz-action: getImage
@@ -1199,8 +1171,6 @@ paths:
     get:
       tags:
         - Images
-        - Image Content
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_content_by_type_imageId_javapackage
       x-anchore-authz-action: getImage
@@ -1284,7 +1254,6 @@ paths:
     get:
       tags:
         - Images
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: list_image_metadata
       x-anchore-authz-action: getImage
@@ -1310,7 +1279,6 @@ paths:
     get:
       tags:
         - Images
-        - Queries
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       operationId: get_image_metadata_by_type
       x-anchore-authz-action: getImage
@@ -1695,7 +1663,6 @@ paths:
   /system/services:
     get:
       tags:
-        - System
         - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       operationId: list_services
@@ -1713,7 +1680,6 @@ paths:
   /system/services/{servicename}:
     get:
       tags:
-        - System
         - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       operationId: get_services_by_name
@@ -1736,7 +1702,6 @@ paths:
   /system/services/{servicename}/{hostid}:
     get:
       tags:
-        - System
         - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       operationId: get_services_by_name_and_host
@@ -1762,7 +1727,6 @@ paths:
             $ref: "#/definitions/ApiErrorResponse"
     delete:
       tags:
-        - System
         - Services
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
       operationId: delete_service
@@ -1791,7 +1755,6 @@ paths:
       operationId: describe_policy
       x-anchore-authz-action: None
       tags:
-        - System
         - Policy
       responses:
         200:
@@ -1981,7 +1944,6 @@ paths:
     get:
       tags:
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: "anchore_engine.services.apiext.api.controllers.query"
       operationId: query_images_by_vulnerability
       x-anchore-authz-action: listImages
@@ -2044,7 +2006,7 @@ paths:
   /query/images/by_package:
     get:
       tags:
-        - Queries
+        - Images
       x-swagger-router-controller: "anchore_engine.services.apiext.api.controllers.query"
       operationId: query_images_by_package
       x-anchore-authz-action: listImages
@@ -2090,7 +2052,6 @@ paths:
     get:
       tags:
         - Vulnerabilities
-        - Queries
       x-swagger-router-controller: "anchore_engine.services.apiext.api.controllers.query"
       operationId: query_vulnerabilities
       x-anchore-authz-action: None
@@ -4914,4 +4875,5 @@ definitions:
         additionalProperties: true
     additionalProperties: false
     type: object
+
 

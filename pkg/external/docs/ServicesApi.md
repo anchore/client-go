@@ -14,6 +14,7 @@ Method | HTTP request | Description
 ## DeleteService
 
 > DeleteService(ctx, servicename, hostid)
+
 Delete the service config
 
 ### Required Parameters
@@ -46,6 +47,7 @@ No authorization required
 ## GetServicesByName
 
 > []Service GetServicesByName(ctx, servicename)
+
 Get a service configuration and state
 
 ### Required Parameters
@@ -77,6 +79,7 @@ No authorization required
 ## GetServicesByNameAndHost
 
 > []Service GetServicesByNameAndHost(ctx, servicename, hostid)
+
 Get service config for a specific host
 
 ### Required Parameters
@@ -109,6 +112,7 @@ No authorization required
 ## ListServices
 
 > []Service ListServices(ctx, )
+
 List system services
 
 ### Required Parameters
