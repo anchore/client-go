@@ -12,9 +12,12 @@
 package external
 // ImageImportManifest struct for ImageImportManifest
 type ImageImportManifest struct {
-	// Simple key/value pairs where the value may be optional
-	Annotations interface{} `json:"annotations,omitempty"`
-	Contents []string `json:"contents,omitempty"`
+	Contents ImportContentDigests `json:"contents,omitempty"`
 	Tags []string `json:"tags,omitempty"`
+	Digest string `json:"digest,omitempty"`
+	// The digest of the images's manifest-list parent if it was accessed from a multi-arch tag where the tag pointed to a manifest-list. This allows preservation of that relationship in the data
+	ParentDigest string `json:"parent_digest,omitempty"`
+	// An \"imageId\" as used by Docker if available
+	LocalImageId string `json:"local_image_id,omitempty"`
 	Metadata ImageImportManifestMetadata `json:"metadata,omitempty"`
 }

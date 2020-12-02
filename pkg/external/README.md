@@ -41,14 +41,24 @@ Class | Method | HTTP request | Description
 *ArchivesApi* | [**ListAnalysisArchive**](docs/ArchivesApi.md#listanalysisarchive) | **Get** /archives/images | 
 *ArchivesApi* | [**ListAnalysisArchiveRules**](docs/ArchivesApi.md#listanalysisarchiverules) | **Get** /archives/rules | 
 *ArchivesApi* | [**ListArchives**](docs/ArchivesApi.md#listarchives) | **Get** /archives | 
+*DefaultApi* | [**GetImageContentByType**](docs/DefaultApi.md#getimagecontentbytype) | **Get** /images/{imageDigest}/content/{ctype} | Get the content of an image by type
+*DefaultApi* | [**GetImageContentByTypeFiles**](docs/DefaultApi.md#getimagecontentbytypefiles) | **Get** /images/{imageDigest}/content/files | Get the content of an image by type files
+*DefaultApi* | [**GetImageContentByTypeImageId**](docs/DefaultApi.md#getimagecontentbytypeimageid) | **Get** /images/by_id/{imageId}/content/{ctype} | Get the content of an image by type
+*DefaultApi* | [**GetImageContentByTypeImageIdFiles**](docs/DefaultApi.md#getimagecontentbytypeimageidfiles) | **Get** /images/by_id/{imageId}/content/files | Get the content of an image by type files
+*DefaultApi* | [**GetImageContentByTypeImageIdJavapackage**](docs/DefaultApi.md#getimagecontentbytypeimageidjavapackage) | **Get** /images/by_id/{imageId}/content/java | Get the content of an image by type java
+*DefaultApi* | [**GetImageContentByTypeJavapackage**](docs/DefaultApi.md#getimagecontentbytypejavapackage) | **Get** /images/{imageDigest}/content/java | Get the content of an image by type java
+*DefaultApi* | [**GetImageContentByTypeMalware**](docs/DefaultApi.md#getimagecontentbytypemalware) | **Get** /images/{imageDigest}/content/malware | Get the content of an image by type malware
 *DefaultApi* | [**GetImagePolicyCheck**](docs/DefaultApi.md#getimagepolicycheck) | **Get** /images/{imageDigest}/check | Check policy evaluation status for image
 *DefaultApi* | [**GetImagePolicyCheckByImageId**](docs/DefaultApi.md#getimagepolicycheckbyimageid) | **Get** /images/by_id/{imageId}/check | Check policy evaluation status for image
 *DefaultApi* | [**GetOauthToken**](docs/DefaultApi.md#getoauthtoken) | **Post** /oauth/token | 
 *DefaultApi* | [**HealthCheck**](docs/DefaultApi.md#healthcheck) | **Get** /health | 
 *DefaultApi* | [**ListFileContentSearchResults**](docs/DefaultApi.md#listfilecontentsearchresults) | **Get** /images/{imageDigest}/artifacts/file_content_search | Return a list of analyzer artifacts of the specified type
+*DefaultApi* | [**ListImageContent**](docs/DefaultApi.md#listimagecontent) | **Get** /images/{imageDigest}/content | List image content types
+*DefaultApi* | [**ListImageContentByImageid**](docs/DefaultApi.md#listimagecontentbyimageid) | **Get** /images/by_id/{imageId}/content | List image content types
 *DefaultApi* | [**ListRetrievedFiles**](docs/DefaultApi.md#listretrievedfiles) | **Get** /images/{imageDigest}/artifacts/retrieved_files | Return a list of analyzer artifacts of the specified type
 *DefaultApi* | [**ListSecretSearchResults**](docs/DefaultApi.md#listsecretsearchresults) | **Get** /images/{imageDigest}/artifacts/secret_search | Return a list of analyzer artifacts of the specified type
 *DefaultApi* | [**Ping**](docs/DefaultApi.md#ping) | **Get** / | 
+*DefaultApi* | [**QueryImagesByPackage**](docs/DefaultApi.md#queryimagesbypackage) | **Get** /query/images/by_package | List of images containing given package
 *DefaultApi* | [**VersionCheck**](docs/DefaultApi.md#versioncheck) | **Get** /version | 
 *EventsApi* | [**DeleteEvent**](docs/EventsApi.md#deleteevent) | **Delete** /events/{eventId} | Delete Event
 *EventsApi* | [**DeleteEvents**](docs/EventsApi.md#deleteevents) | **Delete** /events | Delete Events
@@ -65,26 +75,22 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**DeleteImagesAsync**](docs/ImagesApi.md#deleteimagesasync) | **Delete** /images | Bulk mark images for deletion
 *ImagesApi* | [**GetImage**](docs/ImagesApi.md#getimage) | **Get** /images/{imageDigest} | Get image metadata
 *ImagesApi* | [**GetImageByImageId**](docs/ImagesApi.md#getimagebyimageid) | **Get** /images/by_id/{imageId} | Lookup image by docker imageId
-*ImagesApi* | [**GetImageContentByType**](docs/ImagesApi.md#getimagecontentbytype) | **Get** /images/{imageDigest}/content/{ctype} | Get the content of an image by type
-*ImagesApi* | [**GetImageContentByTypeFiles**](docs/ImagesApi.md#getimagecontentbytypefiles) | **Get** /images/{imageDigest}/content/files | Get the content of an image by type files
-*ImagesApi* | [**GetImageContentByTypeImageId**](docs/ImagesApi.md#getimagecontentbytypeimageid) | **Get** /images/by_id/{imageId}/content/{ctype} | Get the content of an image by type
-*ImagesApi* | [**GetImageContentByTypeImageIdFiles**](docs/ImagesApi.md#getimagecontentbytypeimageidfiles) | **Get** /images/by_id/{imageId}/content/files | Get the content of an image by type files
-*ImagesApi* | [**GetImageContentByTypeImageIdJavapackage**](docs/ImagesApi.md#getimagecontentbytypeimageidjavapackage) | **Get** /images/by_id/{imageId}/content/java | Get the content of an image by type java
-*ImagesApi* | [**GetImageContentByTypeJavapackage**](docs/ImagesApi.md#getimagecontentbytypejavapackage) | **Get** /images/{imageDigest}/content/java | Get the content of an image by type java
-*ImagesApi* | [**GetImageContentByTypeMalware**](docs/ImagesApi.md#getimagecontentbytypemalware) | **Get** /images/{imageDigest}/content/malware | Get the content of an image by type malware
 *ImagesApi* | [**GetImageMetadataByType**](docs/ImagesApi.md#getimagemetadatabytype) | **Get** /images/{imageDigest}/metadata/{mtype} | Get the metadata of an image by type
-*ImagesApi* | [**ListImageContent**](docs/ImagesApi.md#listimagecontent) | **Get** /images/{imageDigest}/content | List image content types
-*ImagesApi* | [**ListImageContentByImageid**](docs/ImagesApi.md#listimagecontentbyimageid) | **Get** /images/by_id/{imageId}/content | List image content types
 *ImagesApi* | [**ListImageMetadata**](docs/ImagesApi.md#listimagemetadata) | **Get** /images/{imageDigest}/metadata | List image metadata types
 *ImagesApi* | [**ListImages**](docs/ImagesApi.md#listimages) | **Get** /images | List all visible images
-*ImagesApi* | [**QueryImagesByPackage**](docs/ImagesApi.md#queryimagesbypackage) | **Get** /query/images/by_package | List of images containing given package
-*ImportApi* | [**ImportImageArchive**](docs/ImportApi.md#importimagearchive) | **Post** /import/images | Import an anchore image tar.gz archive file.
-*ImportApi* | [**ListImageImports**](docs/ImportApi.md#listimageimports) | **Get** /imports/images | Lists in-progress imports
-*ImportsApi* | [**FinalizeImageImport**](docs/ImportsApi.md#finalizeimageimport) | **Post** /imports/images/{operation_id}/finalize | Finalize the import, indicating all data is present and the system can load the image
-*ImportsApi* | [**GetImageImport**](docs/ImportsApi.md#getimageimport) | **Get** /imports/images/{operation_id} | Get detail on a single import
+*ImportApi* | [**ImportImageArchive**](docs/ImportApi.md#importimagearchive) | **Post** /import/images | Import an anchore image tar.gz archive file. This is a deprecated API replaced by the \&quot;/imports/images\&quot; route
+*ImportsApi* | [**CreateOperation**](docs/ImportsApi.md#createoperation) | **Post** /imports/images | Begin the import of an image analyzed by Syft into the system
+*ImportsApi* | [**GetOperation**](docs/ImportsApi.md#getoperation) | **Get** /imports/images/{operation_id} | Get detail on a single import
+*ImportsApi* | [**ImportImageDockerfile**](docs/ImportsApi.md#importimagedockerfile) | **Post** /imports/images/{operation_id}/dockerfile | Begin the import of an image analyzed by Syft into the system
+*ImportsApi* | [**ImportImageManifest**](docs/ImportsApi.md#importimagemanifest) | **Post** /imports/images/{operation_id}/manifest | Import a docker or OCI distribution manifest to associate with the image
 *ImportsApi* | [**ImportImagePackages**](docs/ImportsApi.md#importimagepackages) | **Post** /imports/images/{operation_id}/packages | Begin the import of an image analyzed by Syft into the system
-*ImportsApi* | [**ListImageImportPackages**](docs/ImportsApi.md#listimageimportpackages) | **Get** /imports/images/{operation_id}/packages | Begin the import of an image analyzed by Syft into the system
-*ImportsApi* | [**StartImageImport**](docs/ImportsApi.md#startimageimport) | **Post** /imports/images | Begin the import of an image analyzed by Syft into the system
+*ImportsApi* | [**ImportImageParentManifest**](docs/ImportsApi.md#importimageparentmanifest) | **Post** /imports/images/{operation_id}/parent_manifest | Import a docker or OCI distribution manifest list to associate with the image
+*ImportsApi* | [**InvalidateOperation**](docs/ImportsApi.md#invalidateoperation) | **Delete** /imports/images/{operation_id} | Invalidate operation ID so it can be garbage collected
+*ImportsApi* | [**ListImportDockerfiles**](docs/ImportsApi.md#listimportdockerfiles) | **Get** /imports/images/{operation_id}/dockerfile | List uploaded dockerfiles
+*ImportsApi* | [**ListImportImageManifests**](docs/ImportsApi.md#listimportimagemanifests) | **Get** /imports/images/{operation_id}/manifest | List uploaded image manifests
+*ImportsApi* | [**ListImportPackages**](docs/ImportsApi.md#listimportpackages) | **Get** /imports/images/{operation_id}/packages | List uploaded package manifests
+*ImportsApi* | [**ListImportParentManifests**](docs/ImportsApi.md#listimportparentmanifests) | **Get** /imports/images/{operation_id}/parent_manifest | List uploaded parent manifests (manifest lists for a tag)
+*ImportsApi* | [**ListOperations**](docs/ImportsApi.md#listoperations) | **Get** /imports/images | Lists in-progress imports
 *PoliciesApi* | [**AddPolicy**](docs/PoliciesApi.md#addpolicy) | **Post** /policies | Add a new policy
 *PoliciesApi* | [**DeletePolicy**](docs/PoliciesApi.md#deletepolicy) | **Delete** /policies/{policyId} | Delete policy
 *PoliciesApi* | [**GetPolicy**](docs/PoliciesApi.md#getpolicy) | **Get** /policies/{policyId} | Get specific policy
@@ -205,6 +211,8 @@ Class | Method | HTTP request | Description
  - [ImageSelector](docs/ImageSelector.md)
  - [ImageSource](docs/ImageSource.md)
  - [ImageWithPackages](docs/ImageWithPackages.md)
+ - [ImportContentDigests](docs/ImportContentDigests.md)
+ - [LocalAnalysisSource](docs/LocalAnalysisSource.md)
  - [MalwareScan](docs/MalwareScan.md)
  - [MalwareScanFindings](docs/MalwareScanFindings.md)
  - [MappingRule](docs/MappingRule.md)

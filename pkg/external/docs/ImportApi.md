@@ -4,8 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ImportImageArchive**](ImportApi.md#ImportImageArchive) | **Post** /import/images | Import an anchore image tar.gz archive file.
-[**ListImageImports**](ImportApi.md#ListImageImports) | **Get** /imports/images | Lists in-progress imports
+[**ImportImageArchive**](ImportApi.md#ImportImageArchive) | **Post** /import/images | Import an anchore image tar.gz archive file. This is a deprecated API replaced by the \&quot;/imports/images\&quot; route
 
 
 
@@ -13,7 +12,7 @@ Method | HTTP request | Description
 
 > []AnchoreImage ImportImageArchive(ctx, archiveFile)
 
-Import an anchore image tar.gz archive file.
+Import an anchore image tar.gz archive file. This is a deprecated API replaced by the \"/imports/images\" route
 
 ### Required Parameters
 
@@ -34,34 +33,6 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListImageImports
-
-> []ImageImportOperation ListImageImports(ctx, )
-
-Lists in-progress imports
-
-### Required Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**[]ImageImportOperation**](ImageImportOperation.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

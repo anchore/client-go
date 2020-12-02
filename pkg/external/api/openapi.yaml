@@ -652,160 +652,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
-      summary: Import an anchore image tar.gz archive file.
+      summary: Import an anchore image tar.gz archive file. This is a deprecated API
+        replaced by the "/imports/images" route
       tags:
       - Import
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: importImage
-  /imports/images:
-    get:
-      operationId: list_image_imports
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageImports'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Lists in-progress imports
-      tags:
-      - Import
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-    post:
-      operationId: start_image_import
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageImportOperation'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Begin the import of an image analyzed by Syft into the system
-      tags:
-      - Imports
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-  /imports/images/{operation_id}:
-    get:
-      operationId: get_image_import
-      parameters:
-      - in: path
-        name: operation_id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageImports'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Get detail on a single import
-      tags:
-      - Imports
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-  /imports/images/{operation_id}/packages:
-    get:
-      description: Starts the import process
-      operationId: list_image_import_packages
-      parameters:
-      - in: path
-        name: operation_id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PackageDigestList'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Begin the import of an image analyzed by Syft into the system
-      tags:
-      - Imports
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-    post:
-      description: Starts the import process
-      operationId: import_image_packages
-      parameters:
-      - in: path
-        name: operation_id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImagePackageManifest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageImportContentResponse'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Begin the import of an image analyzed by Syft into the system
-      tags:
-      - Imports
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-      x-codegen-request-body-name: sbom
-  /imports/images/{operation_id}/finalize:
-    post:
-      description: Ends the import process upload phase and begins the import async
-        process to load the image
-      operationId: finalize_image_import
-      parameters:
-      - in: path
-        name: operation_id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImageImportManifest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FinalizeImageImportResponse'
-          description: success
-        "500":
-          content: {}
-          description: Internal Error
-      summary: Finalize the import, indicating all data is present and the system
-        can load the image
-      tags:
-      - Imports
-      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.imports
-      x-anchore-authz-action: importImage
-      x-codegen-request-body-name: manifest
   /images/{imageDigest}:
     delete:
       operationId: delete_image
@@ -1233,8 +1085,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal Error
       summary: List image content types
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content:
@@ -1268,8 +1118,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: List image content types
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/{ctype}:
@@ -1306,8 +1154,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/files:
@@ -1339,8 +1185,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type files
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/java:
@@ -1372,8 +1216,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type java
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/content/malware:
@@ -1405,8 +1247,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type malware
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/{ctype}:
@@ -1443,8 +1283,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/files:
@@ -1476,8 +1314,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type files
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/by_id/{imageId}/content/java:
@@ -1509,8 +1345,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Internal error
       summary: Get the content of an image by type java
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.images
       x-anchore-authz-action: getImage
   /images/{imageDigest}/artifacts/retrieved_files:
@@ -2568,8 +2402,6 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Bad filter parameters
       summary: List of images containing given package
-      tags:
-      - Images
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.query
       x-anchore-authz-action: listImages
   /query/vulnerabilities:
@@ -3429,6 +3261,325 @@ paths:
       - System
       x-anchore-authz-action: None
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.system
+  /imports/images:
+    get:
+      operationId: list_operations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImports'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Lists in-progress imports
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    post:
+      operationId: create_operation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportOperation'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Begin the import of an image analyzed by Syft into the system
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+  /imports/images/{operation_id}:
+    delete:
+      operationId: invalidate_operation
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportOperation'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Invalidate operation ID so it can be garbage collected
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    get:
+      operationId: get_operation
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportOperation'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Get detail on a single import
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+  /imports/images/{operation_id}/packages:
+    get:
+      operationId: list_import_packages
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContentDigestList'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: List uploaded package manifests
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    post:
+      operationId: import_image_packages
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImagePackageManifest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportContentResponse'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Begin the import of an image analyzed by Syft into the system
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: sbom
+  /imports/images/{operation_id}/dockerfile:
+    get:
+      operationId: list_import_dockerfiles
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContentDigestList'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: List uploaded dockerfiles
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    post:
+      operationId: import_image_dockerfile
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          text/plain; utf-8:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportContentResponse'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Begin the import of an image analyzed by Syft into the system
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: contents
+  /imports/images/{operation_id}/manifest:
+    get:
+      operationId: list_import_image_manifests
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContentDigestList'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: List uploaded image manifests
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    post:
+      operationId: import_image_manifest
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.oci.image.manifest.v1+json:
+            schema:
+              type: string
+          application/vnd.docker.distribution.manifest.v2+json:
+            schema:
+              type: string
+          application/vnd.docker.distribution.manifest.v1+json:
+            schema:
+              type: string
+          application/vnd.docker.distribution.manifest.v1+prettyjws:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportContentResponse'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Import a docker or OCI distribution manifest to associate with the
+        image
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: contents
+  /imports/images/{operation_id}/parent_manifest:
+    get:
+      operationId: list_import_parent_manifests
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContentDigestList'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: List uploaded parent manifests (manifest lists for a tag)
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: contents
+    post:
+      operationId: import_image_parent_manifest
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.docker.distribution.manifest.list.v2+json:
+            schema:
+              type: string
+          application/vnd.oci.image.index.v1+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportContentResponse'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Import a docker or OCI distribution manifest list to associate with
+        the image
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: contents
 components:
   parameters:
     AsAccountParameter:
@@ -3653,6 +3804,30 @@ components:
         annotations: '{}'
         tag: tag
         source:
+          import:
+            metadata:
+              layers:
+              - size: 0
+                digest: digest
+                location: location
+              - size: 0
+                digest: digest
+                location: location
+              created_at: 2000-01-23T04:56:07.000+00:00
+              platform:
+                os: linux
+                architecture: amd64
+            local_image_id: local_image_id
+            contents:
+              parent_manifest: parent_manifest
+              manifest: manifest
+              dockerfile: dockerfile
+              packages: packages
+            digest: digest
+            parent_digest: parent_digest
+            tags:
+            - docker.io/library/nginx:latest
+            - docker.io/library/nginx:latest
           digest:
             creation_timestamp_override: 2000-01-23T04:56:07.000+00:00
             dockerfile: dockerfile
@@ -3702,6 +3877,30 @@ components:
       description: A set of analysis source types. Only one may be set in any given
         request.
       example:
+        import:
+          metadata:
+            layers:
+            - size: 0
+              digest: digest
+              location: location
+            - size: 0
+              digest: digest
+              location: location
+            created_at: 2000-01-23T04:56:07.000+00:00
+            platform:
+              os: linux
+              architecture: amd64
+          local_image_id: local_image_id
+          contents:
+            parent_manifest: parent_manifest
+            manifest: manifest
+            dockerfile: dockerfile
+            packages: packages
+          digest: digest
+          parent_digest: parent_digest
+          tags:
+          - docker.io/library/nginx:latest
+          - docker.io/library/nginx:latest
         digest:
           creation_timestamp_override: 2000-01-23T04:56:07.000+00:00
           dockerfile: dockerfile
@@ -3719,6 +3918,8 @@ components:
           $ref: '#/components/schemas/RegistryDigestSource'
         archive:
           $ref: '#/components/schemas/AnalysisArchiveSource'
+        import:
+          $ref: '#/components/schemas/ImageImportManifest'
       type: object
     RegistryTagSource:
       description: An image reference using a tag in a registry, this is the most
@@ -3784,6 +3985,11 @@ components:
           type: string
       required:
       - digest
+      type: object
+    LocalAnalysisSource:
+      properties:
+        digest:
+          type: string
       type: object
     PolicyBundle:
       description: A bundle containing a set of policies, whitelists, and rules for
@@ -6543,8 +6749,6 @@ components:
     ImageImportManifest:
       example:
         metadata:
-          local_image_id: local_image_id
-          digest: digest
           layers:
           - size: 0
             digest: digest
@@ -6552,38 +6756,45 @@ components:
           - size: 0
             digest: digest
             location: location
+          created_at: 2000-01-23T04:56:07.000+00:00
           platform:
             os: linux
             architecture: amd64
+        local_image_id: local_image_id
         contents:
-        - contents
-        - contents
-        annotations: '{}'
+          parent_manifest: parent_manifest
+          manifest: manifest
+          dockerfile: dockerfile
+          packages: packages
+        digest: digest
+        parent_digest: parent_digest
         tags:
         - docker.io/library/nginx:latest
         - docker.io/library/nginx:latest
       properties:
-        annotations:
-          description: Simple key/value pairs where the value may be optional
-          type: object
         contents:
-          items:
-            description: Digest of content to use in the final import
-            type: string
-          type: array
+          $ref: '#/components/schemas/ImportContentDigests'
         tags:
           items:
             description: Full docker reference tags
             example: docker.io/library/nginx:latest
             type: string
           type: array
+        digest:
+          type: string
+        parent_digest:
+          description: The digest of the images's manifest-list parent if it was accessed
+            from a multi-arch tag where the tag pointed to a manifest-list. This allows
+            preservation of that relationship in the data
+          type: string
+        local_image_id:
+          description: An "imageId" as used by Docker if available
+          type: string
         metadata:
           $ref: '#/components/schemas/ImageImportManifestMetadata'
       type: object
     ImageImportManifestMetadata:
       example:
-        local_image_id: local_image_id
-        digest: digest
         layers:
         - size: 0
           digest: digest
@@ -6591,20 +6802,23 @@ components:
         - size: 0
           digest: digest
           location: location
+        created_at: 2000-01-23T04:56:07.000+00:00
         platform:
           os: linux
           architecture: amd64
       properties:
-        digest:
-          type: string
-        local_image_id:
-          type: string
         layers:
           items:
             $ref: '#/components/schemas/ImageImportLayerMetadata'
           type: array
         platform:
           $ref: '#/components/schemas/ImageImportPlatform'
+        created_at:
+          description: The date of the image build/tagging to allow insertion into
+            the tag history based on another timestamp than the record creation in
+            Anchore. Use this with caution.
+          format: date-time
+          type: string
       type: object
     ImageImportPlatform:
       description: An image platform is a combination of an OS and an architecture
@@ -6632,18 +6846,33 @@ components:
         location:
           type: string
       type: object
-    ImportContentList:
-      items:
-        description: Digest of content to use in the final import
-        type: string
-      type: array
+    ImportContentDigests:
+      description: Digest of content to use in the final import
+      example:
+        parent_manifest: parent_manifest
+        manifest: manifest
+        dockerfile: dockerfile
+        packages: packages
+      properties:
+        packages:
+          description: Digest to use for the packages content
+          type: string
+        manifest:
+          description: Digest to reference content for the image manifest
+          type: string
+        parent_manifest:
+          description: Digest for reference content for parent manifest
+          type: string
+        dockerfile:
+          description: Digest for reference content for dockerfile
+          type: string
+      required:
+      - packages
+      type: object
     Annotations:
       description: Simple key/value pairs where the value may be optional
       type: object
     FinalizeImageImportResponse:
-      example:
-        uuid: uuid
-        status: status
       properties:
         uuid:
           type: string
@@ -6658,7 +6887,7 @@ components:
       items:
         $ref: '#/components/schemas/SyftPackage'
       type: array
-    PackageDigestList:
+    ImportContentDigestList:
       items:
         description: String digest of an uploaded content
         type: string

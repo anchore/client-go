@@ -15,4 +15,5 @@ type ImageSource struct {
 	Tag RegistryTagSource `json:"tag,omitempty"`
 	Digest RegistryDigestSource `json:"digest,omitempty"`
 	Archive AnalysisArchiveSource `json:"archive,omitempty"`
+	Import ImageImportManifest `json:"import,omitempty"`
 }
