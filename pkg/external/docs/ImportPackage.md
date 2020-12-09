@@ -1,4 +1,4 @@
-# SyftPackage
+# ImportPackage
 
 ## Properties
 
@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Version** | **string** |  | 
 **Type** | **string** |  | 
-**FoundBy** | **string** |  | 
-**Locations** | [**[]SyftLocation**](SyftLocation.md) |  | 
+**FoundBy** | **string** |  | [optional] 
+**Locations** | [**[]ImportPackageLocation**](ImportPackageLocation.md) |  | 
 **Licenses** | **[]string** |  | 
 **Language** | **string** |  | 
 **Cpes** | **[]string** |  | 
-**Purl** | **string** |  | 
+**Purl** | **string** |  | [optional] 
 **MetadataType** | **string** |  | 
 **Metadata** | [**interface{}**](.md) |  | [optional] 
 

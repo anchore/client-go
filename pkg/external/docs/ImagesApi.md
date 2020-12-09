@@ -10,7 +10,22 @@ Method | HTTP request | Description
 [**DeleteImagesAsync**](ImagesApi.md#DeleteImagesAsync) | **Delete** /images | Bulk mark images for deletion
 [**GetImage**](ImagesApi.md#GetImage) | **Get** /images/{imageDigest} | Get image metadata
 [**GetImageByImageId**](ImagesApi.md#GetImageByImageId) | **Get** /images/by_id/{imageId} | Lookup image by docker imageId
+[**GetImageContentByType**](ImagesApi.md#GetImageContentByType) | **Get** /images/{imageDigest}/content/{ctype} | Get the content of an image by type
+[**GetImageContentByTypeFiles**](ImagesApi.md#GetImageContentByTypeFiles) | **Get** /images/{imageDigest}/content/files | Get the content of an image by type files
+[**GetImageContentByTypeImageId**](ImagesApi.md#GetImageContentByTypeImageId) | **Get** /images/by_id/{imageId}/content/{ctype} | Get the content of an image by type
+[**GetImageContentByTypeImageIdFiles**](ImagesApi.md#GetImageContentByTypeImageIdFiles) | **Get** /images/by_id/{imageId}/content/files | Get the content of an image by type files
+[**GetImageContentByTypeImageIdJavapackage**](ImagesApi.md#GetImageContentByTypeImageIdJavapackage) | **Get** /images/by_id/{imageId}/content/java | Get the content of an image by type java
+[**GetImageContentByTypeJavapackage**](ImagesApi.md#GetImageContentByTypeJavapackage) | **Get** /images/{imageDigest}/content/java | Get the content of an image by type java
+[**GetImageContentByTypeMalware**](ImagesApi.md#GetImageContentByTypeMalware) | **Get** /images/{imageDigest}/content/malware | Get the content of an image by type malware
 [**GetImageMetadataByType**](ImagesApi.md#GetImageMetadataByType) | **Get** /images/{imageDigest}/metadata/{mtype} | Get the metadata of an image by type
+[**GetImagePolicyCheck**](ImagesApi.md#GetImagePolicyCheck) | **Get** /images/{imageDigest}/check | Check policy evaluation status for image
+[**GetImagePolicyCheckByImageId**](ImagesApi.md#GetImagePolicyCheckByImageId) | **Get** /images/by_id/{imageId}/check | Check policy evaluation status for image
+[**GetImageVulnerabilitiesByType**](ImagesApi.md#GetImageVulnerabilitiesByType) | **Get** /images/{imageDigest}/vuln/{vtype} | Get vulnerabilities by type
+[**GetImageVulnerabilitiesByTypeImageId**](ImagesApi.md#GetImageVulnerabilitiesByTypeImageId) | **Get** /images/by_id/{imageId}/vuln/{vtype} | Get vulnerabilities by type
+[**GetImageVulnerabilityTypes**](ImagesApi.md#GetImageVulnerabilityTypes) | **Get** /images/{imageDigest}/vuln | Get vulnerability types
+[**GetImageVulnerabilityTypesByImageId**](ImagesApi.md#GetImageVulnerabilityTypesByImageId) | **Get** /images/by_id/{imageId}/vuln | Get vulnerability types
+[**ListImageContent**](ImagesApi.md#ListImageContent) | **Get** /images/{imageDigest}/content | List image content types
+[**ListImageContentByImageid**](ImagesApi.md#ListImageContentByImageid) | **Get** /images/by_id/{imageId}/content | List image content types
 [**ListImageMetadata**](ImagesApi.md#ListImageMetadata) | **Get** /images/{imageDigest}/metadata | List image metadata types
 [**ListImages**](ImagesApi.md#ListImages) | **Get** /images | List all visible images
 
@@ -18,7 +33,7 @@ Method | HTTP request | Description
 
 ## AddImage
 
-> []AnchoreImage AddImage(ctx, image, optional)
+> AnchoreImage AddImage(ctx, image, optional)
 
 Submit a new image for analysis by the engine
 
@@ -47,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]AnchoreImage**](AnchoreImage.md)
+[**AnchoreImage**](AnchoreImage.md)
 
 ### Authorization
 
@@ -283,6 +298,311 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetImageContentByType
+
+> ContentPackageResponse GetImageContentByType(ctx, imageDigest, ctype, optional)
+
+Get the content of an image by type
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+**ctype** | **string**|  | 
+ **optional** | ***GetImageContentByTypeOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentPackageResponse**](ContentPackageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeFiles
+
+> ContentFilesResponse GetImageContentByTypeFiles(ctx, imageDigest, optional)
+
+Get the content of an image by type files
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+ **optional** | ***GetImageContentByTypeFilesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeFilesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentFilesResponse**](ContentFilesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeImageId
+
+> ContentPackageResponse GetImageContentByTypeImageId(ctx, imageId, ctype, optional)
+
+Get the content of an image by type
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+**ctype** | **string**|  | 
+ **optional** | ***GetImageContentByTypeImageIdOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeImageIdOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentPackageResponse**](ContentPackageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeImageIdFiles
+
+> ContentFilesResponse GetImageContentByTypeImageIdFiles(ctx, imageId, optional)
+
+Get the content of an image by type files
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+ **optional** | ***GetImageContentByTypeImageIdFilesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeImageIdFilesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentFilesResponse**](ContentFilesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeImageIdJavapackage
+
+> ContentJavaPackageResponse GetImageContentByTypeImageIdJavapackage(ctx, imageId, optional)
+
+Get the content of an image by type java
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+ **optional** | ***GetImageContentByTypeImageIdJavapackageOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeImageIdJavapackageOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentJavaPackageResponse**](ContentJAVAPackageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeJavapackage
+
+> ContentJavaPackageResponse GetImageContentByTypeJavapackage(ctx, imageDigest, optional)
+
+Get the content of an image by type java
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+ **optional** | ***GetImageContentByTypeJavapackageOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeJavapackageOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentJavaPackageResponse**](ContentJAVAPackageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageContentByTypeMalware
+
+> ContentMalwareResponse GetImageContentByTypeMalware(ctx, imageDigest, optional)
+
+Get the content of an image by type malware
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+ **optional** | ***GetImageContentByTypeMalwareOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageContentByTypeMalwareOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**ContentMalwareResponse**](ContentMalwareResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetImageMetadataByType
 
 > MetadataResponse GetImageMetadataByType(ctx, imageDigest, mtype, optional)
@@ -313,6 +633,371 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MetadataResponse**](MetadataResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImagePolicyCheck
+
+> []interface{} GetImagePolicyCheck(ctx, imageDigest, tag, optional)
+
+Check policy evaluation status for image
+
+Get the policy evaluation for the given image
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+**tag** | **string**|  | 
+ **optional** | ***GetImagePolicyCheckOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImagePolicyCheckOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **policyId** | **optional.String**|  | 
+ **detail** | **optional.Bool**|  | 
+ **history** | **optional.Bool**|  | 
+ **interactive** | **optional.Bool**|  | 
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImagePolicyCheckByImageId
+
+> []interface{} GetImagePolicyCheckByImageId(ctx, imageId, tag, optional)
+
+Check policy evaluation status for image
+
+Get the policy evaluation for the given image
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+**tag** | **string**|  | 
+ **optional** | ***GetImagePolicyCheckByImageIdOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImagePolicyCheckByImageIdOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **policyId** | **optional.String**|  | 
+ **detail** | **optional.Bool**|  | 
+ **history** | **optional.Bool**|  | 
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageVulnerabilitiesByType
+
+> VulnerabilityResponse GetImageVulnerabilitiesByType(ctx, imageDigest, vtype, optional)
+
+Get vulnerabilities by type
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+**vtype** | **string**|  | 
+ **optional** | ***GetImageVulnerabilitiesByTypeOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageVulnerabilitiesByTypeOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **forceRefresh** | **optional.Bool**|  | 
+ **vendorOnly** | **optional.Bool**|  | 
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**VulnerabilityResponse**](VulnerabilityResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageVulnerabilitiesByTypeImageId
+
+> VulnerabilityResponse GetImageVulnerabilitiesByTypeImageId(ctx, imageId, vtype, optional)
+
+Get vulnerabilities by type
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+**vtype** | **string**|  | 
+ **optional** | ***GetImageVulnerabilitiesByTypeImageIdOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageVulnerabilitiesByTypeImageIdOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+[**VulnerabilityResponse**](VulnerabilityResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageVulnerabilityTypes
+
+> []string GetImageVulnerabilityTypes(ctx, imageDigest, optional)
+
+Get vulnerability types
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+ **optional** | ***GetImageVulnerabilityTypesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageVulnerabilityTypesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetImageVulnerabilityTypesByImageId
+
+> []string GetImageVulnerabilityTypesByImageId(ctx, imageId, optional)
+
+Get vulnerability types
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+ **optional** | ***GetImageVulnerabilityTypesByImageIdOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetImageVulnerabilityTypesByImageIdOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListImageContent
+
+> []string ListImageContent(ctx, imageDigest, optional)
+
+List image content types
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageDigest** | **string**|  | 
+ **optional** | ***ListImageContentOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListImageContentOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListImageContentByImageid
+
+> []string ListImageContentByImageid(ctx, imageId, optional)
+
+List image content types
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**imageId** | **string**|  | 
+ **optional** | ***ListImageContentByImageidOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListImageContentByImageidOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAnchoreAccount** | **optional.String**| An account name to change the resource scope of the request to that account, if permissions allow (admin only) | 
+
+### Return type
+
+**[]string**
 
 ### Authorization
 

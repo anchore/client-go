@@ -41,24 +41,12 @@ Class | Method | HTTP request | Description
 *ArchivesApi* | [**ListAnalysisArchive**](docs/ArchivesApi.md#listanalysisarchive) | **Get** /archives/images | 
 *ArchivesApi* | [**ListAnalysisArchiveRules**](docs/ArchivesApi.md#listanalysisarchiverules) | **Get** /archives/rules | 
 *ArchivesApi* | [**ListArchives**](docs/ArchivesApi.md#listarchives) | **Get** /archives | 
-*DefaultApi* | [**GetImageContentByType**](docs/DefaultApi.md#getimagecontentbytype) | **Get** /images/{imageDigest}/content/{ctype} | Get the content of an image by type
-*DefaultApi* | [**GetImageContentByTypeFiles**](docs/DefaultApi.md#getimagecontentbytypefiles) | **Get** /images/{imageDigest}/content/files | Get the content of an image by type files
-*DefaultApi* | [**GetImageContentByTypeImageId**](docs/DefaultApi.md#getimagecontentbytypeimageid) | **Get** /images/by_id/{imageId}/content/{ctype} | Get the content of an image by type
-*DefaultApi* | [**GetImageContentByTypeImageIdFiles**](docs/DefaultApi.md#getimagecontentbytypeimageidfiles) | **Get** /images/by_id/{imageId}/content/files | Get the content of an image by type files
-*DefaultApi* | [**GetImageContentByTypeImageIdJavapackage**](docs/DefaultApi.md#getimagecontentbytypeimageidjavapackage) | **Get** /images/by_id/{imageId}/content/java | Get the content of an image by type java
-*DefaultApi* | [**GetImageContentByTypeJavapackage**](docs/DefaultApi.md#getimagecontentbytypejavapackage) | **Get** /images/{imageDigest}/content/java | Get the content of an image by type java
-*DefaultApi* | [**GetImageContentByTypeMalware**](docs/DefaultApi.md#getimagecontentbytypemalware) | **Get** /images/{imageDigest}/content/malware | Get the content of an image by type malware
-*DefaultApi* | [**GetImagePolicyCheck**](docs/DefaultApi.md#getimagepolicycheck) | **Get** /images/{imageDigest}/check | Check policy evaluation status for image
-*DefaultApi* | [**GetImagePolicyCheckByImageId**](docs/DefaultApi.md#getimagepolicycheckbyimageid) | **Get** /images/by_id/{imageId}/check | Check policy evaluation status for image
 *DefaultApi* | [**GetOauthToken**](docs/DefaultApi.md#getoauthtoken) | **Post** /oauth/token | 
 *DefaultApi* | [**HealthCheck**](docs/DefaultApi.md#healthcheck) | **Get** /health | 
 *DefaultApi* | [**ListFileContentSearchResults**](docs/DefaultApi.md#listfilecontentsearchresults) | **Get** /images/{imageDigest}/artifacts/file_content_search | Return a list of analyzer artifacts of the specified type
-*DefaultApi* | [**ListImageContent**](docs/DefaultApi.md#listimagecontent) | **Get** /images/{imageDigest}/content | List image content types
-*DefaultApi* | [**ListImageContentByImageid**](docs/DefaultApi.md#listimagecontentbyimageid) | **Get** /images/by_id/{imageId}/content | List image content types
 *DefaultApi* | [**ListRetrievedFiles**](docs/DefaultApi.md#listretrievedfiles) | **Get** /images/{imageDigest}/artifacts/retrieved_files | Return a list of analyzer artifacts of the specified type
 *DefaultApi* | [**ListSecretSearchResults**](docs/DefaultApi.md#listsecretsearchresults) | **Get** /images/{imageDigest}/artifacts/secret_search | Return a list of analyzer artifacts of the specified type
 *DefaultApi* | [**Ping**](docs/DefaultApi.md#ping) | **Get** / | 
-*DefaultApi* | [**QueryImagesByPackage**](docs/DefaultApi.md#queryimagesbypackage) | **Get** /query/images/by_package | List of images containing given package
 *DefaultApi* | [**VersionCheck**](docs/DefaultApi.md#versioncheck) | **Get** /version | 
 *EventsApi* | [**DeleteEvent**](docs/EventsApi.md#deleteevent) | **Delete** /events/{eventId} | Delete Event
 *EventsApi* | [**DeleteEvents**](docs/EventsApi.md#deleteevents) | **Delete** /events | Delete Events
@@ -75,7 +63,22 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**DeleteImagesAsync**](docs/ImagesApi.md#deleteimagesasync) | **Delete** /images | Bulk mark images for deletion
 *ImagesApi* | [**GetImage**](docs/ImagesApi.md#getimage) | **Get** /images/{imageDigest} | Get image metadata
 *ImagesApi* | [**GetImageByImageId**](docs/ImagesApi.md#getimagebyimageid) | **Get** /images/by_id/{imageId} | Lookup image by docker imageId
+*ImagesApi* | [**GetImageContentByType**](docs/ImagesApi.md#getimagecontentbytype) | **Get** /images/{imageDigest}/content/{ctype} | Get the content of an image by type
+*ImagesApi* | [**GetImageContentByTypeFiles**](docs/ImagesApi.md#getimagecontentbytypefiles) | **Get** /images/{imageDigest}/content/files | Get the content of an image by type files
+*ImagesApi* | [**GetImageContentByTypeImageId**](docs/ImagesApi.md#getimagecontentbytypeimageid) | **Get** /images/by_id/{imageId}/content/{ctype} | Get the content of an image by type
+*ImagesApi* | [**GetImageContentByTypeImageIdFiles**](docs/ImagesApi.md#getimagecontentbytypeimageidfiles) | **Get** /images/by_id/{imageId}/content/files | Get the content of an image by type files
+*ImagesApi* | [**GetImageContentByTypeImageIdJavapackage**](docs/ImagesApi.md#getimagecontentbytypeimageidjavapackage) | **Get** /images/by_id/{imageId}/content/java | Get the content of an image by type java
+*ImagesApi* | [**GetImageContentByTypeJavapackage**](docs/ImagesApi.md#getimagecontentbytypejavapackage) | **Get** /images/{imageDigest}/content/java | Get the content of an image by type java
+*ImagesApi* | [**GetImageContentByTypeMalware**](docs/ImagesApi.md#getimagecontentbytypemalware) | **Get** /images/{imageDigest}/content/malware | Get the content of an image by type malware
 *ImagesApi* | [**GetImageMetadataByType**](docs/ImagesApi.md#getimagemetadatabytype) | **Get** /images/{imageDigest}/metadata/{mtype} | Get the metadata of an image by type
+*ImagesApi* | [**GetImagePolicyCheck**](docs/ImagesApi.md#getimagepolicycheck) | **Get** /images/{imageDigest}/check | Check policy evaluation status for image
+*ImagesApi* | [**GetImagePolicyCheckByImageId**](docs/ImagesApi.md#getimagepolicycheckbyimageid) | **Get** /images/by_id/{imageId}/check | Check policy evaluation status for image
+*ImagesApi* | [**GetImageVulnerabilitiesByType**](docs/ImagesApi.md#getimagevulnerabilitiesbytype) | **Get** /images/{imageDigest}/vuln/{vtype} | Get vulnerabilities by type
+*ImagesApi* | [**GetImageVulnerabilitiesByTypeImageId**](docs/ImagesApi.md#getimagevulnerabilitiesbytypeimageid) | **Get** /images/by_id/{imageId}/vuln/{vtype} | Get vulnerabilities by type
+*ImagesApi* | [**GetImageVulnerabilityTypes**](docs/ImagesApi.md#getimagevulnerabilitytypes) | **Get** /images/{imageDigest}/vuln | Get vulnerability types
+*ImagesApi* | [**GetImageVulnerabilityTypesByImageId**](docs/ImagesApi.md#getimagevulnerabilitytypesbyimageid) | **Get** /images/by_id/{imageId}/vuln | Get vulnerability types
+*ImagesApi* | [**ListImageContent**](docs/ImagesApi.md#listimagecontent) | **Get** /images/{imageDigest}/content | List image content types
+*ImagesApi* | [**ListImageContentByImageid**](docs/ImagesApi.md#listimagecontentbyimageid) | **Get** /images/by_id/{imageId}/content | List image content types
 *ImagesApi* | [**ListImageMetadata**](docs/ImagesApi.md#listimagemetadata) | **Get** /images/{imageDigest}/metadata | List image metadata types
 *ImagesApi* | [**ListImages**](docs/ImagesApi.md#listimages) | **Get** /images | List all visible images
 *ImportApi* | [**ImportImageArchive**](docs/ImportApi.md#importimagearchive) | **Post** /import/images | Import an anchore image tar.gz archive file. This is a deprecated API replaced by the \&quot;/imports/images\&quot; route
@@ -96,17 +99,15 @@ Class | Method | HTTP request | Description
 *PoliciesApi* | [**GetPolicy**](docs/PoliciesApi.md#getpolicy) | **Get** /policies/{policyId} | Get specific policy
 *PoliciesApi* | [**ListPolicies**](docs/PoliciesApi.md#listpolicies) | **Get** /policies | List policies
 *PoliciesApi* | [**UpdatePolicy**](docs/PoliciesApi.md#updatepolicy) | **Put** /policies/{policyId} | Update policy
-*PolicyApi* | [**DescribePolicy**](docs/PolicyApi.md#describepolicy) | **Get** /system/policy_spec | Describe the policy language spec implemented by this service.
+*QueryApi* | [**QueryImagesByPackage**](docs/QueryApi.md#queryimagesbypackage) | **Get** /query/images/by_package | List of images containing given package
+*QueryApi* | [**QueryImagesByVulnerability**](docs/QueryApi.md#queryimagesbyvulnerability) | **Get** /query/images/by_vulnerability | List images vulnerable to the specific vulnerability ID.
+*QueryApi* | [**QueryVulnerabilities**](docs/QueryApi.md#queryvulnerabilities) | **Get** /query/vulnerabilities | Listing information about given vulnerability
 *RegistriesApi* | [**CreateRegistry**](docs/RegistriesApi.md#createregistry) | **Post** /registries | Add a new registry
 *RegistriesApi* | [**DeleteRegistry**](docs/RegistriesApi.md#deleteregistry) | **Delete** /registries/{registry} | Delete a registry configuration
 *RegistriesApi* | [**GetRegistry**](docs/RegistriesApi.md#getregistry) | **Get** /registries/{registry} | Get a specific registry configuration
 *RegistriesApi* | [**ListRegistries**](docs/RegistriesApi.md#listregistries) | **Get** /registries | List configured registries
 *RegistriesApi* | [**UpdateRegistry**](docs/RegistriesApi.md#updateregistry) | **Put** /registries/{registry} | Update/replace a registry configuration
 *RepositoryCredentialsApi* | [**AddRepository**](docs/RepositoryCredentialsApi.md#addrepository) | **Post** /repositories | Add repository to watch
-*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /system/services/{servicename}/{hostid} | Delete the service config
-*ServicesApi* | [**GetServicesByName**](docs/ServicesApi.md#getservicesbyname) | **Get** /system/services/{servicename} | Get a service configuration and state
-*ServicesApi* | [**GetServicesByNameAndHost**](docs/ServicesApi.md#getservicesbynameandhost) | **Get** /system/services/{servicename}/{hostid} | Get service config for a specific host
-*ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /system/services | List system services
 *SubscriptionsApi* | [**AddSubscription**](docs/SubscriptionsApi.md#addsubscription) | **Post** /subscriptions | Add a subscription of a specific type
 *SubscriptionsApi* | [**DeleteSubscription**](docs/SubscriptionsApi.md#deletesubscription) | **Delete** /subscriptions/{subscriptionId} | Delete subscriptions of a specific type
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /subscriptions/{subscriptionId} | Get a specific subscription set
@@ -115,10 +116,15 @@ Class | Method | HTTP request | Description
 *SummariesApi* | [**ListImagetags**](docs/SummariesApi.md#listimagetags) | **Get** /summaries/imagetags | List all visible image digests and tags
 *SystemApi* | [**DeleteFeed**](docs/SystemApi.md#deletefeed) | **Delete** /system/feeds/{feed} | 
 *SystemApi* | [**DeleteFeedGroup**](docs/SystemApi.md#deletefeedgroup) | **Delete** /system/feeds/{feed}/{group} | 
+*SystemApi* | [**DeleteService**](docs/SystemApi.md#deleteservice) | **Delete** /system/services/{servicename}/{hostid} | Delete the service config
 *SystemApi* | [**DescribeErrorCodes**](docs/SystemApi.md#describeerrorcodes) | **Get** /system/error_codes | Describe anchore engine error codes.
+*SystemApi* | [**DescribePolicy**](docs/SystemApi.md#describepolicy) | **Get** /system/policy_spec | Describe the policy language spec implemented by this service.
 *SystemApi* | [**GetServiceDetail**](docs/SystemApi.md#getservicedetail) | **Get** /system | System status
+*SystemApi* | [**GetServicesByName**](docs/SystemApi.md#getservicesbyname) | **Get** /system/services/{servicename} | Get a service configuration and state
+*SystemApi* | [**GetServicesByNameAndHost**](docs/SystemApi.md#getservicesbynameandhost) | **Get** /system/services/{servicename}/{hostid} | Get service config for a specific host
 *SystemApi* | [**GetStatus**](docs/SystemApi.md#getstatus) | **Get** /status | Service status
 *SystemApi* | [**GetSystemFeeds**](docs/SystemApi.md#getsystemfeeds) | **Get** /system/feeds | list feeds operations and information
+*SystemApi* | [**ListServices**](docs/SystemApi.md#listservices) | **Get** /system/services | List system services
 *SystemApi* | [**PostSystemFeeds**](docs/SystemApi.md#postsystemfeeds) | **Post** /system/feeds | trigger feeds operations
 *SystemApi* | [**TestWebhook**](docs/SystemApi.md#testwebhook) | **Post** /system/webhooks/{webhook_type}/test | Adds the capabilities to test a webhook delivery for the given notification type
 *SystemApi* | [**ToggleFeedEnabled**](docs/SystemApi.md#togglefeedenabled) | **Put** /system/feeds/{feed} | 
@@ -135,12 +141,6 @@ Class | Method | HTTP request | Description
 *UserManagementApi* | [**ListUserCredentials**](docs/UserManagementApi.md#listusercredentials) | **Get** /accounts/{accountname}/users/{username}/credentials | Get current credential summary
 *UserManagementApi* | [**ListUsers**](docs/UserManagementApi.md#listusers) | **Get** /accounts/{accountname}/users | List accounts for the user
 *UserManagementApi* | [**UpdateAccountState**](docs/UserManagementApi.md#updateaccountstate) | **Put** /accounts/{accountname}/state | Update the state of an account to either enabled or disabled. For deletion use the DELETE route
-*VulnerabilitiesApi* | [**GetImageVulnerabilitiesByType**](docs/VulnerabilitiesApi.md#getimagevulnerabilitiesbytype) | **Get** /images/{imageDigest}/vuln/{vtype} | Get vulnerabilities by type
-*VulnerabilitiesApi* | [**GetImageVulnerabilitiesByTypeImageId**](docs/VulnerabilitiesApi.md#getimagevulnerabilitiesbytypeimageid) | **Get** /images/by_id/{imageId}/vuln/{vtype} | Get vulnerabilities by type
-*VulnerabilitiesApi* | [**GetImageVulnerabilityTypes**](docs/VulnerabilitiesApi.md#getimagevulnerabilitytypes) | **Get** /images/{imageDigest}/vuln | Get vulnerability types
-*VulnerabilitiesApi* | [**GetImageVulnerabilityTypesByImageId**](docs/VulnerabilitiesApi.md#getimagevulnerabilitytypesbyimageid) | **Get** /images/by_id/{imageId}/vuln | Get vulnerability types
-*VulnerabilitiesApi* | [**QueryImagesByVulnerability**](docs/VulnerabilitiesApi.md#queryimagesbyvulnerability) | **Get** /query/images/by_vulnerability | List images vulnerable to the specific vulnerability ID.
-*VulnerabilitiesApi* | [**QueryVulnerabilities**](docs/VulnerabilitiesApi.md#queryvulnerabilities) | **Get** /query/vulnerabilities | Listing information about given vulnerability
 
 
 ## Documentation For Models
@@ -205,6 +205,7 @@ Class | Method | HTTP request | Description
  - [ImageImportManifestMetadata](docs/ImageImportManifestMetadata.md)
  - [ImageImportOperation](docs/ImageImportOperation.md)
  - [ImageImportPlatform](docs/ImageImportPlatform.md)
+ - [ImagePackageManifest](docs/ImagePackageManifest.md)
  - [ImageRef](docs/ImageRef.md)
  - [ImageReference](docs/ImageReference.md)
  - [ImageSelectionRule](docs/ImageSelectionRule.md)
@@ -212,6 +213,12 @@ Class | Method | HTTP request | Description
  - [ImageSource](docs/ImageSource.md)
  - [ImageWithPackages](docs/ImageWithPackages.md)
  - [ImportContentDigests](docs/ImportContentDigests.md)
+ - [ImportDescriptor](docs/ImportDescriptor.md)
+ - [ImportDistribution](docs/ImportDistribution.md)
+ - [ImportPackage](docs/ImportPackage.md)
+ - [ImportPackageLocation](docs/ImportPackageLocation.md)
+ - [ImportSchema](docs/ImportSchema.md)
+ - [ImportSource](docs/ImportSource.md)
  - [LocalAnalysisSource](docs/LocalAnalysisSource.md)
  - [MalwareScan](docs/MalwareScan.md)
  - [MalwareScanFindings](docs/MalwareScanFindings.md)
@@ -255,8 +262,6 @@ Class | Method | HTTP request | Description
  - [Subscription](docs/Subscription.md)
  - [SubscriptionRequest](docs/SubscriptionRequest.md)
  - [SubscriptionUpdate](docs/SubscriptionUpdate.md)
- - [SyftLocation](docs/SyftLocation.md)
- - [SyftPackage](docs/SyftPackage.md)
  - [SystemStatusResponse](docs/SystemStatusResponse.md)
  - [TagEntry](docs/TagEntry.md)
  - [TagUpdateNotification](docs/TagUpdateNotification.md)

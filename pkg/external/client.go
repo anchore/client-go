@@ -66,13 +66,11 @@ type APIClient struct {
 
 	PoliciesApi *PoliciesApiService
 
-	PolicyApi *PolicyApiService
+	QueryApi *QueryApiService
 
 	RegistriesApi *RegistriesApiService
 
 	RepositoryCredentialsApi *RepositoryCredentialsApiService
-
-	ServicesApi *ServicesApiService
 
 	SubscriptionsApi *SubscriptionsApiService
 
@@ -81,8 +79,6 @@ type APIClient struct {
 	SystemApi *SystemApiService
 
 	UserManagementApi *UserManagementApiService
-
-	VulnerabilitiesApi *VulnerabilitiesApiService
 }
 
 type service struct {
@@ -109,15 +105,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ImportApi = (*ImportApiService)(&c.common)
 	c.ImportsApi = (*ImportsApiService)(&c.common)
 	c.PoliciesApi = (*PoliciesApiService)(&c.common)
-	c.PolicyApi = (*PolicyApiService)(&c.common)
+	c.QueryApi = (*QueryApiService)(&c.common)
 	c.RegistriesApi = (*RegistriesApiService)(&c.common)
 	c.RepositoryCredentialsApi = (*RepositoryCredentialsApiService)(&c.common)
-	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.SummariesApi = (*SummariesApiService)(&c.common)
 	c.SystemApi = (*SystemApiService)(&c.common)
 	c.UserManagementApi = (*UserManagementApiService)(&c.common)
-	c.VulnerabilitiesApi = (*VulnerabilitiesApiService)(&c.common)
 
 	return c
 }

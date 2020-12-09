@@ -12,8 +12,8 @@
 package external
 // ImageSource A set of analysis source types. Only one may be set in any given request.
 type ImageSource struct {
-	Tag RegistryTagSource `json:"tag,omitempty"`
-	Digest RegistryDigestSource `json:"digest,omitempty"`
-	Archive AnalysisArchiveSource `json:"archive,omitempty"`
-	Import ImageImportManifest `json:"import,omitempty"`
+	Tag *RegistryTagSource `json:"tag,omitempty"`
+	Digest *RegistryDigestSource `json:"digest,omitempty"`
+	Archive *AnalysisArchiveSource `json:"archive,omitempty"`
+	Import *ImageImportManifest `json:"import,omitempty"`
 }

@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **operationId** | **string**|  | 
-**sbom** | [**[]SyftPackage**](SyftPackage.md)|  | 
+**sbom** | [**ImagePackageManifest**](ImagePackageManifest.md)|  | 
 
 ### Return type
 
@@ -341,7 +341,7 @@ No authorization required
 
 ## ListImportParentManifests
 
-> []string ListImportParentManifests(ctx, operationId, contents)
+> []string ListImportParentManifests(ctx, operationId)
 
 List uploaded parent manifests (manifest lists for a tag)
 
@@ -352,7 +352,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **operationId** | **string**|  | 
-**contents** | **string**|  | 
 
 ### Return type
 
@@ -364,7 +363,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

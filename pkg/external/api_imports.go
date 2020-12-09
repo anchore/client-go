@@ -345,7 +345,7 @@ ImportImagePackages Begin the import of an image analyzed by Syft into the syste
  * @param sbom
 @return ImageImportContentResponse
 */
-func (a *ImportsApiService) ImportImagePackages(ctx _context.Context, operationId string, sbom []SyftPackage) (ImageImportContentResponse, *_nethttp.Response, error) {
+func (a *ImportsApiService) ImportImagePackages(ctx _context.Context, operationId string, sbom ImagePackageManifest) (ImageImportContentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -810,10 +810,9 @@ func (a *ImportsApiService) ListImportPackages(ctx _context.Context, operationId
 ListImportParentManifests List uploaded parent manifests (manifest lists for a tag)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param operationId
- * @param contents
 @return []string
 */
-func (a *ImportsApiService) ListImportParentManifests(ctx _context.Context, operationId string, contents string) ([]string, *_nethttp.Response, error) {
+func (a *ImportsApiService) ListImportParentManifests(ctx _context.Context, operationId string) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -832,7 +831,7 @@ func (a *ImportsApiService) ListImportParentManifests(ctx _context.Context, oper
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -848,8 +847,6 @@ func (a *ImportsApiService) ListImportParentManifests(ctx _context.Context, oper
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = &contents
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

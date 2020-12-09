@@ -16,7 +16,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 	"github.com/antihax/optional"
 )
 
@@ -25,52 +24,59 @@ var (
 	_ _context.Context
 )
 
-// VulnerabilitiesApiService VulnerabilitiesApi service
-type VulnerabilitiesApiService service
+// QueryApiService QueryApi service
+type QueryApiService service
 
-// GetImageVulnerabilitiesByTypeOpts Optional parameters for the method 'GetImageVulnerabilitiesByType'
-type GetImageVulnerabilitiesByTypeOpts struct {
-    ForceRefresh optional.Bool
-    VendorOnly optional.Bool
+// QueryImagesByPackageOpts Optional parameters for the method 'QueryImagesByPackage'
+type QueryImagesByPackageOpts struct {
+    PackageType optional.String
+    Version optional.String
+    Page optional.String
+    Limit optional.Int32
     XAnchoreAccount optional.String
 }
 
 /*
-GetImageVulnerabilitiesByType Get vulnerabilities by type
+QueryImagesByPackage List of images containing given package
+Filterable query interface to search for images containing specified package
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageDigest
- * @param vtype
- * @param optional nil or *GetImageVulnerabilitiesByTypeOpts - Optional Parameters:
- * @param "ForceRefresh" (optional.Bool) - 
- * @param "VendorOnly" (optional.Bool) - 
+ * @param name Name of package to search for (e.g. sed)
+ * @param optional nil or *QueryImagesByPackageOpts - Optional Parameters:
+ * @param "PackageType" (optional.String) -  Type of package to filter on (e.g. dpkg)
+ * @param "Version" (optional.String) -  Version of named package to filter on (e.g. 4.4-1)
+ * @param "Page" (optional.String) -  The page of results to fetch. Pages start at 1
+ * @param "Limit" (optional.Int32) -  Limit the number of records for the requested page. If omitted or set to 0, return all results in a single page
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
-@return VulnerabilityResponse
+@return PaginatedImageList
 */
-func (a *VulnerabilitiesApiService) GetImageVulnerabilitiesByType(ctx _context.Context, imageDigest string, vtype string, localVarOptionals *GetImageVulnerabilitiesByTypeOpts) (VulnerabilityResponse, *_nethttp.Response, error) {
+func (a *QueryApiService) QueryImagesByPackage(ctx _context.Context, name string, localVarOptionals *QueryImagesByPackageOpts) (PaginatedImageList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  VulnerabilityResponse
+		localVarReturnValue  PaginatedImageList
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/vuln/{vtype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
-
-	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")) , -1)
-
+	localVarPath := a.client.cfg.BasePath + "/query/images/by_package"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.ForceRefresh.IsSet() {
-		localVarQueryParams.Add("force_refresh", parameterToString(localVarOptionals.ForceRefresh.Value(), ""))
+	localVarQueryParams.Add("name", parameterToString(name, ""))
+	if localVarOptionals != nil && localVarOptionals.PackageType.IsSet() {
+		localVarQueryParams.Add("package_type", parameterToString(localVarOptionals.PackageType.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.VendorOnly.IsSet() {
-		localVarQueryParams.Add("vendor_only", parameterToString(localVarOptionals.VendorOnly.Value(), ""))
+	if localVarOptionals != nil && localVarOptionals.Version.IsSet() {
+		localVarQueryParams.Add("version", parameterToString(localVarOptionals.Version.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -113,298 +119,7 @@ func (a *VulnerabilitiesApiService) GetImageVulnerabilitiesByType(ctx _context.C
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageVulnerabilitiesByTypeImageIdOpts Optional parameters for the method 'GetImageVulnerabilitiesByTypeImageId'
-type GetImageVulnerabilitiesByTypeImageIdOpts struct {
-    XAnchoreAccount optional.String
-}
-
-/*
-GetImageVulnerabilitiesByTypeImageId Get vulnerabilities by type
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageId
- * @param vtype
- * @param optional nil or *GetImageVulnerabilitiesByTypeImageIdOpts - Optional Parameters:
- * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
-@return VulnerabilityResponse
-*/
-func (a *VulnerabilitiesApiService) GetImageVulnerabilitiesByTypeImageId(ctx _context.Context, imageId string, vtype string, localVarOptionals *GetImageVulnerabilitiesByTypeImageIdOpts) (VulnerabilityResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VulnerabilityResponse
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/vuln/{vtype}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
-
-	localVarPath = strings.Replace(localVarPath, "{"+"vtype"+"}", _neturl.QueryEscape(parameterToString(vtype, "")) , -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if localVarOptionals != nil && localVarOptionals.XAnchoreAccount.IsSet() {
-		localVarHeaderParams["x-anchore-account"] = parameterToString(localVarOptionals.XAnchoreAccount.Value(), "")
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageVulnerabilityTypesOpts Optional parameters for the method 'GetImageVulnerabilityTypes'
-type GetImageVulnerabilityTypesOpts struct {
-    XAnchoreAccount optional.String
-}
-
-/*
-GetImageVulnerabilityTypes Get vulnerability types
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageDigest
- * @param optional nil or *GetImageVulnerabilityTypesOpts - Optional Parameters:
- * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
-@return []string
-*/
-func (a *VulnerabilitiesApiService) GetImageVulnerabilityTypes(ctx _context.Context, imageDigest string, localVarOptionals *GetImageVulnerabilityTypesOpts) ([]string, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []string
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/{imageDigest}/vuln"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageDigest"+"}", _neturl.QueryEscape(parameterToString(imageDigest, "")) , -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if localVarOptionals != nil && localVarOptionals.XAnchoreAccount.IsSet() {
-		localVarHeaderParams["x-anchore-account"] = parameterToString(localVarOptionals.XAnchoreAccount.Value(), "")
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetImageVulnerabilityTypesByImageIdOpts Optional parameters for the method 'GetImageVulnerabilityTypesByImageId'
-type GetImageVulnerabilityTypesByImageIdOpts struct {
-    XAnchoreAccount optional.String
-}
-
-/*
-GetImageVulnerabilityTypesByImageId Get vulnerability types
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageId
- * @param optional nil or *GetImageVulnerabilityTypesByImageIdOpts - Optional Parameters:
- * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
-@return []string
-*/
-func (a *VulnerabilitiesApiService) GetImageVulnerabilityTypesByImageId(ctx _context.Context, imageId string, localVarOptionals *GetImageVulnerabilityTypesByImageIdOpts) ([]string, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []string
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/by_id/{imageId}/vuln"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if localVarOptionals != nil && localVarOptionals.XAnchoreAccount.IsSet() {
-		localVarHeaderParams["x-anchore-account"] = parameterToString(localVarOptionals.XAnchoreAccount.Value(), "")
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -454,7 +169,7 @@ Returns a listing of images and their respective packages vulnerable to the give
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
 @return PaginatedVulnerableImageList
 */
-func (a *VulnerabilitiesApiService) QueryImagesByVulnerability(ctx _context.Context, vulnerabilityId string, localVarOptionals *QueryImagesByVulnerabilityOpts) (PaginatedVulnerableImageList, *_nethttp.Response, error) {
+func (a *QueryApiService) QueryImagesByVulnerability(ctx _context.Context, vulnerabilityId string, localVarOptionals *QueryImagesByVulnerabilityOpts) (PaginatedVulnerableImageList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -576,7 +291,7 @@ List (w/filters) vulnerability records known by the system, with affected packag
  * @param "Namespace" (optional.Interface of []string) -  Namespace(s) to filter vulnerability records by
 @return PaginatedVulnerabilityList
 */
-func (a *VulnerabilitiesApiService) QueryVulnerabilities(ctx _context.Context, id []string, localVarOptionals *QueryVulnerabilitiesOpts) (PaginatedVulnerabilityList, *_nethttp.Response, error) {
+func (a *QueryApiService) QueryVulnerabilities(ctx _context.Context, id []string, localVarOptionals *QueryVulnerabilitiesOpts) (PaginatedVulnerabilityList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}

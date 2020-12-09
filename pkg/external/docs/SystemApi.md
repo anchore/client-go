@@ -6,10 +6,15 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteFeed**](SystemApi.md#DeleteFeed) | **Delete** /system/feeds/{feed} | 
 [**DeleteFeedGroup**](SystemApi.md#DeleteFeedGroup) | **Delete** /system/feeds/{feed}/{group} | 
+[**DeleteService**](SystemApi.md#DeleteService) | **Delete** /system/services/{servicename}/{hostid} | Delete the service config
 [**DescribeErrorCodes**](SystemApi.md#DescribeErrorCodes) | **Get** /system/error_codes | Describe anchore engine error codes.
+[**DescribePolicy**](SystemApi.md#DescribePolicy) | **Get** /system/policy_spec | Describe the policy language spec implemented by this service.
 [**GetServiceDetail**](SystemApi.md#GetServiceDetail) | **Get** /system | System status
+[**GetServicesByName**](SystemApi.md#GetServicesByName) | **Get** /system/services/{servicename} | Get a service configuration and state
+[**GetServicesByNameAndHost**](SystemApi.md#GetServicesByNameAndHost) | **Get** /system/services/{servicename}/{hostid} | Get service config for a specific host
 [**GetStatus**](SystemApi.md#GetStatus) | **Get** /status | Service status
 [**GetSystemFeeds**](SystemApi.md#GetSystemFeeds) | **Get** /system/feeds | list feeds operations and information
+[**ListServices**](SystemApi.md#ListServices) | **Get** /system/services | List system services
 [**PostSystemFeeds**](SystemApi.md#PostSystemFeeds) | **Post** /system/feeds | trigger feeds operations
 [**TestWebhook**](SystemApi.md#TestWebhook) | **Post** /system/webhooks/{webhook_type}/test | Adds the capabilities to test a webhook delivery for the given notification type
 [**ToggleFeedEnabled**](SystemApi.md#ToggleFeedEnabled) | **Put** /system/feeds/{feed} | 
@@ -86,6 +91,39 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## DeleteService
+
+> DeleteService(ctx, servicename, hostid)
+
+Delete the service config
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**servicename** | **string**|  | 
+**hostid** | **string**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DescribeErrorCodes
 
 > []AnchoreErrorCode DescribeErrorCodes(ctx, )
@@ -116,6 +154,36 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## DescribePolicy
+
+> []GateSpec DescribePolicy(ctx, )
+
+Describe the policy language spec implemented by this service.
+
+Get the policy language spec for this service
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[]GateSpec**](GateSpec.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServiceDetail
 
 > SystemStatusResponse GetServiceDetail(ctx, )
@@ -131,6 +199,71 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SystemStatusResponse**](SystemStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServicesByName
+
+> []Service GetServicesByName(ctx, servicename)
+
+Get a service configuration and state
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**servicename** | **string**|  | 
+
+### Return type
+
+[**[]Service**](Service.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServicesByNameAndHost
+
+> []Service GetServicesByNameAndHost(ctx, servicename, hostid)
+
+Get service config for a specific host
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**servicename** | **string**|  | 
+**hostid** | **string**|  | 
+
+### Return type
+
+[**[]Service**](Service.md)
 
 ### Authorization
 
@@ -191,6 +324,34 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[]FeedMetadata**](FeedMetadata.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListServices
+
+> []Service ListServices(ctx, )
+
+List system services
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[]Service**](Service.md)
 
 ### Authorization
 

@@ -19,5 +19,6 @@ type ImageImportManifest struct {
 	ParentDigest string `json:"parent_digest,omitempty"`
 	// An \"imageId\" as used by Docker if available
 	LocalImageId string `json:"local_image_id,omitempty"`
-	Metadata ImageImportManifestMetadata `json:"metadata,omitempty"`
+	Metadata *ImageImportManifestMetadata `json:"metadata,omitempty"`
+	OperationUuid string `json:"operation_uuid,omitempty"`
 }
