@@ -84,11 +84,13 @@ Class | Method | HTTP request | Description
 *ImportApi* | [**ImportImageArchive**](docs/ImportApi.md#importimagearchive) | **Post** /import/images | Import an anchore image tar.gz archive file. This is a deprecated API replaced by the \&quot;/imports/images\&quot; route
 *ImportsApi* | [**CreateOperation**](docs/ImportsApi.md#createoperation) | **Post** /imports/images | Begin the import of an image analyzed by Syft into the system
 *ImportsApi* | [**GetOperation**](docs/ImportsApi.md#getoperation) | **Get** /imports/images/{operation_id} | Get detail on a single import
+*ImportsApi* | [**ImportImageConfig**](docs/ImportsApi.md#importimageconfig) | **Post** /imports/images/{operation_id}/image_config | Import a docker or OCI image config to associate with the image
 *ImportsApi* | [**ImportImageDockerfile**](docs/ImportsApi.md#importimagedockerfile) | **Post** /imports/images/{operation_id}/dockerfile | Begin the import of an image analyzed by Syft into the system
 *ImportsApi* | [**ImportImageManifest**](docs/ImportsApi.md#importimagemanifest) | **Post** /imports/images/{operation_id}/manifest | Import a docker or OCI distribution manifest to associate with the image
 *ImportsApi* | [**ImportImagePackages**](docs/ImportsApi.md#importimagepackages) | **Post** /imports/images/{operation_id}/packages | Begin the import of an image analyzed by Syft into the system
 *ImportsApi* | [**ImportImageParentManifest**](docs/ImportsApi.md#importimageparentmanifest) | **Post** /imports/images/{operation_id}/parent_manifest | Import a docker or OCI distribution manifest list to associate with the image
 *ImportsApi* | [**InvalidateOperation**](docs/ImportsApi.md#invalidateoperation) | **Delete** /imports/images/{operation_id} | Invalidate operation ID so it can be garbage collected
+*ImportsApi* | [**ListImportConfigs**](docs/ImportsApi.md#listimportconfigs) | **Get** /imports/images/{operation_id}/image_config | List uploaded image configs
 *ImportsApi* | [**ListImportDockerfiles**](docs/ImportsApi.md#listimportdockerfiles) | **Get** /imports/images/{operation_id}/dockerfile | List uploaded dockerfiles
 *ImportsApi* | [**ListImportImageManifests**](docs/ImportsApi.md#listimportimagemanifests) | **Get** /imports/images/{operation_id}/manifest | List uploaded image manifests
 *ImportsApi* | [**ListImportPackages**](docs/ImportsApi.md#listimportpackages) | **Get** /imports/images/{operation_id}/packages | List uploaded package manifests

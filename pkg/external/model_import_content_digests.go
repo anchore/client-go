@@ -14,6 +14,8 @@ package external
 type ImportContentDigests struct {
 	// Digest to use for the packages content
 	Packages string `json:"packages"`
+	// Digest for reference content for image config
+	ImageConfig string `json:"image_config,omitempty"`
 	// Digest to reference content for the image manifest
 	Manifest string `json:"manifest,omitempty"`
 	// Digest for reference content for parent manifest

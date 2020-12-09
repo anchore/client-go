@@ -3597,6 +3597,60 @@ paths:
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
       x-anchore-authz-action: importImage
       x-codegen-request-body-name: contents
+  /imports/images/{operation_id}/image_config:
+    get:
+      operationId: list_import_configs
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContentDigestList'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: List uploaded image configs
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+    post:
+      operationId: import_image_config
+      parameters:
+      - in: path
+        name: operation_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageImportContentResponse'
+          description: success
+        "500":
+          content: {}
+          description: Internal Error
+      summary: Import a docker or OCI image config to associate with the image
+      tags:
+      - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      x-anchore-authz-action: importImage
+      x-codegen-request-body-name: contents
 components:
   parameters:
     AsAccountParameter:
@@ -3840,6 +3894,7 @@ components:
               parent_manifest: parent_manifest
               manifest: manifest
               dockerfile: dockerfile
+              image_config: image_config
               packages: packages
             digest: digest
             parent_digest: parent_digest
@@ -3914,6 +3969,7 @@ components:
             parent_manifest: parent_manifest
             manifest: manifest
             dockerfile: dockerfile
+            image_config: image_config
             packages: packages
           digest: digest
           parent_digest: parent_digest
@@ -6787,6 +6843,7 @@ components:
           parent_manifest: parent_manifest
           manifest: manifest
           dockerfile: dockerfile
+          image_config: image_config
           packages: packages
         digest: digest
         parent_digest: parent_digest
@@ -6882,10 +6939,14 @@ components:
         parent_manifest: parent_manifest
         manifest: manifest
         dockerfile: dockerfile
+        image_config: image_config
         packages: packages
       properties:
         packages:
           description: Digest to use for the packages content
+          type: string
+        image_config:
+          description: Digest for reference content for image config
           type: string
         manifest:
           description: Digest to reference content for the image manifest

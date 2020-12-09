@@ -2885,6 +2885,54 @@ paths:
             $ref: "#/definitions/ImageImportContentResponse"
         500:
           description: "Internal Error"
+  /imports/images/{operation_id}/image_config:
+    get:
+      tags:
+        - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      operationId: list_import_configs
+      x-anchore-authz-action: importImage
+      summary: "List uploaded image configs"
+      produces:
+        - "application/json"
+      parameters:
+        - name: operation_id
+          in: path
+          type: string
+          required: true
+      responses:
+        200:
+          description: "success"
+          schema:
+            $ref: "#/definitions/ImportContentDigestList"
+        500:
+          description: "Internal Error"
+    post:
+      tags:
+        - Imports
+      x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
+      operationId: import_image_config
+      x-anchore-authz-action: importImage
+      summary: "Import a docker or OCI image config to associate with the image"
+      produces:
+        - "application/json"
+      parameters:
+        - name: operation_id
+          in: path
+          type: string
+          required: true
+        - in: body
+          name: contents
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "success"
+          schema:
+            $ref: "#/definitions/ImageImportContentResponse"
+        500:
+          description: "Internal Error"
 definitions:
   PaginationProperties:
     type: object
@@ -4936,6 +4984,9 @@ definitions:
       packages:
         type: string
         description: Digest to use for the packages content
+      image_config:
+        type: string
+        description: Digest for reference content for image config
       manifest:
         type: string
         description: Digest to reference content for the image manifest
