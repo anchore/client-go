@@ -4855,12 +4855,10 @@ definitions:
           - expired
       expires_at:
         type: string
-        # server not using RFC3339
-        # format: date-time
+        format: date-time
       created_at:
         type: string
-        # server not using RFC3339
-        # format: date-time
+        format: date-time
   ImageImportContentResponse:
     type: object
     properties:
@@ -4868,8 +4866,7 @@ definitions:
         type: string
       created_at:
         type: string
-        # server not using RFC3339
-        # format: date-time
+        format: date-time
   ImageContentDeleteResponse:
     type: object
   ImageImportManifest:
@@ -4908,8 +4905,7 @@ definitions:
         $ref: "#/definitions/ImageImportPlatform"
       created_at:
         type: string
-        # server not using RFC3339
-        # format: date-time
+        format: date-time
         description: The date of the image build/tagging to allow insertion into the tag history based on another timestamp than the record creation in Anchore. Use this with caution.
   ImageImportPlatform:
     type: object
@@ -5088,4 +5084,5 @@ definitions:
         additionalProperties: true
     additionalProperties: false
     type: object
+
 

@@ -3830,7 +3830,7 @@ components:
               - size: 0
                 digest: digest
                 location: location
-              created_at: created_at
+              created_at: 2000-01-23T04:56:07.000+00:00
               platform:
                 os: linux
                 architecture: amd64
@@ -3904,7 +3904,7 @@ components:
             - size: 0
               digest: digest
               location: location
-            created_at: created_at
+            created_at: 2000-01-23T04:56:07.000+00:00
             platform:
               os: linux
               architecture: amd64
@@ -6731,8 +6731,8 @@ components:
       description: An import record, creating a unique identifier for referencing
         the operation as well as its state
       example:
-        expires_at: expires_at
-        created_at: created_at
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
         uuid: uuid
         status: pending
       properties:
@@ -6748,18 +6748,21 @@ components:
           - expired
           type: string
         expires_at:
+          format: date-time
           type: string
         created_at:
+          format: date-time
           type: string
       type: object
     ImageImportContentResponse:
       example:
         digest: digest
-        created_at: created_at
+        created_at: 2000-01-23T04:56:07.000+00:00
       properties:
         digest:
           type: string
         created_at:
+          format: date-time
           type: string
       type: object
     ImageContentDeleteResponse:
@@ -6774,7 +6777,7 @@ components:
           - size: 0
             digest: digest
             location: location
-          created_at: created_at
+          created_at: 2000-01-23T04:56:07.000+00:00
           platform:
             os: linux
             architecture: amd64
@@ -6825,7 +6828,7 @@ components:
         - size: 0
           digest: digest
           location: location
-        created_at: created_at
+        created_at: 2000-01-23T04:56:07.000+00:00
         platform:
           os: linux
           architecture: amd64
@@ -6841,6 +6844,7 @@ components:
           description: The date of the image build/tagging to allow insertion into
             the tag history based on another timestamp than the record creation in
             Anchore. Use this with caution.
+          format: date-time
           type: string
       type: object
       x-nullable: true
