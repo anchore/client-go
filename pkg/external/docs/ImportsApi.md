@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**ImportImagePackages**](ImportsApi.md#ImportImagePackages) | **Post** /imports/images/{operation_id}/packages | Begin the import of an image analyzed by Syft into the system
 [**ImportImageParentManifest**](ImportsApi.md#ImportImageParentManifest) | **Post** /imports/images/{operation_id}/parent_manifest | Import a docker or OCI distribution manifest list to associate with the image
 [**InvalidateOperation**](ImportsApi.md#InvalidateOperation) | **Delete** /imports/images/{operation_id} | Invalidate operation ID so it can be garbage collected
-[**ListImportConfigs**](ImportsApi.md#ListImportConfigs) | **Get** /imports/images/{operation_id}/image_config | List uploaded image configs
 [**ListImportDockerfiles**](ImportsApi.md#ListImportDockerfiles) | **Get** /imports/images/{operation_id}/dockerfile | List uploaded dockerfiles
+[**ListImportImageConfigs**](ImportsApi.md#ListImportImageConfigs) | **Get** /imports/images/{operation_id}/image_config | List uploaded image configs
 [**ListImportImageManifests**](ImportsApi.md#ListImportImageManifests) | **Get** /imports/images/{operation_id}/manifest | List uploaded image manifests
 [**ListImportPackages**](ImportsApi.md#ListImportPackages) | **Get** /imports/images/{operation_id}/packages | List uploaded package manifests
 [**ListImportParentManifests**](ImportsApi.md#ListImportParentManifests) | **Get** /imports/images/{operation_id}/parent_manifest | List uploaded parent manifests (manifest lists for a tag)
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **operationId** | **string**|  | 
-**contents** | **string**|  | 
+**contents** | **interface{}**|  | 
 
 ### Return type
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **operationId** | **string**|  | 
-**contents** | **string**|  | 
+**contents** | **interface{}**|  | 
 
 ### Return type
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **operationId** | **string**|  | 
-**contents** | **string**|  | 
+**contents** | **interface{}**|  | 
 
 ### Return type
 
@@ -278,11 +278,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListImportConfigs
+## ListImportDockerfiles
 
-> []string ListImportConfigs(ctx, operationId)
+> []string ListImportDockerfiles(ctx, operationId)
 
-List uploaded image configs
+List uploaded dockerfiles
 
 ### Required Parameters
 
@@ -310,11 +310,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListImportDockerfiles
+## ListImportImageConfigs
 
-> []string ListImportDockerfiles(ctx, operationId)
+> []string ListImportImageConfigs(ctx, operationId)
 
-List uploaded dockerfiles
+List uploaded image configs
 
 ### Required Parameters
 

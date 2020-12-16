@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ImageContent** | [**interface{}**](.md) | A metadata content record for a specific image, containing different content type entries | [optional] 
 **ImageDetail** | [**[]ImageDetail**](ImageDetail.md) | Details specific to an image reference and type such as tag and image source | [optional] 
-**LastUpdated** | **float32** |  | [optional] 
-**CreatedAt** | **float32** |  | [optional] 
+**LastUpdated** | [**time.Time**](time.Time.md) |  | [optional] 
+**CreatedAt** | [**time.Time**](time.Time.md) |  | [optional] 
 **ImageDigest** | **string** |  | [optional] 
 **UserId** | **string** |  | [optional] 
 **Annotations** | [**interface{}**](.md) |  | [optional] 

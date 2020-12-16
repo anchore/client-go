@@ -610,7 +610,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnchoreImage'
+                $ref: '#/components/schemas/AnchoreImageList'
           description: Successfully added image to analysis queue
         "500":
           content:
@@ -3511,16 +3511,16 @@ paths:
         content:
           application/vnd.oci.image.manifest.v1+json:
             schema:
-              type: string
+              type: object
           application/vnd.docker.distribution.manifest.v2+json:
             schema:
-              type: string
+              type: object
           application/vnd.docker.distribution.manifest.v1+json:
             schema:
-              type: string
+              type: object
           application/vnd.docker.distribution.manifest.v1+prettyjws:
             schema:
-              type: string
+              type: object
         required: true
       responses:
         "200":
@@ -3575,10 +3575,10 @@ paths:
         content:
           application/vnd.docker.distribution.manifest.list.v2+json:
             schema:
-              type: string
+              type: object
           application/vnd.oci.image.index.v1+json:
             schema:
-              type: string
+              type: object
         required: true
       responses:
         "200":
@@ -3599,7 +3599,7 @@ paths:
       x-codegen-request-body-name: contents
   /imports/images/{operation_id}/image_config:
     get:
-      operationId: list_import_configs
+      operationId: list_import_image_configs
       parameters:
       - in: path
         name: operation_id
@@ -3633,7 +3633,7 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
         required: true
       responses:
         "200":
@@ -3876,18 +3876,6 @@ components:
         tag: tag
         source:
           import:
-            metadata:
-              layers:
-              - size: 0
-                digest: digest
-                location: location
-              - size: 0
-                digest: digest
-                location: location
-              created_at: 2000-01-23T04:56:07.000+00:00
-              platform:
-                os: linux
-                architecture: amd64
             local_image_id: local_image_id
             operation_uuid: operation_uuid
             contents:
@@ -3951,18 +3939,6 @@ components:
         request.
       example:
         import:
-          metadata:
-            layers:
-            - size: 0
-              digest: digest
-              location: location
-            - size: 0
-              digest: digest
-              location: location
-            created_at: 2000-01-23T04:56:07.000+00:00
-            platform:
-              os: linux
-              architecture: amd64
           local_image_id: local_image_id
           operation_uuid: operation_uuid
           contents:
@@ -4127,9 +4103,11 @@ components:
           version: version
           items:
           - trigger_id: trigger_id
+            expires_on: 2000-01-23T04:56:07.000+00:00
             id: id
             gate: gate
           - trigger_id: trigger_id
+            expires_on: 2000-01-23T04:56:07.000+00:00
             id: id
             gate: gate
         - name: name
@@ -4138,9 +4116,11 @@ components:
           version: version
           items:
           - trigger_id: trigger_id
+            expires_on: 2000-01-23T04:56:07.000+00:00
             id: id
             gate: gate
           - trigger_id: trigger_id
+            expires_on: 2000-01-23T04:56:07.000+00:00
             id: id
             gate: gate
         name: name
@@ -4265,6 +4245,7 @@ components:
         an image and indicates it should be ignored in final policy decisions
       example:
         trigger_id: trigger_id
+        expires_on: 2000-01-23T04:56:07.000+00:00
         id: id
         gate: gate
       properties:
@@ -4273,6 +4254,9 @@ components:
         gate:
           type: string
         trigger_id:
+          type: string
+        expires_on:
+          format: date-time
           type: string
       required:
       - gate
@@ -4322,9 +4306,11 @@ components:
         version: version
         items:
         - trigger_id: trigger_id
+          expires_on: 2000-01-23T04:56:07.000+00:00
           id: id
           gate: gate
         - trigger_id: trigger_id
+          expires_on: 2000-01-23T04:56:07.000+00:00
           id: id
           gate: gate
       properties:
@@ -4560,9 +4546,11 @@ components:
             version: version
             items:
             - trigger_id: trigger_id
+              expires_on: 2000-01-23T04:56:07.000+00:00
               id: id
               gate: gate
             - trigger_id: trigger_id
+              expires_on: 2000-01-23T04:56:07.000+00:00
               id: id
               gate: gate
           - name: name
@@ -4571,9 +4559,11 @@ components:
             version: version
             items:
             - trigger_id: trigger_id
+              expires_on: 2000-01-23T04:56:07.000+00:00
               id: id
               gate: gate
             - trigger_id: trigger_id
+              expires_on: 2000-01-23T04:56:07.000+00:00
               id: id
               gate: gate
           name: name
@@ -4684,20 +4674,22 @@ components:
         records may map a single catalog image.
       example:
         registry: registry
-        last_updated: 6.027456183070403
+        last_updated: 2000-01-23T04:56:07.000+00:00
         imageId: imageId
         fulldigest: fulldigest
         repo: repo
         dockerfile: dockerfile
-        created_at: 0.8008281904610115
+        created_at: 2000-01-23T04:56:07.000+00:00
         fulltag: fulltag
         userId: userId
         imageDigest: imageDigest
       properties:
         created_at:
-          type: number
+          format: date-time
+          type: string
         last_updated:
-          type: number
+          format: date-time
+          type: string
         fulltag:
           description: Full docker-pullable tag string referencing the image
           type: string
@@ -4761,31 +4753,31 @@ components:
       description: A unique image in the engine. May have multiple tags or references.
         Unique to an image content across registries or repositories.
       example:
-        last_updated: 1.4658129805029452
+        last_updated: 2000-01-23T04:56:07.000+00:00
         analysis_status: not_analyzed
-        created_at: 5.962133916683182
+        created_at: 2000-01-23T04:56:07.000+00:00
         annotations: '{}'
         image_status: active
         userId: userId
         image_content: '{}'
         image_detail:
         - registry: registry
-          last_updated: 6.027456183070403
+          last_updated: 2000-01-23T04:56:07.000+00:00
           imageId: imageId
           fulldigest: fulldigest
           repo: repo
           dockerfile: dockerfile
-          created_at: 0.8008281904610115
+          created_at: 2000-01-23T04:56:07.000+00:00
           fulltag: fulltag
           userId: userId
           imageDigest: imageDigest
         - registry: registry
-          last_updated: 6.027456183070403
+          last_updated: 2000-01-23T04:56:07.000+00:00
           imageId: imageId
           fulldigest: fulldigest
           repo: repo
           dockerfile: dockerfile
-          created_at: 0.8008281904610115
+          created_at: 2000-01-23T04:56:07.000+00:00
           fulltag: fulltag
           userId: userId
           imageDigest: imageDigest
@@ -4802,9 +4794,11 @@ components:
             $ref: '#/components/schemas/ImageDetail'
           type: array
         last_updated:
-          type: number
+          format: date-time
+          type: string
         created_at:
-          type: number
+          format: date-time
+          type: string
         imageDigest:
           type: string
         userId:
@@ -5180,7 +5174,7 @@ components:
       example:
         subscription_value: subscription_value
         subscription_key: subscription_key
-        subscription_type: policy_eval
+        subscription_type: subscription_type
       properties:
         subscription_key:
           type: string
@@ -5188,12 +5182,6 @@ components:
           nullable: true
           type: string
         subscription_type:
-          enum:
-          - policy_eval
-          - tag_update
-          - vuln_update
-          - repo_update
-          - analysis_update
           type: string
       type: object
     Subscription:
@@ -5203,7 +5191,7 @@ components:
         subscription_value: subscription_value
         active: true
         subscription_key: subscription_key
-        subscription_type: policy_eval
+        subscription_type: subscription_type
         userId: userId
       properties:
         subscription_key:
@@ -5212,12 +5200,6 @@ components:
           type: string
         subscription_type:
           description: The type of the subscription
-          enum:
-          - policy_eval
-          - tag_update
-          - vuln_update
-          - repo_update
-          - analysis_update
           type: string
         subscription_value:
           description: The value of the subscription target
@@ -6310,6 +6292,7 @@ components:
     AnalysisArchiveTransitionRule:
       description: A rule for auto-archiving image analysis by time and/or tag-history
       example:
+        max_images_per_account: 5
         tag_versions_newer: 0
         last_updated: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -6317,6 +6300,12 @@ components:
           registry: registry
           tag: tag
           repository: repository
+        exclude:
+          expiration_days: 1
+          selector:
+            registry: registry
+            tag: tag
+            repository: repository
         analysis_age_days: 6
         system_global: true
         transition: archive
@@ -6349,8 +6338,30 @@ components:
         last_updated:
           format: date-time
           type: string
+        exclude:
+          $ref: '#/components/schemas/AnalysisArchiveTransitionRuleExclude'
+        max_images_per_account:
+          description: This is the maximum number of image analyses an account can
+            have. Can only be set on system_global rules
+          type: integer
       required:
       - transition
+      type: object
+    AnalysisArchiveTransitionRuleExclude:
+      description: Which Images to exclude from auto-archiving logic
+      example:
+        expiration_days: 1
+        selector:
+          registry: registry
+          tag: tag
+          repository: repository
+      properties:
+        selector:
+          $ref: '#/components/schemas/ImageSelector'
+        expiration_days:
+          description: How long the image selected will be excluded from the archive
+            transition
+          type: integer
       type: object
     AnalysisArchiveTransitionHistory:
       description: A rule for auto-archiving image analysis by time and/or tag-history
@@ -6825,18 +6836,6 @@ components:
       type: object
     ImageImportManifest:
       example:
-        metadata:
-          layers:
-          - size: 0
-            digest: digest
-            location: location
-          - size: 0
-            digest: digest
-            location: location
-          created_at: 2000-01-23T04:56:07.000+00:00
-          platform:
-            os: linux
-            architecture: amd64
         local_image_id: local_image_id
         operation_uuid: operation_uuid
         contents:
@@ -6870,66 +6869,7 @@ components:
         local_image_id:
           description: An "imageId" as used by Docker if available
           type: string
-        metadata:
-          $ref: '#/components/schemas/ImageImportManifestMetadata'
         operation_uuid:
-          type: string
-      type: object
-      x-nullable: true
-    ImageImportManifestMetadata:
-      example:
-        layers:
-        - size: 0
-          digest: digest
-          location: location
-        - size: 0
-          digest: digest
-          location: location
-        created_at: 2000-01-23T04:56:07.000+00:00
-        platform:
-          os: linux
-          architecture: amd64
-      nullable: true
-      properties:
-        layers:
-          items:
-            $ref: '#/components/schemas/ImageImportLayerMetadata'
-          type: array
-        platform:
-          $ref: '#/components/schemas/ImageImportPlatform'
-        created_at:
-          description: The date of the image build/tagging to allow insertion into
-            the tag history based on another timestamp than the record creation in
-            Anchore. Use this with caution.
-          format: date-time
-          type: string
-      type: object
-      x-nullable: true
-    ImageImportPlatform:
-      description: An image platform is a combination of an OS and an architecture
-      example:
-        os: linux
-        architecture: amd64
-      properties:
-        os:
-          example: linux
-          type: string
-        architecture:
-          example: amd64
-          type: string
-      type: object
-    ImageImportLayerMetadata:
-      example:
-        size: 0
-        digest: digest
-        location: location
-      nullable: true
-      properties:
-        digest:
-          type: string
-        size:
-          type: integer
-        location:
           type: string
       type: object
       x-nullable: true
@@ -6958,17 +6898,12 @@ components:
           description: Digest for reference content for dockerfile
           type: string
       required:
+      - image_config
+      - manifest
       - packages
       type: object
     Annotations:
       description: Simple key/value pairs where the value may be optional
-      type: object
-    FinalizeImageImportResponse:
-      properties:
-        uuid:
-          type: string
-        status:
-          type: string
       type: object
     ImageImports:
       items:

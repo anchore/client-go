@@ -11,7 +11,7 @@ OPENAPI_GENERATOR_VERSION = v4.3.1
 
 # --- anchore engine references
 # a git tag/branch/commit within anchore/anchore-engine repo
-ENGINE_REF = 0cc7010bf6c3502d09e0a5b1bc12857bfd908952
+ENGINE_REF = c77385ae7f712af52002f164e909fb9732f77727
 EXTAPI_CLIENT_ROOT = $(PROJECT_ROOT)/external
 EXTAPI_OPENAPI_DOC = $(PROJECT_ROOT)/swagger-external-$(ENGINE_REF).yaml
 
@@ -55,12 +55,7 @@ $(EXTAPI_OPENAPI_DOC): ## pull the engine external API swagger document
 	mkdir -p $(PROJECT_ROOT)
 	# note: the existing upstream swagger document needs to be corrected, otherwise invalid code will be generated.
 	# the tr/sed cmds are a workaround for now.
-	curl https://raw.githubusercontent.com/anchore/anchore-engine/$(ENGINE_REF)/anchore_engine/services/apiext/swagger/swagger.yaml | \
-		tr '\n' '\r' | \
-		sed $$'s/- Images\r      - Vulnerabilities/- Images/g' | \
-		tr '\r' '\n' | \
-		sed '/- Image Content/d; /- Policy Evaluation/d; /- Queries/d' \
-			> $(EXTAPI_OPENAPI_DOC)
+	curl https://raw.githubusercontent.com/anchore/anchore-engine/$(ENGINE_REF)/anchore_engine/services/apiext/swagger/swagger.yaml > $(EXTAPI_OPENAPI_DOC)
 
 .PHONY :=
 generate-external-client: $(EXTAPI_OPENAPI_DOC) ## generate client code for engine external API

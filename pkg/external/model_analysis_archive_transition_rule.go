@@ -26,4 +26,7 @@ type AnalysisArchiveTransitionRule struct {
 	SystemGlobal bool `json:"system_global,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	LastUpdated time.Time `json:"last_updated,omitempty"`
+	Exclude AnalysisArchiveTransitionRuleExclude `json:"exclude,omitempty"`
+	// This is the maximum number of image analyses an account can have. Can only be set on system_global rules
+	MaxImagesPerAccount int32 `json:"max_images_per_account,omitempty"`
 }

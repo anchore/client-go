@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **float32** |  | [optional] 
-**LastUpdated** | **float32** |  | [optional] 
+**CreatedAt** | [**time.Time**](time.Time.md) |  | [optional] 
+**LastUpdated** | [**time.Time**](time.Time.md) |  | [optional] 
 **Fulltag** | **string** | Full docker-pullable tag string referencing the image | [optional] 
 **Fulldigest** | **string** | Full docker-pullable digest string including the registry url and repository necessary get the image | [optional] 
 **UserId** | **string** |  | [optional] 

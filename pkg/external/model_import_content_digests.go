@@ -15,9 +15,9 @@ type ImportContentDigests struct {
 	// Digest to use for the packages content
 	Packages string `json:"packages"`
 	// Digest for reference content for image config
-	ImageConfig string `json:"image_config,omitempty"`
+	ImageConfig string `json:"image_config"`
 	// Digest to reference content for the image manifest
-	Manifest string `json:"manifest,omitempty"`
+	Manifest string `json:"manifest"`
 	// Digest for reference content for parent manifest
 	ParentManifest string `json:"parent_manifest,omitempty"`
 	// Digest for reference content for dockerfile

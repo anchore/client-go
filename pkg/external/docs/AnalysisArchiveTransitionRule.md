@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **SystemGlobal** | **bool** | True if the rule applies to all accounts in the system. This is only available to admin users to update/modify, but all users with permission to list rules can see them | [optional] 
 **CreatedAt** | [**time.Time**](time.Time.md) |  | [optional] 
 **LastUpdated** | [**time.Time**](time.Time.md) |  | [optional] 
+**Exclude** | [**AnalysisArchiveTransitionRuleExclude**](AnalysisArchiveTransitionRuleExclude.md) |  | [optional] 
+**MaxImagesPerAccount** | **int32** | This is the maximum number of image analyses an account can have. Can only be set on system_global rules | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
