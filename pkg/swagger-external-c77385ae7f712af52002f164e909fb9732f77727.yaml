@@ -403,7 +403,7 @@ paths:
         200:
           description: Successfully added image to analysis queue
           schema:
-            $ref: "#/definitions/AnchoreImage"
+            $ref: "#/definitions/AnchoreImageList"
         500:
           description: Internal Error
           schema:
@@ -2773,7 +2773,6 @@ paths:
           required: true
           schema:
             type: string
-
       responses:
         200:
           description: "success"
@@ -2826,7 +2825,7 @@ paths:
           name: contents
           required: true
           schema:
-            type: string
+            type: object
       responses:
         200:
           description: "success"
@@ -2877,7 +2876,7 @@ paths:
           name: contents
           required: true
           schema:
-            type: string
+            type: object
       responses:
         200:
           description: "success"
@@ -2890,7 +2889,7 @@ paths:
       tags:
         - Imports
       x-swagger-router-controller: anchore_engine.services.apiext.api.controllers.image_imports
-      operationId: list_import_configs
+      operationId: list_import_image_configs
       x-anchore-authz-action: importImage
       summary: "List uploaded image configs"
       produces:
@@ -2925,7 +2924,7 @@ paths:
           name: contents
           required: true
           schema:
-            type: string
+            type: object
       responses:
         200:
           description: "success"
@@ -3272,6 +3271,9 @@ definitions:
         type: string
       trigger_id:
         type: string
+      expires_on:
+        type: string
+        format: "date-time"
   PolicyRule:
     type: object
     description: A rule that defines and decision value if the match is found true for a given image.
@@ -3463,11 +3465,11 @@ definitions:
     description: A metadata detail record for a specific image. Multiple detail records may map a single catalog image.
     properties:
       created_at:
-        # server returning epoch
-        type: number
+        type: string
+        format: date-time
       last_updated:
-        # server returning epoch
-        type: number
+        type: string
+        format: date-time
       fulltag:
         description: "Full docker-pullable tag string referencing the image"
         type: string
@@ -3527,11 +3529,11 @@ definitions:
         items:
           $ref: "#/definitions/ImageDetail"
       last_updated:
-        # server returning epoch
-        type: number
+        type: string
+        format: date-time
       created_at:
-        # server returning epoch
-        type: number
+        type: string
+        format: date-time
       imageDigest:
         type: string
       userId:
@@ -3805,12 +3807,6 @@ definitions:
         x-nullable: True
       subscription_type:
         type: string
-        enum:
-          - policy_eval
-          - tag_update
-          - vuln_update
-          - repo_update
-          - analysis_update
   Subscription:
     description: Subscription entry
     type: object
@@ -3821,12 +3817,6 @@ definitions:
       subscription_type:
         type: string
         description: The type of the subscription
-        enum:
-          - policy_eval
-          - tag_update
-          - vuln_update
-          - repo_update
-          - analysis_update
       subscription_value:
         type: string
         x-nullable: True
@@ -4507,6 +4497,21 @@ definitions:
       last_updated:
         type: string
         format: date-time
+      exclude:
+        $ref: "#/definitions/AnalysisArchiveTransitionRuleExclude"
+      max_images_per_account:
+        type: integer
+        description: This is the maximum number of image analyses an account can have. Can only be set on system_global rules
+  AnalysisArchiveTransitionRuleExclude:
+    type: object
+    description: Which Images to exclude from auto-archiving logic
+    properties:
+      selector:
+        $ref: "#/definitions/ImageSelector"
+      expiration_days:
+        type: integer
+        description: How long the image selected will be excluded from the archive transition
+        default: -1
   AnalysisArchiveTransitionHistory:
     type: object
     description: A rule for auto-archiving image analysis by time and/or tag-history
@@ -4937,48 +4942,14 @@ definitions:
       local_image_id:
         type: string
         description: An "imageId" as used by Docker if available
-      metadata:
-        $ref: "#/definitions/ImageImportManifestMetadata"
       operation_uuid:
-        type: string
-  ImageImportManifestMetadata:
-    x-nullable: True
-    type: object
-    properties:
-      layers:
-        type: array
-        items:
-          $ref: "#/definitions/ImageImportLayerMetadata"
-      platform:
-        $ref: "#/definitions/ImageImportPlatform"
-      created_at:
-        type: string
-        format: date-time
-        description: The date of the image build/tagging to allow insertion into the tag history based on another timestamp than the record creation in Anchore. Use this with caution.
-  ImageImportPlatform:
-    type: object
-    description: An image platform is a combination of an OS and an architecture
-    properties:
-      os:
-        type: string
-        example: linux
-      architecture:
-        type: string
-        example: amd64
-  ImageImportLayerMetadata:
-    x-nullable: True
-    type: object
-    properties:
-      digest:
-        type: string
-      size:
-        type: integer
-      location:
         type: string
   ImportContentDigests:
     type: object
     required:
       - packages
+      - manifest
+      - image_config
     description: Digest of content to use in the final import
     properties:
       packages:
@@ -4999,13 +4970,6 @@ definitions:
   Annotations:
     type: object
     description: Simple key/value pairs where the value may be optional
-  FinalizeImageImportResponse:
-    type: object
-    properties:
-      uuid:
-        type: string
-      status:
-        type: string
   ImageImports:
     type: array
     items:
@@ -5135,5 +5099,4 @@ definitions:
         additionalProperties: true
     additionalProperties: false
     type: object
-
 

@@ -185,7 +185,7 @@ ImportImageConfig Import a docker or OCI image config to associate with the imag
  * @param contents
 @return ImageImportContentResponse
 */
-func (a *ImportsApiService) ImportImageConfig(ctx _context.Context, operationId string, contents string) (ImageImportContentResponse, *_nethttp.Response, error) {
+func (a *ImportsApiService) ImportImageConfig(ctx _context.Context, operationId string, contents interface{}) (ImageImportContentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -345,7 +345,7 @@ ImportImageManifest Import a docker or OCI distribution manifest to associate wi
  * @param contents
 @return ImageImportContentResponse
 */
-func (a *ImportsApiService) ImportImageManifest(ctx _context.Context, operationId string, contents string) (ImageImportContentResponse, *_nethttp.Response, error) {
+func (a *ImportsApiService) ImportImageManifest(ctx _context.Context, operationId string, contents interface{}) (ImageImportContentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -505,7 +505,7 @@ ImportImageParentManifest Import a docker or OCI distribution manifest list to a
  * @param contents
 @return ImageImportContentResponse
 */
-func (a *ImportsApiService) ImportImageParentManifest(ctx _context.Context, operationId string, contents string) (ImageImportContentResponse, *_nethttp.Response, error) {
+func (a *ImportsApiService) ImportImageParentManifest(ctx _context.Context, operationId string, contents interface{}) (ImageImportContentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -656,12 +656,12 @@ func (a *ImportsApiService) InvalidateOperation(ctx _context.Context, operationI
 }
 
 /*
-ListImportConfigs List uploaded image configs
+ListImportDockerfiles List uploaded dockerfiles
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param operationId
 @return []string
 */
-func (a *ImportsApiService) ListImportConfigs(ctx _context.Context, operationId string) ([]string, *_nethttp.Response, error) {
+func (a *ImportsApiService) ListImportDockerfiles(ctx _context.Context, operationId string) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -672,7 +672,7 @@ func (a *ImportsApiService) ListImportConfigs(ctx _context.Context, operationId 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/imports/images/{operation_id}/image_config"
+	localVarPath := a.client.cfg.BasePath + "/imports/images/{operation_id}/dockerfile"
 	localVarPath = strings.Replace(localVarPath, "{"+"operation_id"+"}", _neturl.QueryEscape(parameterToString(operationId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -733,12 +733,12 @@ func (a *ImportsApiService) ListImportConfigs(ctx _context.Context, operationId 
 }
 
 /*
-ListImportDockerfiles List uploaded dockerfiles
+ListImportImageConfigs List uploaded image configs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param operationId
 @return []string
 */
-func (a *ImportsApiService) ListImportDockerfiles(ctx _context.Context, operationId string) ([]string, *_nethttp.Response, error) {
+func (a *ImportsApiService) ListImportImageConfigs(ctx _context.Context, operationId string) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -749,7 +749,7 @@ func (a *ImportsApiService) ListImportDockerfiles(ctx _context.Context, operatio
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/imports/images/{operation_id}/dockerfile"
+	localVarPath := a.client.cfg.BasePath + "/imports/images/{operation_id}/image_config"
 	localVarPath = strings.Replace(localVarPath, "{"+"operation_id"+"}", _neturl.QueryEscape(parameterToString(operationId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)

@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 ## AddImage
 
-> AnchoreImage AddImage(ctx, image, optional)
+> []AnchoreImage AddImage(ctx, image, optional)
 
 Submit a new image for analysis by the engine
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnchoreImage**](AnchoreImage.md)
+[**[]AnchoreImage**](AnchoreImage.md)
 
 ### Authorization
 

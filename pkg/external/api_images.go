@@ -44,16 +44,16 @@ Creates a new analysis task that is executed asynchronously
  * @param "Force" (optional.Bool) -  Override any existing entry in the system
  * @param "Autosubscribe" (optional.Bool) -  Instruct engine to automatically begin watching the added tag for updates from registry
  * @param "XAnchoreAccount" (optional.String) -  An account name to change the resource scope of the request to that account, if permissions allow (admin only)
-@return AnchoreImage
+@return []AnchoreImage
 */
-func (a *ImagesApiService) AddImage(ctx _context.Context, image ImageAnalysisRequest, localVarOptionals *AddImageOpts) (AnchoreImage, *_nethttp.Response, error) {
+func (a *ImagesApiService) AddImage(ctx _context.Context, image ImageAnalysisRequest, localVarOptionals *AddImageOpts) ([]AnchoreImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AnchoreImage
+		localVarReturnValue  []AnchoreImage
 	)
 
 	// create path and map variables

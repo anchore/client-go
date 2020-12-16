@@ -90,8 +90,8 @@ Class | Method | HTTP request | Description
 *ImportsApi* | [**ImportImagePackages**](docs/ImportsApi.md#importimagepackages) | **Post** /imports/images/{operation_id}/packages | Begin the import of an image analyzed by Syft into the system
 *ImportsApi* | [**ImportImageParentManifest**](docs/ImportsApi.md#importimageparentmanifest) | **Post** /imports/images/{operation_id}/parent_manifest | Import a docker or OCI distribution manifest list to associate with the image
 *ImportsApi* | [**InvalidateOperation**](docs/ImportsApi.md#invalidateoperation) | **Delete** /imports/images/{operation_id} | Invalidate operation ID so it can be garbage collected
-*ImportsApi* | [**ListImportConfigs**](docs/ImportsApi.md#listimportconfigs) | **Get** /imports/images/{operation_id}/image_config | List uploaded image configs
 *ImportsApi* | [**ListImportDockerfiles**](docs/ImportsApi.md#listimportdockerfiles) | **Get** /imports/images/{operation_id}/dockerfile | List uploaded dockerfiles
+*ImportsApi* | [**ListImportImageConfigs**](docs/ImportsApi.md#listimportimageconfigs) | **Get** /imports/images/{operation_id}/image_config | List uploaded image configs
 *ImportsApi* | [**ListImportImageManifests**](docs/ImportsApi.md#listimportimagemanifests) | **Get** /imports/images/{operation_id}/manifest | List uploaded image manifests
 *ImportsApi* | [**ListImportPackages**](docs/ImportsApi.md#listimportpackages) | **Get** /imports/images/{operation_id}/packages | List uploaded package manifests
 *ImportsApi* | [**ListImportParentManifests**](docs/ImportsApi.md#listimportparentmanifests) | **Get** /imports/images/{operation_id}/parent_manifest | List uploaded parent manifests (manifest lists for a tag)
@@ -157,6 +157,7 @@ Class | Method | HTTP request | Description
  - [AnalysisArchiveSummary](docs/AnalysisArchiveSummary.md)
  - [AnalysisArchiveTransitionHistory](docs/AnalysisArchiveTransitionHistory.md)
  - [AnalysisArchiveTransitionRule](docs/AnalysisArchiveTransitionRule.md)
+ - [AnalysisArchiveTransitionRuleExclude](docs/AnalysisArchiveTransitionRuleExclude.md)
  - [AnalysisUpdateEval](docs/AnalysisUpdateEval.md)
  - [AnalysisUpdateNotification](docs/AnalysisUpdateNotification.md)
  - [AnalysisUpdateNotificationAllOf](docs/AnalysisUpdateNotificationAllOf.md)
@@ -194,7 +195,6 @@ Class | Method | HTTP request | Description
  - [FeedMetadata](docs/FeedMetadata.md)
  - [FeedSyncResult](docs/FeedSyncResult.md)
  - [FileContentSearchResult](docs/FileContentSearchResult.md)
- - [FinalizeImageImportResponse](docs/FinalizeImageImportResponse.md)
  - [GateSpec](docs/GateSpec.md)
  - [GenericNotificationPayload](docs/GenericNotificationPayload.md)
  - [GroupSyncResult](docs/GroupSyncResult.md)
@@ -202,11 +202,8 @@ Class | Method | HTTP request | Description
  - [ImageDetail](docs/ImageDetail.md)
  - [ImageFilter](docs/ImageFilter.md)
  - [ImageImportContentResponse](docs/ImageImportContentResponse.md)
- - [ImageImportLayerMetadata](docs/ImageImportLayerMetadata.md)
  - [ImageImportManifest](docs/ImageImportManifest.md)
- - [ImageImportManifestMetadata](docs/ImageImportManifestMetadata.md)
  - [ImageImportOperation](docs/ImageImportOperation.md)
- - [ImageImportPlatform](docs/ImageImportPlatform.md)
  - [ImagePackageManifest](docs/ImagePackageManifest.md)
  - [ImageRef](docs/ImageRef.md)
  - [ImageReference](docs/ImageReference.md)

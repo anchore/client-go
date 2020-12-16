@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Packages** | **string** | Digest to use for the packages content | 
-**ImageConfig** | **string** | Digest for reference content for image config | [optional] 
-**Manifest** | **string** | Digest to reference content for the image manifest | [optional] 
+**ImageConfig** | **string** | Digest for reference content for image config | 
+**Manifest** | **string** | Digest to reference content for the image manifest | 
 **ParentManifest** | **string** | Digest for reference content for parent manifest | [optional] 
 **Dockerfile** | **string** | Digest for reference content for dockerfile | [optional] 
 
