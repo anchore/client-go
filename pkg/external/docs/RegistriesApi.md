@@ -105,7 +105,7 @@ No authorization required
 
 ## GetRegistry
 
-> RegistryConfiguration GetRegistry(ctx, registry, optional)
+> []RegistryConfiguration GetRegistry(ctx, registry, optional)
 
 Get a specific registry configuration
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RegistryConfiguration**](RegistryConfiguration.md)
+[**[]RegistryConfiguration**](RegistryConfiguration.md)
 
 ### Authorization
 

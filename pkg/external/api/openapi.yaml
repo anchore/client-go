@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Anchore Engine API Server
-  version: 0.1.15
+  version: 0.1.16
 servers:
 - url: /
 tags:
@@ -1671,7 +1671,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryConfiguration'
+                $ref: '#/components/schemas/RegistryConfigurationList'
           description: Registry configuration
       summary: Get a specific registry configuration
       tags:
@@ -6947,6 +6947,10 @@ components:
           language: language
           purl: purl
           type: type
+          relations:
+            parentsByFileOwnership:
+            - parentsByFileOwnership
+            - parentsByFileOwnership
           version: version
           metadataType: metadataType
         - foundBy: foundBy
@@ -6966,6 +6970,10 @@ components:
           language: language
           purl: purl
           type: type
+          relations:
+            parentsByFileOwnership:
+            - parentsByFileOwnership
+            - parentsByFileOwnership
           version: version
           metadataType: metadataType
       properties:
@@ -7047,6 +7055,10 @@ components:
         language: language
         purl: purl
         type: type
+        relations:
+          parentsByFileOwnership:
+          - parentsByFileOwnership
+          - parentsByFileOwnership
         version: version
         metadataType: metadataType
       properties:
@@ -7074,6 +7086,8 @@ components:
           type: array
         purl:
           type: string
+        relations:
+          $ref: '#/components/schemas/ImportPackageRelations'
         metadataType:
           type: string
         metadata:
@@ -7089,6 +7103,21 @@ components:
       - type
       - version
       type: object
+    ImportPackageRelations:
+      example:
+        parentsByFileOwnership:
+        - parentsByFileOwnership
+        - parentsByFileOwnership
+      nullable: true
+      properties:
+        parentsByFileOwnership:
+          items:
+            type: string
+          type: array
+      required:
+      - parentsByFileOwnership
+      type: object
+      x-nullable: true
     ImportSchema:
       example:
         version: version

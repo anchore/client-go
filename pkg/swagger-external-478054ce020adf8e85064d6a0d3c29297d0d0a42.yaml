@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "This is the Anchore Engine API. Provides the primary external API for users of the service."
-  version: "0.1.15"
+  version: "0.1.16"
   title: "Anchore Engine API Server"
   contact:
     email: "nurmi@anchore.com"
@@ -1243,7 +1243,7 @@ paths:
         200:
           description: Registry configuration
           schema:
-            $ref: "#/definitions/RegistryConfiguration"
+            $ref: "#/definitions/RegistryConfigurationList"
     put:
       tags:
         - Registries
@@ -3274,6 +3274,7 @@ definitions:
       expires_on:
         type: string
         format: "date-time"
+        pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:\:\d+)?[A-Z]?$
   PolicyRule:
     type: object
     description: A rule that defines and decision value if the match is found true for a given image.
@@ -5070,13 +5071,25 @@ definitions:
         type: array
       purl:
         type: string
+      relations:
+        "$ref": "#/definitions/ImportPackageRelations"
       metadataType:
         type: string
       metadata:
         type: object
     additionalProperties: false
     type: object
-
+  ImportPackageRelations:
+    required:
+      - parentsByFileOwnership
+    properties:
+      parentsByFileOwnership:
+        items:
+          type: string
+        type: array
+    additionalProperties: false
+    x-nullable: True
+    type: object
   ImportSchema:
     required:
       - version
@@ -5099,4 +5112,3 @@ definitions:
         additionalProperties: true
     additionalProperties: false
     type: object
-

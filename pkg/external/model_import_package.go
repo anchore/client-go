@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.15
+ * API version: 0.1.16
  * Contact: nurmi@anchore.com
  */
 
@@ -21,6 +21,7 @@ type ImportPackage struct {
 	Language string `json:"language"`
 	Cpes []string `json:"cpes"`
 	Purl string `json:"purl,omitempty"`
+	Relations *ImportPackageRelations `json:"relations,omitempty"`
 	MetadataType string `json:"metadataType"`
 	Metadata interface{} `json:"metadata,omitempty"`
 }
