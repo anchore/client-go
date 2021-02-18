@@ -6930,11 +6930,15 @@ components:
           name: name
           version: version
         artifacts:
-        - foundBy: foundBy
+        - metadata: '{}'
+          language: language
+          purl: purl
+          type: type
+          version: version
+          foundBy: foundBy
           licenses:
           - licenses
           - licenses
-          metadata: '{}'
           cpes:
           - cpes
           - cpes
@@ -6944,20 +6948,21 @@ components:
             layerID: layerID
           - path: path
             layerID: layerID
-          language: language
-          purl: purl
-          type: type
+          id: id
           relations:
             parentsByFileOwnership:
             - parentsByFileOwnership
             - parentsByFileOwnership
-          version: version
           metadataType: metadataType
-        - foundBy: foundBy
+        - metadata: '{}'
+          language: language
+          purl: purl
+          type: type
+          version: version
+          foundBy: foundBy
           licenses:
           - licenses
           - licenses
-          metadata: '{}'
           cpes:
           - cpes
           - cpes
@@ -6967,14 +6972,11 @@ components:
             layerID: layerID
           - path: path
             layerID: layerID
-          language: language
-          purl: purl
-          type: type
+          id: id
           relations:
             parentsByFileOwnership:
             - parentsByFileOwnership
             - parentsByFileOwnership
-          version: version
           metadataType: metadataType
       properties:
         artifacts:
@@ -7038,11 +7040,15 @@ components:
       type: object
     ImportPackage:
       example:
+        metadata: '{}'
+        language: language
+        purl: purl
+        type: type
+        version: version
         foundBy: foundBy
         licenses:
         - licenses
         - licenses
-        metadata: '{}'
         cpes:
         - cpes
         - cpes
@@ -7052,16 +7058,15 @@ components:
           layerID: layerID
         - path: path
           layerID: layerID
-        language: language
-        purl: purl
-        type: type
+        id: id
         relations:
           parentsByFileOwnership:
           - parentsByFileOwnership
           - parentsByFileOwnership
-        version: version
         metadataType: metadataType
       properties:
+        id:
+          type: string
         name:
           type: string
         version:

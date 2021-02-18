@@ -12,6 +12,7 @@
 package external
 // ImportPackage struct for ImportPackage
 type ImportPackage struct {
+	Id string `json:"id,omitempty"`
 	Name string `json:"name"`
 	Version string `json:"version"`
 	Type string `json:"type"`
