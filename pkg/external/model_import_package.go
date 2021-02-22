@@ -22,7 +22,6 @@ type ImportPackage struct {
 	Language string `json:"language"`
 	Cpes []string `json:"cpes"`
 	Purl string `json:"purl,omitempty"`
-	Relations *ImportPackageRelations `json:"relations,omitempty"`
 	MetadataType string `json:"metadataType"`
 	Metadata interface{} `json:"metadata,omitempty"`
 }

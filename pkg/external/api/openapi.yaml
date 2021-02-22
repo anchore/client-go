@@ -6929,16 +6929,21 @@ components:
         descriptor:
           name: name
           version: version
+        artifactRelationships:
+        - parent: parent
+          metadata: '{}'
+          type: type
+          child: child
+        - parent: parent
+          metadata: '{}'
+          type: type
+          child: child
         artifacts:
-        - metadata: '{}'
-          language: language
-          purl: purl
-          type: type
-          version: version
-          foundBy: foundBy
+        - foundBy: foundBy
           licenses:
           - licenses
           - licenses
+          metadata: '{}'
           cpes:
           - cpes
           - cpes
@@ -6948,21 +6953,17 @@ components:
             layerID: layerID
           - path: path
             layerID: layerID
+          language: language
           id: id
-          relations:
-            parentsByFileOwnership:
-            - parentsByFileOwnership
-            - parentsByFileOwnership
+          purl: purl
+          type: type
+          version: version
           metadataType: metadataType
-        - metadata: '{}'
-          language: language
-          purl: purl
-          type: type
-          version: version
-          foundBy: foundBy
+        - foundBy: foundBy
           licenses:
           - licenses
           - licenses
+          metadata: '{}'
           cpes:
           - cpes
           - cpes
@@ -6972,11 +6973,11 @@ components:
             layerID: layerID
           - path: path
             layerID: layerID
+          language: language
           id: id
-          relations:
-            parentsByFileOwnership:
-            - parentsByFileOwnership
-            - parentsByFileOwnership
+          purl: purl
+          type: type
+          version: version
           metadataType: metadataType
       properties:
         artifacts:
@@ -6991,6 +6992,10 @@ components:
           $ref: '#/components/schemas/ImportDescriptor'
         schema:
           $ref: '#/components/schemas/ImportSchema'
+        artifactRelationships:
+          items:
+            $ref: '#/components/schemas/ImportPackageRelationship'
+          type: array
       required:
       - artifacts
       - distro
@@ -7040,15 +7045,11 @@ components:
       type: object
     ImportPackage:
       example:
-        metadata: '{}'
-        language: language
-        purl: purl
-        type: type
-        version: version
         foundBy: foundBy
         licenses:
         - licenses
         - licenses
+        metadata: '{}'
         cpes:
         - cpes
         - cpes
@@ -7058,11 +7059,11 @@ components:
           layerID: layerID
         - path: path
           layerID: layerID
+        language: language
         id: id
-        relations:
-          parentsByFileOwnership:
-          - parentsByFileOwnership
-          - parentsByFileOwnership
+        purl: purl
+        type: type
+        version: version
         metadataType: metadataType
       properties:
         id:
@@ -7091,8 +7092,6 @@ components:
           type: array
         purl:
           type: string
-        relations:
-          $ref: '#/components/schemas/ImportPackageRelations'
         metadataType:
           type: string
         metadata:
@@ -7108,21 +7107,6 @@ components:
       - type
       - version
       type: object
-    ImportPackageRelations:
-      example:
-        parentsByFileOwnership:
-        - parentsByFileOwnership
-        - parentsByFileOwnership
-      nullable: true
-      properties:
-        parentsByFileOwnership:
-          items:
-            type: string
-          type: array
-      required:
-      - parentsByFileOwnership
-      type: object
-      x-nullable: true
     ImportSchema:
       example:
         version: version
@@ -7147,6 +7131,27 @@ components:
           type: object
       required:
       - target
+      - type
+      type: object
+    ImportPackageRelationship:
+      example:
+        parent: parent
+        metadata: '{}'
+        type: type
+        child: child
+      properties:
+        parent:
+          type: string
+        child:
+          type: string
+        type:
+          type: string
+        metadata:
+          properties: {}
+          type: object
+      required:
+      - child
+      - parent
       - type
       type: object
     PaginatedVulnerableImageList_allOf:

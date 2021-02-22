@@ -17,4 +17,5 @@ type ImagePackageManifest struct {
 	Distro ImportDistribution `json:"distro"`
 	Descriptor ImportDescriptor `json:"descriptor,omitempty"`
 	Schema ImportSchema `json:"schema,omitempty"`
+	ArtifactRelationships []ImportPackageRelationship `json:"artifactRelationships,omitempty"`
 }

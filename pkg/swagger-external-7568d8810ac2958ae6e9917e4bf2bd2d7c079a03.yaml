@@ -4998,6 +4998,10 @@ definitions:
         "$ref": "#/definitions/ImportDescriptor"
       schema:
         "$ref": "#/definitions/ImportSchema"
+      artifactRelationships:
+        items:
+          "$ref": "#/definitions/ImportPackageRelationship"
+        type: array
     additionalProperties: true
     type: object
   ImportDescriptor:
@@ -5073,24 +5077,11 @@ definitions:
         type: array
       purl:
         type: string
-      relations:
-        "$ref": "#/definitions/ImportPackageRelations"
       metadataType:
         type: string
       metadata:
         type: object
     additionalProperties: false
-    type: object
-  ImportPackageRelations:
-    required:
-      - parentsByFileOwnership
-    properties:
-      parentsByFileOwnership:
-        items:
-          type: string
-        type: array
-    additionalProperties: false
-    x-nullable: True
     type: object
   ImportSchema:
     required:
@@ -5112,5 +5103,22 @@ definitions:
         type: string
       target:
         additionalProperties: true
+    additionalProperties: false
+    type: object
+  ImportPackageRelationship:
+    required:
+      - parent
+      - child
+      - type
+    properties:
+      parent:
+        type: string
+      child:
+        type: string
+      type:
+        type: string
+      metadata:
+        additionalProperties: true
+        type: object
     additionalProperties: false
     type: object

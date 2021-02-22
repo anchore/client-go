@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **Language** | **string** |  | 
 **Cpes** | **[]string** |  | 
 **Purl** | **string** |  | [optional] 
-**Relations** | Pointer to [**ImportPackageRelations**](ImportPackageRelations.md) |  | [optional] 
 **MetadataType** | **string** |  | 
 **Metadata** | [**interface{}**](.md) |  | [optional] 
 

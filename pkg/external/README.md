@@ -216,7 +216,7 @@ Class | Method | HTTP request | Description
  - [ImportDistribution](docs/ImportDistribution.md)
  - [ImportPackage](docs/ImportPackage.md)
  - [ImportPackageLocation](docs/ImportPackageLocation.md)
- - [ImportPackageRelations](docs/ImportPackageRelations.md)
+ - [ImportPackageRelationship](docs/ImportPackageRelationship.md)
  - [ImportSchema](docs/ImportSchema.md)
  - [ImportSource](docs/ImportSource.md)
  - [LocalAnalysisSource](docs/LocalAnalysisSource.md)
