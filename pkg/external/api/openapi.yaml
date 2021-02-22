@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   title: Anchore Engine API Server
-  version: 0.1.15
+  version: 0.1.16
 servers:
 - url: /
 tags:
@@ -1671,7 +1671,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryConfiguration'
+                $ref: '#/components/schemas/RegistryConfigurationList'
           description: Registry configuration
       summary: Get a specific registry configuration
       tags:
@@ -6929,6 +6929,15 @@ components:
         descriptor:
           name: name
           version: version
+        artifactRelationships:
+        - parent: parent
+          metadata: '{}'
+          type: type
+          child: child
+        - parent: parent
+          metadata: '{}'
+          type: type
+          child: child
         artifacts:
         - foundBy: foundBy
           licenses:
@@ -6945,6 +6954,7 @@ components:
           - path: path
             layerID: layerID
           language: language
+          id: id
           purl: purl
           type: type
           version: version
@@ -6964,6 +6974,7 @@ components:
           - path: path
             layerID: layerID
           language: language
+          id: id
           purl: purl
           type: type
           version: version
@@ -6981,6 +6992,10 @@ components:
           $ref: '#/components/schemas/ImportDescriptor'
         schema:
           $ref: '#/components/schemas/ImportSchema'
+        artifactRelationships:
+          items:
+            $ref: '#/components/schemas/ImportPackageRelationship'
+          type: array
       required:
       - artifacts
       - distro
@@ -7045,11 +7060,14 @@ components:
         - path: path
           layerID: layerID
         language: language
+        id: id
         purl: purl
         type: type
         version: version
         metadataType: metadataType
       properties:
+        id:
+          type: string
         name:
           type: string
         version:
@@ -7113,6 +7131,27 @@ components:
           type: object
       required:
       - target
+      - type
+      type: object
+    ImportPackageRelationship:
+      example:
+        parent: parent
+        metadata: '{}'
+        type: type
+        child: child
+      properties:
+        parent:
+          type: string
+        child:
+          type: string
+        type:
+          type: string
+        metadata:
+          properties: {}
+          type: object
+      required:
+      - child
+      - parent
       - type
       type: object
     PaginatedVulnerableImageList_allOf:

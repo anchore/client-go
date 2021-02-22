@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.15
+ * API version: 0.1.16
  * Contact: nurmi@anchore.com
  */
 
@@ -12,6 +12,7 @@
 package external
 // ImportPackage struct for ImportPackage
 type ImportPackage struct {
+	Id string `json:"id,omitempty"`
 	Name string `json:"name"`
 	Version string `json:"version"`
 	Type string `json:"type"`

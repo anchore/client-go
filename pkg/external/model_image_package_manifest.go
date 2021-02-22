@@ -3,7 +3,7 @@
  *
  * This is the Anchore Engine API. Provides the primary external API for users of the service.
  *
- * API version: 0.1.15
+ * API version: 0.1.16
  * Contact: nurmi@anchore.com
  */
 
@@ -17,4 +17,5 @@ type ImagePackageManifest struct {
 	Distro ImportDistribution `json:"distro"`
 	Descriptor ImportDescriptor `json:"descriptor,omitempty"`
 	Schema ImportSchema `json:"schema,omitempty"`
+	ArtifactRelationships []ImportPackageRelationship `json:"artifactRelationships,omitempty"`
 }
